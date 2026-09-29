@@ -161,7 +161,14 @@ export default function ConversionRate({ newMembers, monthlyTable }: ConversionR
               const isLast = i === matched.length - 1;
               return (
                 <tr key={row.monthKey} className={`border-t border-gray-100 transition-colors ${isLast ? 'bg-blue-50/40' : 'hover:bg-gray-50/60'}`}>
-                  <td className="px-4 py-2.5 font-semibold text-gray-700">{row.month}</td>
+                  <td className="px-4 py-2.5 font-semibold text-gray-700">
+                    {row.month}
+                    {row.partial && row.partialLabel && (
+                      <span className="block text-[9px] font-medium text-amber-600 normal-case tracking-normal bg-amber-50 px-1.5 py-0.5 rounded-full w-fit mt-0.5">
+                        {row.partialLabel}
+                      </span>
+                    )}
+                  </td>
                   <td className="px-4 py-2.5 text-right tabular-nums text-gray-600">{row.appDownloads.toLocaleString('tr-TR')}</td>
                   <td className="px-4 py-2.5 text-right tabular-nums text-gray-600">{row.appSignups.toLocaleString('tr-TR')}</td>
                   <td className={`px-4 py-2.5 text-right tabular-nums font-bold ${isLast ? 'text-blue-600' : 'text-gray-700'}`}>

@@ -79,6 +79,8 @@ export interface MonthlyTableRow {
   iosDownloads: number;
   androidDownloads: number;
   webRegistrations: number;
+  partial?: boolean;
+  partialLabel?: string;
 }
 
 export interface KPISummaryData {

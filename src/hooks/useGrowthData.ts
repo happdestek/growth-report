@@ -120,6 +120,7 @@ export function useGrowthData(filters: GrowthFilters) {
       toTableRow(twoAgoRows, twoAgo.name, twoAgo.start),
       toTableRow(prevRows, prev.name, prev.start),
       toTableRow(currRows, curr.name, curr.start),
+      { ...toTableRow(sepRows, 'September', '2026-09-01'), partial: true, partialLabel: 'MTD · iOS 1–28 Sep / Android 1–19 Sep' },
     ]);
 
     const toDownloadMonth = (rows: DailyMetric[], name: string): DownloadMonth => ({
