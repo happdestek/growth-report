@@ -1,5 +1,6 @@
 import { TrendingUp, TrendingDown, Minus, Search, FileText, Activity, AlertTriangle, CheckCircle, Clock, ExternalLink, BarChart2, Lightbulb, Wrench, Target, Info, X, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
+import SeptemberAnalysis from './SeptemberAnalysis';
 
 const SEO_KPI = [
   {
@@ -652,10 +653,18 @@ export default function SEODashboard() {
             </div>
           </div>
 
+          {/* 30 Aug – 26 Sep data point */}
+          <div className="mt-3 flex items-center gap-3 bg-fuchsia-50 border border-fuchsia-100 rounded-xl px-4 py-2.5">
+            <span className="text-xs font-semibold text-fuchsia-400 uppercase tracking-wider">30 Aug – 26 Sep</span>
+            <span className="text-lg font-bold text-fuchsia-700 tabular-nums">51,1K</span>
+            <span className="text-xs font-bold text-fuchsia-600">+31,7%</span>
+            <span className="text-[11px] text-fuchsia-600/80 ml-auto">Organik trafik mevsimsel olarak gerilerken AI yüzeylerindeki görünürlük büyümeye devam ediyor.</span>
+          </div>
+
           {/* Insight */}
-          <div className="mt-4 bg-emerald-50 border border-emerald-100 rounded-xl px-4 py-3">
+          <div className="mt-3 bg-emerald-50 border border-emerald-100 rounded-xl px-4 py-3">
             <p className="text-xs text-emerald-700 leading-relaxed">
-              Google Search görünürlüğü son 28 günde güçlendi. Toplam impression 32,1K'dan 38,8K'ya yükselerek önceki 28 günlük döneme göre yaklaşık %20,9 artış gösterdi. Özellikle dönemin son günlerinde görünürlük artışının hızlandığı görülüyor.
+              Google Search görünürlüğü son 28 günde güçlendi. Toplam impression 32,1K'dan 38,8K'ya yükselerek önceki 28 günlük döneme göre yaklaşık %20,9 artış gösterdi. 30 Ağustos – 26 Eylül döneminde ise 51,1K impression'a ulaşarak %31,7 büyüme kaydedildi.
             </p>
             <p className="text-xs text-emerald-600/80 leading-relaxed mt-1.5">
               Bu gelişim organik görünürlük açısından pozitif bir sinyal; click ve CTR değişimiyle birlikte değerlendirilerek artan impression hacminin trafiğe ne ölçüde yansıdığı takip edilmeli.
@@ -1299,6 +1308,9 @@ export default function SEODashboard() {
         </div>
         )}
       </section>
+
+      {/* 7 Eylül Sonrası SEO Durumu */}
+      <SeptemberAnalysis />
 
     </div>
   );
