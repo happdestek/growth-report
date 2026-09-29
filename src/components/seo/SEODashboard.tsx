@@ -528,146 +528,43 @@ export default function SEODashboard() {
         </div>
         {/* 28-Day Search Visibility Comparison */}
         <div className="mt-4 bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-start justify-between gap-3 mb-5">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 bg-emerald-50 rounded-xl flex items-center justify-center">
                 <Search size={15} className="text-emerald-600" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-gray-800">Generative AI Görünürlüğü</p>
-                <p className="text-xs text-gray-400">Önceki 28 gün ile karşılaştırma</p>
+                <p className="text-sm font-semibold text-gray-800">Generative AI görünürlüğü</p>
+                <p className="text-xs text-gray-400">Google'ın üretken yapay zeka özelliklerinde (AI Overviews / AI Mode) gösterim</p>
               </div>
+            </div>
+            <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full whitespace-nowrap">Yükseliyor</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
+            <div className="flex flex-col gap-1">
+              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Önceki 28 Gün</span>
+              <span className="text-2xl font-bold text-gray-500 tabular-nums">32,1K</span>
+            </div>
+            <div className="flex flex-col gap-1">
+              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Sonraki 28 Gün</span>
+              <span className="text-2xl font-bold text-gray-900 tabular-nums">38,8K</span>
+              <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full w-fit">▲ %20,9</span>
+            </div>
+            <div className="flex flex-col gap-1">
+              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">30 Ağu – 26 Eyl</span>
+              <span className="text-2xl font-bold text-gray-900 tabular-nums">51,1K</span>
+              <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full w-fit">▲ %31,7</span>
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-5">
-            {/* KPI values */}
-            <div className="flex flex-row gap-6 lg:flex-col lg:gap-3 shrink-0">
-              <div className="flex flex-col gap-1">
-                <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Son 28 Gün</span>
-                <span className="text-2xl font-bold text-gray-900 tabular-nums">38,8K</span>
-              </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Önceki 28 Gün</span>
-                <span className="text-xl font-semibold text-gray-500 tabular-nums">32,1K</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <span className="inline-flex items-center gap-1 text-sm font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg">
-                  <TrendingUp size={13} />
-                  +20,9%
-                </span>
-              </div>
-            </div>
+          <p className="text-xs text-gray-600 leading-relaxed mb-4">
+            Trafik düşerken AI yüzeylerindeki görünürlük üç ölçüm penceresinde de arttı. En çok görünen sayfalar: <span className="font-semibold text-gray-800">/duty-pharmacy/ar</span>, "eczane kaçta kapanır ve açılır", "açılmış ilaçların kullanım süreleri", "kan grubu" ve "tiroid hastası zayıflama iğnesi".
+          </p>
 
-            {/* Mini comparison chart */}
-            <div className="flex-1 flex flex-col gap-2">
-              <div className="h-24 relative">
-                <svg viewBox="0 0 100 50" className="w-full h-full" preserveAspectRatio="none">
-                  {/* Previous 28 days — dashed line */}
-                  <polyline
-                    points={(() => {
-                      const pts: string[] = [];
-                      for (let i = 0; i < 28; i++) {
-                        const x = 2 + (i / 27) * 96;
-                        const base = 32 + Math.sin(i * 0.4) * 1.2;
-                        const y = 48 - ((base - 30) / 12) * 44;
-                        pts.push(`${x},${y}`);
-                      }
-                      return pts.join(' ');
-                    })()}
-                    fill="none"
-                    stroke="#94a3b8"
-                    strokeWidth="1.5"
-                    strokeDasharray="3,2"
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                  />
-                  {/* Last 28 days — solid line */}
-                  <polyline
-                    points={(() => {
-                      const pts: string[] = [];
-                      for (let i = 0; i < 28; i++) {
-                        const x = 2 + (i / 27) * 96;
-                        let val = 32 + Math.sin(i * 0.35) * 1.0;
-                        if (i > 14) val += (i - 14) * 0.35;
-                        if (i > 22) val += (i - 22) * 0.25;
-                        const y = 48 - ((val - 30) / 12) * 44;
-                        pts.push(`${x},${y}`);
-                      }
-                      return pts.join(' ');
-                    })()}
-                    fill="none"
-                    stroke="#10b981"
-                    strokeWidth="2"
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </div>
-              <div className="flex items-center gap-4">
-                <span className="flex items-center gap-1.5 text-[10px] text-emerald-600 font-medium">
-                  <span className="w-3 h-0.5 bg-emerald-500 inline-block rounded" /> Son 28 Gün
-                </span>
-                <span className="flex items-center gap-1.5 text-[10px] text-gray-400 font-medium">
-                  <span className="w-3 h-0.5 border-t border-dashed border-gray-400 inline-block" /> Önceki 28 Gün
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Generative AI blog visibility */}
-          <div className="mt-4 rounded-xl border border-slate-200 overflow-hidden">
-            <div className="flex items-center justify-between gap-3 bg-slate-50 px-4 py-3">
-              <div>
-                <p className="text-xs font-semibold text-slate-700">Generative AI'da impressionlarda öne çıkan bloglar</p>
-                <p className="text-[11px] text-slate-400 mt-0.5">Google Search Console — Top pages</p>
-              </div>
-              <span className="text-[10px] font-semibold text-slate-500 bg-white border border-slate-200 px-2 py-1 rounded-full whitespace-nowrap">En yüksek impression</span>
-            </div>
-            <div className="divide-y divide-slate-100">
-              {[
-                ['Eczane Kaçta Kapanır ve Açılır?', 'https://www.happ.health/blog/eczane-kacta-kapanir-ve-acilir', '4.684'],
-                ['Hazır Salgam Suyunun Zararları Nelerdir?', 'https://www.happ.health/blog/hazir-salgam-suyunun-zararlari-nelerdir', '3.013'],
-                ['Renkli Reçete Sistemi: Yeşil, Sarı, Kırmızı Reçeteler', 'https://www.happ.health/blog/renkli-recete-sistemi-yesil-sari-kirmizi-receteler', '2.197'],
-                ['Duty Pharmacy / Ar', 'https://www.happ.health/duty-pharmacy/ar', '2.045'],
-                ['Kan Grubu', 'https://www.happ.health/blog/kan-grubu', '2.020'],
-                ['Göz Rengi Değiştirme Ameliyatı Mümkün mü?', 'https://www.happ.health/blog/goz-rengi-degistirme-ameliyati-mumkun-mu', '1.692'],
-                ['Deniz Kestanesi Batmasına Nasıl Müdahale Edilmeli?', 'https://www.happ.health/blog/deniz-kestanesi-batmasina-nasil-mudahale-edilmeli', '1.594'],
-                ['Nikotin Zehirlenmesi Nedir? Belirtileri ve Tedavisi', 'https://www.happ.health/blog/nikotin-zehirlenmesi-nedir-belirtileri-ve-tedavisi', '1.561'],
-                ['Happ Health Ana Sayfa', 'https://www.happ.health/', '1.208'],
-                ['Nöbetçi Eczane İstanbul / Bağcılar', 'https://www.happ.health/nobetci-eczane/istanbul/bagcilar', '1.191'],
-                ['Açılmış İlaçların Kullanım Süreleri', 'https://www.happ.health/blog/acilmis-ilaclarin-kullanim-sureleri', '1.188'],
-              ].map(([title, url, impressions], index) => (
-                <a
-                  key={url}
-                  href={url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-3 px-4 py-2.5 hover:bg-slate-50 transition-colors group"
-                >
-                  <span className="w-5 h-5 rounded-md bg-slate-100 text-slate-500 flex items-center justify-center text-[10px] font-bold shrink-0">{index + 1}</span>
-                  <span className="text-xs text-slate-600 group-hover:text-emerald-700 transition-colors truncate">{title}</span>
-                  <span className="ml-auto text-xs font-semibold text-fuchsia-700 tabular-nums shrink-0">{impressions}</span>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* 30 Aug – 26 Sep data point */}
-          <div className="mt-3 flex items-center gap-3 bg-fuchsia-50 border border-fuchsia-100 rounded-xl px-4 py-2.5">
-            <span className="text-xs font-semibold text-fuchsia-400 uppercase tracking-wider">30 Aug – 26 Sep</span>
-            <span className="text-lg font-bold text-fuchsia-700 tabular-nums">51,1K</span>
-            <span className="text-xs font-bold text-fuchsia-600">+31,7%</span>
-            <span className="text-[11px] text-fuchsia-600/80 ml-auto">Organik trafik mevsimsel olarak gerilerken AI yüzeylerindeki görünürlük büyümeye devam ediyor.</span>
-          </div>
-
-          {/* Insight */}
-          <div className="mt-3 bg-emerald-50 border border-emerald-100 rounded-xl px-4 py-3">
-            <p className="text-xs text-emerald-700 leading-relaxed">
-              Google Search görünürlüğü son 28 günde güçlendi. Toplam impression 32,1K'dan 38,8K'ya yükselerek önceki 28 günlük döneme göre yaklaşık %20,9 artış gösterdi. 30 Ağustos – 26 Eylül döneminde ise 51,1K impression'a ulaşarak %31,7 büyüme kaydedildi.
-            </p>
-            <p className="text-xs text-emerald-600/80 leading-relaxed mt-1.5">
-              Bu gelişim organik görünürlük açısından pozitif bir sinyal; click ve CTR değişimiyle birlikte değerlendirilerek artan impression hacminin trafiğe ne ölçüde yansıdığı takip edilmeli.
+          <div className="rounded-xl bg-emerald-50 border border-emerald-100 px-4 py-3">
+            <p className="text-[11px] text-emerald-700 leading-relaxed">
+              Organik trafik mevsimsel olarak gerilerken AI yüzeylerindeki görünürlük büyümeye devam ediyor. Bu görünürlük doğrudan trafik veya dönüşüm olarak yorumlanmamalıdır.
             </p>
           </div>
         </div>
