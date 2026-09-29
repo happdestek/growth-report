@@ -22,23 +22,19 @@ function AnalystNote() {
         <Info size={14} className="text-slate-300" />
       </div>
       <div className="flex flex-col gap-1.5">
-        <p className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Temmuz 2026 & Ağustos 2026 — iOS & Android Kaynak Güncellemesi</p>
+        <p className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Eylül 2026 — Yeni Üye & Sign-up Güncellemesi</p>
         <ul className="text-sm text-slate-400 flex flex-col gap-2">
           <li className="flex gap-2">
             <span className="text-slate-500 shrink-0">•</span>
-            Ağustos ayında Google Play ürün sayfasında 11.433 görüntülemeden 2.038 indirme elde edilerek %17,83 View-to-Download dönüşümü gerçekleşti. Download hacminin %59,8'i Ads & Referrals kaynağından gelirken bu kaynak %32,8 dönüşüm oranıyla ana acquisition sürücüsü oldu. Google Play Explore en yüksek trafik hacmini üretmesine rağmen %10,2 dönüşümle daha düşük verim gösterdi. Search %71,9 ile en yüksek dönüşüm oranına sahip olsa da hacmi sınırlı kaldı.
+            Eylül ayında toplam yeni üye hacmi 2.767'ye yükseldi. Check-up Link 2.109 üye ile ana büyüme kaynağı olmaya devam etti. iOS sign-up 291'e yükselerek Ağustos'a göre %91,4 arttı ve Android sign-up 128 olarak gerçekleşti.
           </li>
           <li className="flex gap-2">
             <span className="text-slate-500 shrink-0">•</span>
-            Google Play tarafında store conversion güçlü görünürken, indirme sonrası kayıt dönüşümü %7,95 seviyesinde gerçekleşti. Ağustos'ta temel optimizasyon alanı artık yalnızca store download conversion değil, Download → Sign-up adımıdır.
+            Mobil uygulama kaynaklı toplam sign-up 419'a yükselerek Ağustos'taki 314 seviyesine göre %33,4 arttı. App indirme başına kayıt dönüşümü %17,5 seviyesine geriledi (Ağustos: %11,7).
           </li>
           <li className="flex gap-2">
             <span className="text-slate-500 shrink-0">•</span>
-            Ağustos ayında toplam yeni üye hacmi Temmuz'a göre %9,6 artarak 2.737'ye yükseldi. Büyümenin ana kaynağı Check-up Link oldu; bu kanal %23,2 artışla 2.062 üyeye ulaştı. Buna karşılık iOS sign-up %36,9, Android sign-up %19,8 ve Web sign-up %5 geriledi.
-          </li>
-          <li className="flex gap-2">
-            <span className="text-slate-500 shrink-0">•</span>
-            Mobil uygulama kaynaklı toplam sign-up 443'ten 314'e gerileyerek yaklaşık %29 azaldı; Ağustos'taki toplam üye büyümesi ağırlıklı olarak Check-up Link tarafından taşındı.
+            Web sign-up 239 olarak gerçekleşti. Toplam yeni üye içinde Check-up Link %76,2 pay ile baskın kanal konumunu korurken, iOS sign-up'un belirgin toparlanması Eylül'deki en önemli pozitif sinyal oldu.
           </li>
         </ul>
       </div>
