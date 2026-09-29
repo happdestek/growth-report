@@ -229,17 +229,75 @@ export default function SeptemberAnalysis() {
         })}
       </div>
 
+      {/* 12 — Generative AI Visibility (moved up) */}
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+        <div className="flex items-center gap-2.5 mb-4">
+          <div className="w-8 h-8 bg-fuchsia-50 rounded-xl flex items-center justify-center">
+            <Search size={15} className="text-fuchsia-600" />
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-gray-800">Generative AI Görünürlüğü — Güncel</p>
+            <p className="text-xs text-gray-400">Search AI yüzeylerinde görünürlük trendi</p>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div className="rounded-xl border border-gray-100 p-3 flex flex-col gap-1">
+            <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Önceki 28 Gün</span>
+            <span className="text-xl font-bold text-gray-500 tabular-nums">32,1K</span>
+          </div>
+          <div className="rounded-xl border border-gray-100 p-3 flex flex-col gap-1">
+            <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Son 28 Gün</span>
+            <span className="text-xl font-bold text-gray-900 tabular-nums">38,8K</span>
+            <span className="text-[10px] font-bold text-emerald-600">+20,9%</span>
+          </div>
+          <div className="rounded-xl border border-fuchsia-100 bg-fuchsia-50/50 p-3 flex flex-col gap-1">
+            <span className="text-[10px] font-semibold text-fuchsia-400 uppercase tracking-wider">30 Aug – 26 Sep</span>
+            <span className="text-xl font-bold text-fuchsia-700 tabular-nums">51,1K</span>
+            <span className="text-[10px] font-bold text-fuchsia-600">+31,7%</span>
+          </div>
+        </div>
+        <div className="rounded-lg bg-fuchsia-50 border border-fuchsia-100 px-3 py-2 mb-3">
+          <p className="text-[11px] text-fuchsia-700 leading-relaxed">
+            Organik trafik mevsimsel olarak gerilerken AI yüzeylerindeki görünürlük büyümeye devam ediyor.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {[
+            '/duty-pharmacy/ar',
+            'eczane kaçta kapanır ve açılır',
+            'açılmış ilaçların kullanım süreleri',
+            'kan grubu',
+            'tiroid hastası zayıflama iğnesi',
+          ].map((c, i) => (
+            <span key={i} className="text-[10px] font-medium text-fuchsia-700 bg-fuchsia-50 border border-fuchsia-100 px-2 py-1 rounded-full">{c}</span>
+          ))}
+        </div>
+        <p className="text-[10px] text-gray-400 mt-2">Bu görünürlük doğrudan trafik veya dönüşüm olarak yorumlanmamalıdır.</p>
+      </div>
+
       {/* 3 — Before / After KPI Comparison */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-        <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">Before / After KPI Karşılaştırması</p>
+        <div className="flex items-center justify-between mb-4">
+          <p className="text-xs font-bold text-gray-500 uppercase tracking-wider">Before / After KPI Karşılaştırması</p>
+          <div className="flex items-center gap-2 text-[10px] font-semibold">
+            <span className="text-gray-400 bg-gray-50 px-2 py-1 rounded-full">Öncesi: 19 Ağu – 6 Eyl</span>
+            <span className="text-blue-600 bg-blue-50 px-2 py-1 rounded-full">Sonrası: 7 – 25 Eyl</span>
+          </div>
+        </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {KPI_COMPARISON.map((k) => (
             <div key={k.label} className="rounded-xl border border-gray-100 p-4 flex flex-col gap-2">
               <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">{k.label}</span>
               <div className="flex items-center gap-2">
-                <span className="text-sm font-semibold text-gray-400 line-through">{k.before}</span>
+                <div className="flex flex-col">
+                  <span className="text-[9px] text-gray-300 font-medium">19 Ağu – 6 Eyl</span>
+                  <span className="text-sm font-semibold text-gray-400 line-through">{k.before}</span>
+                </div>
                 <ArrowRight size={12} className="text-gray-300" />
-                <span className="text-lg font-bold text-gray-900 tabular-nums">{k.after}</span>
+                <div className="flex flex-col">
+                  <span className="text-[9px] text-blue-400 font-medium">7 – 25 Eyl</span>
+                  <span className="text-lg font-bold text-gray-900 tabular-nums">{k.after}</span>
+                </div>
               </div>
               {k.raw && (
                 <div className="flex items-center gap-2">
@@ -510,52 +568,6 @@ export default function SeptemberAnalysis() {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* 12 — Generative AI Visibility (updated) */}
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-        <div className="flex items-center gap-2.5 mb-4">
-          <div className="w-8 h-8 bg-fuchsia-50 rounded-xl flex items-center justify-center">
-            <Search size={15} className="text-fuchsia-600" />
-          </div>
-          <div>
-            <p className="text-sm font-semibold text-gray-800">Generative AI Görünürlüğü — Güncel</p>
-            <p className="text-xs text-gray-400">Search AI yüzeylerinde görünürlük trendi</p>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <div className="rounded-xl border border-gray-100 p-3 flex flex-col gap-1">
-            <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Önceki 28 Gün</span>
-            <span className="text-xl font-bold text-gray-500 tabular-nums">32,1K</span>
-          </div>
-          <div className="rounded-xl border border-gray-100 p-3 flex flex-col gap-1">
-            <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Son 28 Gün</span>
-            <span className="text-xl font-bold text-gray-900 tabular-nums">38,8K</span>
-            <span className="text-[10px] font-bold text-emerald-600">+20,9%</span>
-          </div>
-          <div className="rounded-xl border border-fuchsia-100 bg-fuchsia-50/50 p-3 flex flex-col gap-1">
-            <span className="text-[10px] font-semibold text-fuchsia-400 uppercase tracking-wider">30 Aug – 26 Sep</span>
-            <span className="text-xl font-bold text-fuchsia-700 tabular-nums">51,1K</span>
-            <span className="text-[10px] font-bold text-fuchsia-600">+31,7%</span>
-          </div>
-        </div>
-        <div className="rounded-lg bg-fuchsia-50 border border-fuchsia-100 px-3 py-2 mb-3">
-          <p className="text-[11px] text-fuchsia-700 leading-relaxed">
-            Organik trafik mevsimsel olarak gerilerken AI yüzeylerindeki görünürlük büyümeye devam ediyor.
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-1.5">
-          {[
-            '/duty-pharmacy/ar',
-            'eczane kaçta kapanır ve açılır',
-            'açılmış ilaçların kullanım süreleri',
-            'kan grubu',
-            'tiroid hastası zayıflama iğnesi',
-          ].map((c, i) => (
-            <span key={i} className="text-[10px] font-medium text-fuchsia-700 bg-fuchsia-50 border border-fuchsia-100 px-2 py-1 rounded-full">{c}</span>
-          ))}
-        </div>
-        <p className="text-[10px] text-gray-400 mt-2">Bu görünürlük doğrudan trafik veya dönüşüm olarak yorumlanmamalıdır.</p>
       </div>
 
       {/* 13 — Next Actions */}
