@@ -509,7 +509,7 @@ export default function SEODashboard() {
   const resolved = 59;
   const inProgress = 15;
   const [activeModal, setActiveModal] = useState<typeof CATEGORIES[0] | null>(null);
-  const [paradoksOpen, setParadoksOpen] = useState(true);
+  const [paradoksOpen, setParadoksOpen] = useState(false);
 
   return (
     <div className="flex flex-col gap-6">
@@ -828,7 +828,10 @@ export default function SEODashboard() {
       {/* Ortalama Pozisyon Paradoksu */}
       <section>
         <button
+          type="button"
           onClick={() => setParadoksOpen(o => !o)}
+          aria-expanded={paradoksOpen}
+          aria-controls="average-position-paradox-content"
           className="w-full text-left"
         >
           <h2 className="text-sm font-bold text-gray-700 uppercase tracking-wider mb-3 flex items-center gap-2 hover:text-gray-900 transition-colors">
@@ -839,7 +842,7 @@ export default function SEODashboard() {
         </button>
 
         {paradoksOpen && (
-        <div className="flex flex-col gap-4">
+        <div id="average-position-paradox-content" className="flex flex-col gap-4">
 
           {/* Subtitle */}
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
