@@ -27,23 +27,27 @@ const CHANNEL_META: Record<string, {
   },
 };
 
-const PLATFORM_META: Record<string, { label: string; icon: React.ReactNode; paidLabel: string; browseLabel?: string }> = {
-  ios: { label: 'iOS', icon: <Apple size={13} />, paidLabel: 'App + Web Referrer', browseLabel: 'App Store Browse' },
-  android: { label: 'Android', icon: <Bot size={13} />, paidLabel: 'Ads & Referrals', browseLabel: 'Google Play Explore' },
+const PLATFORM_META: Record<string, { label: string; icon: React.ReactNode }> = {
+  ios: { label: 'iOS', icon: <Apple size={13} /> },
+  android: { label: 'Android', icon: <Bot size={13} /> },
+};
+
+const CHANNEL_LABELS: Record<string, string> = {
+  paid: 'Ads & Referrals',
+  search: 'Search',
+  browse: 'Browse / Explore',
 };
 
 const PLATFORM_INSIGHTS: Record<string, { september: string[]; augustContext: string }> = {
   android: {
     september: [
-      'Eylül\'ün ilk 19 gününde Google Play tarafında 1.162 download gerçekleşti. Downloadların %66,7\'si Ads & Referrals, %29,9\'u Google Play Explore ve %3,4\'ü Google Play Search kaynaklı oldu. Ay tamamlanmadığı için hacim Ağustos tam ayıyla doğrudan karşılaştırılmamalıdır.',
-      'Store listing tarafında 5.240 Product Page View kaydedildi; erken dönem verisi acquisition mix\'in ağırlıklı olarak Ads & Referrals tarafından taşındığını gösteriyor.',
+      'Eylül\'ün ilk 19 gününde Android tarafında 1.162 download gerçekleşti. Ads & Referrals %66,7 ile ana acquisition kanalı olurken Browse / Explore %29,9 ve Search %3,4 pay aldı.',
     ],
     augustContext: 'Ağustos tam ayı: 2.038 downloads · PPV→Download %17,83 → Eylül MTD: %22,18',
   },
   ios: {
     september: [
-      'Eylül\'ün ilk 28 gününde App Store tarafında 1.226 download gerçekleşti. Downloadların %74,2\'si App Referrer, %13,3\'ü Web Referrer ve %10,0\'u App Store Search kaynaklı oldu. App + Web Referrer birlikte toplam download hacminin %87,5\'ini oluşturdu.',
-      '4.760 Product Page View kaydedilen dönemde download hacmi Ağustos tam ayının üzerine çıktı; ancak Eylül henüz tamamlanmadığı için final değerlendirme ay kapanışında yapılmalıdır.',
+      'Eylül\'ün ilk 28 gününde iOS tarafında 1.226 download gerçekleşti. Ortak kanal sınıflandırmasına göre Ads & Referrals 1.075 download ile toplam hacmin %87,7\'sini oluştururken Search %10,0, Browse / Explore ise %2,3 pay aldı.',
     ],
     augustContext: 'Ağustos tam ayı: 639 downloads · PPV→Download %9,42 → Eylül MTD: %25,76',
   },
@@ -134,11 +138,7 @@ export default function SourceBreakdownChart({ data }: SourceBreakdownProps) {
                     {platform.rows.map((row, ri) => {
                       const ch = CHANNEL_META[row.channel];
                       const isLast = ri === platform.rows.length - 1;
-                      const channelLabel = row.channel === 'paid'
-                        ? meta.paidLabel
-                        : row.channel === 'browse' && meta.browseLabel
-                          ? meta.browseLabel
-                          : ch?.label ?? row.channel;
+                      const channelLabel = CHANNEL_LABELS[row.channel] ?? ch?.label ?? row.channel;
                       return (
                         <tr key={row.channel} className={`border-t border-gray-100 ${isLast ? '' : ''} hover:bg-gray-50/60 transition-colors`}>
                           <td className="px-4 py-2.5">
@@ -221,9 +221,9 @@ export default function SourceBreakdownChart({ data }: SourceBreakdownProps) {
         <div className="flex flex-col gap-1.5">
           {Object.entries(CHANNEL_META).map(([key, ch]) => (
             <div key={key} className="flex items-start gap-2 text-xs text-gray-500">
-              <span className="flex items-center gap-1 font-semibold min-w-[60px]" style={{ color: ch.color }}>
+              <span className="flex items-center gap-1 font-semibold min-w-[120px]" style={{ color: ch.color }}>
                 {ch.icon}
-                {ch.label}:
+                {CHANNEL_LABELS[key] ?? ch.label}:
               </span>
               <span>{ch.description}</span>
             </div>

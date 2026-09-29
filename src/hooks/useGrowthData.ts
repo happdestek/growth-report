@@ -174,7 +174,7 @@ export function useGrowthData(filters: GrowthFilters) {
     const monthNames = monthlySourceMonths.map(m => m.name);
 
     const partialLabels: Record<string, string> = {
-      September: 'Partial · Android 1–19 Sep / iOS 1–28 Sep',
+      September: 'Partial · iOS 1–28 Sep / Android 1–19 Sep',
     };
 
     const buildBreakdown = (platform: 'ios' | 'android'): MonthlySourceBreakdown => {
