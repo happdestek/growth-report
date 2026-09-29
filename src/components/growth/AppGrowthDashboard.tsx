@@ -1,4 +1,4 @@
-import { Activity, Info } from 'lucide-react';
+import { Activity, Info, Bot, Apple } from 'lucide-react';
 import { GrowthFilters } from '../../types/growth';
 import { useGrowthData } from '../../hooks/useGrowthData';
 import KPISummary from './KPISummary';
@@ -71,6 +71,49 @@ export default function AppGrowthDashboard({ embedded = false }: { embedded?: bo
         ) : (
           <SourceBreakdownChart data={monthlySourceBreakdown} />
         )}
+
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+          <div className="flex items-center gap-2.5 mb-4">
+            <div className="w-8 h-8 bg-amber-50 rounded-xl flex items-center justify-center">
+              <Info size={16} className="text-amber-600" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-gray-800">Eylül 2026 — Partial Data</p>
+              <p className="text-xs text-gray-400">Platform bazlı download özeti (tamamlanmamış ay)</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="rounded-xl border border-blue-100 bg-blue-50/50 p-4 flex flex-col gap-2">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-blue-700 uppercase tracking-wider">
+                <Bot size={13} /> Android
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl font-bold text-gray-900 tabular-nums">1.162</span>
+                <span className="text-xs text-gray-400">downloads</span>
+              </div>
+              <span className="text-[10px] font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded-full w-fit">MTD · 1–19 Eylül 2026</span>
+              <p className="text-[11px] text-gray-500 leading-relaxed">
+                Ağustos tam ayı: 2.038 downloads. Partial month — direct volume comparison is directional only.
+              </p>
+            </div>
+            <div className="rounded-xl border border-orange-100 bg-orange-50/50 p-4 flex flex-col gap-2">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-orange-700 uppercase tracking-wider">
+                <Apple size={13} /> iOS
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl font-bold text-gray-900 tabular-nums">1.226</span>
+                <span className="text-xs text-gray-400">downloads</span>
+              </div>
+              <span className="text-[10px] font-medium text-orange-600 bg-orange-50 px-2 py-1 rounded-full w-fit">MTD · 1–28 Eylül 2026</span>
+              <p className="text-[11px] text-gray-500 leading-relaxed">
+                Ağustos tam ayı: 639 downloads. MTD / directional comparison — ay henüz kapanmadı.
+              </p>
+            </div>
+          </div>
+          <p className="mt-3 text-[10px] text-amber-600 leading-relaxed bg-amber-50 border border-amber-100 rounded-lg px-3 py-2">
+            Android ve iOS Eylül verileri farklı tarih aralıklarını kapsadığı için platform hacimleri ve toplam download henüz doğrudan karşılaştırılmamaktadır.
+          </p>
+        </div>
 
         {loading ? (
           <SkeletonCard className="h-72" />

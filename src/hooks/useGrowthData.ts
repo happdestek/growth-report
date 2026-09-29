@@ -65,16 +65,21 @@ export function useGrowthData(filters: GrowthFilters) {
     const last30Start = new Date(latestEnd.getTime() - 30 * 86400000).toISOString().split('T')[0];
     const todayStr = latestEnd.toISOString().split('T')[0];
 
+    const sepStart = '2026-09-01';
+    const sepEnd = '2026-09-30';
+
     const [
       { data: currMonthData },
       { data: prevMonthData },
       { data: twoAgoData },
       { data: threeAgoData },
+      { data: sepMonthData },
       { data: dailyData },
       { data: sources },
       { data: sourcesPrev },
       { data: sourcesTwoAgo },
       { data: sourcesThreeAgo },
+      { data: sourcesSep },
       { data: insightRow },
       { data: newMembersData },
     ] = await Promise.all([
@@ -82,11 +87,13 @@ export function useGrowthData(filters: GrowthFilters) {
       supabase.from('growth_daily_metrics').select('*').gte('date', prev.start).lte('date', prev.end).order('date'),
       supabase.from('growth_daily_metrics').select('*').gte('date', twoAgo.start).lte('date', twoAgo.end).order('date'),
       supabase.from('growth_daily_metrics').select('*').gte('date', threeAgo.start).lte('date', threeAgo.end).order('date'),
+      supabase.from('growth_daily_metrics').select('*').gte('date', sepStart).lte('date', sepEnd).order('date'),
       supabase.from('growth_daily_metrics').select('*').gte('date', last30Start).lte('date', todayStr).order('date'),
       supabase.from('growth_source_breakdown').select('platform, channel, count').gte('date', curr.start).lte('date', curr.end),
       supabase.from('growth_source_breakdown').select('platform, channel, count').gte('date', prev.start).lte('date', prev.end),
       supabase.from('growth_source_breakdown').select('platform, channel, count').gte('date', twoAgo.start).lte('date', twoAgo.end),
       supabase.from('growth_source_breakdown').select('platform, channel, count').gte('date', threeAgo.start).lte('date', threeAgo.end),
+      supabase.from('growth_source_breakdown').select('platform, channel, count').gte('date', sepStart).lte('date', sepEnd),
       supabase.from('growth_insights').select('*').eq('period_start', curr.start).maybeSingle(),
       supabase.from('growth_new_members_monthly').select('*').order('month_start'),
     ]);
@@ -95,6 +102,7 @@ export function useGrowthData(filters: GrowthFilters) {
     const prevRows = prevMonthData ?? [];
     const twoAgoRows = twoAgoData ?? [];
     const threeAgoRows = threeAgoData ?? [];
+    const sepRows = sepMonthData ?? [];
 
     setMonthlyKpis({
       currentMonth: sumRows(currRows),
@@ -124,6 +132,7 @@ export function useGrowthData(filters: GrowthFilters) {
       toDownloadMonth(twoAgoRows, twoAgo.name),
       toDownloadMonth(prevRows, prev.name),
       toDownloadMonth(currRows, curr.name),
+      { ...toDownloadMonth(sepRows, 'September'), partial: true, partialLabel: 'MTD · 1–19 Sep (Android) / 1–28 Sep (iOS)' },
     ]);
 
     let filtered = dailyData ?? [];
@@ -160,8 +169,13 @@ export function useGrowthData(filters: GrowthFilters) {
       { name: twoAgo.name, data: sourcesTwoAgo ?? [] },
       { name: prev.name, data: sourcesPrev ?? [] },
       { name: curr.name, data: sources ?? [] },
+      { name: 'September', data: sourcesSep ?? [] },
     ];
     const monthNames = monthlySourceMonths.map(m => m.name);
+
+    const partialLabels: Record<string, string> = {
+      September: 'Partial · Android 1–19 Sep / iOS 1–28 Sep',
+    };
 
     const buildBreakdown = (platform: 'ios' | 'android'): MonthlySourceBreakdown => {
       const channels = platform === 'ios' ? ['paid', 'search', 'browse'] : ['paid', 'search', 'browse'];
@@ -172,7 +186,7 @@ export function useGrowthData(filters: GrowthFilters) {
           count: m.data.filter(r => r.platform === platform && r.channel === channel).reduce((s, r) => s + r.count, 0),
         })),
       }));
-      return { platform, rows, monthNames };
+      return { platform, rows, monthNames, partialLabels };
     };
 
     setMonthlySourceBreakdown([buildBreakdown('ios'), buildBreakdown('android')]);

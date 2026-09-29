@@ -87,6 +87,7 @@ export default function TrendChart({ data }: TrendChartProps) {
   const prev = data[n - 2];
   const totalLast = last.android + last.ios;
   const totalPrev = prev ? prev.android + prev.ios : 0;
+  const lastIsPartial = !!last.partial;
 
   const hovIdx = tooltip?.idx ?? null;
   const hovD = hovIdx !== null ? data[hovIdx] : null;
@@ -112,10 +113,16 @@ export default function TrendChart({ data }: TrendChartProps) {
       </div>
 
       <div className="grid grid-cols-3 gap-3 mb-4">
-        <MiniStat label="Toplam" value={fmt(totalLast)} mom={prev ? pct(totalLast, totalPrev) : null} color={TOTAL_COLOR} />
-        <MiniStat label="Android" value={fmt(last.android)} mom={prev ? pct(last.android, prev.android) : null} color={ANDROID_COLOR} />
-        <MiniStat label="iOS" value={fmt(last.ios)} mom={prev ? pct(last.ios, prev.ios) : null} color={IOS_COLOR} />
+        <MiniStat label="Toplam" value={fmt(totalLast)} mom={!lastIsPartial && prev ? pct(totalLast, totalPrev) : null} color={TOTAL_COLOR} partialLabel={lastIsPartial ? last.partialLabel : undefined} />
+        <MiniStat label="Android" value={fmt(last.android)} mom={!lastIsPartial && prev ? pct(last.android, prev.android) : null} color={ANDROID_COLOR} partialLabel={lastIsPartial ? last.partialLabel : undefined} />
+        <MiniStat label="iOS" value={fmt(last.ios)} mom={!lastIsPartial && prev ? pct(last.ios, prev.ios) : null} color={IOS_COLOR} partialLabel={lastIsPartial ? last.partialLabel : undefined} />
       </div>
+      {lastIsPartial && (
+        <div className="mb-3 flex items-center gap-1.5 text-[10px] text-amber-600 bg-amber-50 border border-amber-100 rounded-lg px-3 py-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+          Eylül 2026 verileri tam ayı kapsamamaktadır — Android 1–19 Sep, iOS 1–28 Sep. MoM karşılaştırması gösterilmemiştir.
+        </div>
+      )}
 
       <div className="relative">
         <svg
@@ -184,8 +191,8 @@ export default function TrendChart({ data }: TrendChartProps) {
                 <circle cx={x} cy={yMap(total, maxVal)} r={4} fill={TOTAL_COLOR} stroke="white" strokeWidth={1.5} />
                 <circle cx={x} cy={yMap(d.android, maxVal)} r={4} fill={ANDROID_COLOR} stroke="white" strokeWidth={1.5} />
                 <circle cx={x} cy={yMap(d.ios, maxVal)} r={4} fill={IOS_COLOR} stroke="white" strokeWidth={1.5} />
-                <text x={x} y={bottom + 16} textAnchor="middle" fontSize="11" fill="#6b7280" fontWeight="500" fontFamily="inherit">
-                  {d.month}
+                <text x={x} y={bottom + 16} textAnchor="middle" fontSize="11" fill={d.partial ? '#d97706' : '#6b7280'} fontWeight="500" fontFamily="inherit">
+                  {d.month}{d.partial ? ' *' : ''}
                 </text>
               </g>
             );
@@ -208,7 +215,7 @@ export default function TrendChart({ data }: TrendChartProps) {
                 height="90"
               >
                 <div className="bg-gray-900 text-white text-xs rounded-lg px-3 py-2.5 shadow-xl pointer-events-none">
-                  <p className="font-semibold mb-1.5 text-gray-300">{hovD.month}</p>
+                  <p className="font-semibold mb-1.5 text-gray-300">{hovD.month}{hovD.partial ? ' · MTD' : ''}</p>
                   <p className="flex justify-between gap-3">
                     <span style={{ color: ANDROID_COLOR }}>Android</span>
                     <span className="font-bold">{hovD.android.toLocaleString()}</span>
@@ -221,6 +228,9 @@ export default function TrendChart({ data }: TrendChartProps) {
                     <span style={{ color: TOTAL_COLOR }}>Toplam</span>
                     <span className="font-bold">{hovTotal.toLocaleString()}</span>
                   </p>
+                  {hovD.partial && hovD.partialLabel && (
+                    <p className="text-[9px] text-amber-400 mt-1.5 pt-1 border-t border-gray-700">{hovD.partialLabel}</p>
+                  )}
                 </div>
               </foreignObject>
             </>
@@ -241,7 +251,7 @@ function LegendItem({ color, label, icon }: { color: string; label: string; icon
   );
 }
 
-function MiniStat({ label, value, mom, color }: { label: string; value: string; mom: number | null; color: string }) {
+function MiniStat({ label, value, mom, color, partialLabel }: { label: string; value: string; mom: number | null; color: string; partialLabel?: string }) {
   return (
     <div className="rounded-xl bg-gray-50 px-3 py-3 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
@@ -249,11 +259,13 @@ function MiniStat({ label, value, mom, color }: { label: string; value: string; 
         <span className="text-xs text-gray-500 font-semibold">{label}</span>
       </div>
       <span className="text-base font-bold text-gray-800">{value}</span>
-      {mom !== null && (
+      {mom !== null ? (
         <span className={`text-xs font-semibold ${mom >= 0 ? 'text-emerald-600' : 'text-red-500'}`}>
           {mom >= 0 ? '+' : ''}{mom}% MoM
         </span>
-      )}
+      ) : partialLabel ? (
+        <span className="text-[10px] font-semibold text-amber-600">MTD · Partial</span>
+      ) : null}
     </div>
   );
 }

@@ -20,6 +20,15 @@ export interface MonthlySourceBreakdown {
   platform: 'ios' | 'android';
   rows: MonthlySourceRow[];
   monthNames: string[];
+  partialLabels?: Record<string, string>;
+}
+
+export interface DownloadMonth {
+  month: string;
+  android: number;
+  ios: number;
+  partial?: boolean;
+  partialLabel?: string;
 }
 
 export interface FunnelPlatformData {
@@ -46,12 +55,6 @@ export interface GrowthInsight {
   platform_insight: string;
   paid_vs_organic_notes: string;
   anomaly: string;
-}
-
-export interface DownloadMonth {
-  month: string;
-  android: number;
-  ios: number;
 }
 
 export interface MonthlyMetrics {
