@@ -67,6 +67,8 @@ export function useGrowthData(filters: GrowthFilters) {
 
     const sepStart = '2026-09-01';
     const sepEnd = '2026-09-30';
+    const octStart = '2026-10-01';
+    const octEnd   = '2026-10-31';
 
     const [
       { data: currMonthData },
@@ -80,6 +82,8 @@ export function useGrowthData(filters: GrowthFilters) {
       { data: sourcesTwoAgo },
       { data: sourcesThreeAgo },
       { data: sourcesSep },
+      { data: octMonthData },
+      { data: sourcesOct },
       { data: insightRow },
       { data: newMembersData },
     ] = await Promise.all([
@@ -94,6 +98,8 @@ export function useGrowthData(filters: GrowthFilters) {
       supabase.from('growth_source_breakdown').select('platform, channel, count').gte('date', twoAgo.start).lte('date', twoAgo.end),
       supabase.from('growth_source_breakdown').select('platform, channel, count').gte('date', threeAgo.start).lte('date', threeAgo.end),
       supabase.from('growth_source_breakdown').select('platform, channel, count').gte('date', sepStart).lte('date', sepEnd),
+      supabase.from('growth_daily_metrics').select('*').gte('date', octStart).lte('date', octEnd).order('date'),
+      supabase.from('growth_source_breakdown').select('platform, channel, count').gte('date', octStart).lte('date', octEnd),
       supabase.from('growth_insights').select('*').eq('period_start', curr.start).maybeSingle(),
       supabase.from('growth_new_members_monthly').select('*').order('month_start'),
     ]);
@@ -103,6 +109,7 @@ export function useGrowthData(filters: GrowthFilters) {
     const twoAgoRows = twoAgoData ?? [];
     const threeAgoRows = threeAgoData ?? [];
     const sepRows = sepMonthData ?? [];
+    const octRows = octMonthData ?? [];
 
     setMonthlyKpis({
       currentMonth: sumRows(currRows),
@@ -120,7 +127,8 @@ export function useGrowthData(filters: GrowthFilters) {
       toTableRow(twoAgoRows, twoAgo.name, twoAgo.start),
       toTableRow(prevRows, prev.name, prev.start),
       toTableRow(currRows, curr.name, curr.start),
-      { ...toTableRow(sepRows, 'September', '2026-09-01'), partial: true, partialLabel: 'MTD · iOS 1–28 Sep / Android 1–19 Sep' },
+      toTableRow(sepRows, 'September', '2026-09-01'),
+      { ...toTableRow(octRows, 'October', '2026-10-01'), partial: true, partialLabel: 'MTD · 1–21 Ekim 2026' },
     ]);
 
     const toDownloadMonth = (rows: DailyMetric[], name: string): DownloadMonth => ({
@@ -133,7 +141,8 @@ export function useGrowthData(filters: GrowthFilters) {
       toDownloadMonth(twoAgoRows, twoAgo.name),
       toDownloadMonth(prevRows, prev.name),
       toDownloadMonth(currRows, curr.name),
-      { ...toDownloadMonth(sepRows, 'September'), partial: true, partialLabel: 'MTD · 1–19 Sep (Android) / 1–28 Sep (iOS)' },
+      toDownloadMonth(sepRows, 'September'),
+      { ...toDownloadMonth(octRows, 'October'), partial: true, partialLabel: 'MTD · 1–21 Ekim 2026 (iOS)' },
     ]);
 
     let filtered = dailyData ?? [];
@@ -171,11 +180,13 @@ export function useGrowthData(filters: GrowthFilters) {
       { name: prev.name, data: sourcesPrev ?? [] },
       { name: curr.name, data: sources ?? [] },
       { name: 'September', data: sourcesSep ?? [] },
+      { name: 'October',   data: sourcesOct ?? [] },
     ];
     const monthNames = monthlySourceMonths.map(m => m.name);
 
     const partialLabels: Record<string, string> = {
-      September: 'Partial · iOS 1–28 Sep / Android 1–19 Sep',
+      September: 'Final · Eylül 2026',
+      October:   'MTD · 1–21 Ekim 2026',
     };
 
     const buildBreakdown = (platform: 'ios' | 'android'): MonthlySourceBreakdown => {

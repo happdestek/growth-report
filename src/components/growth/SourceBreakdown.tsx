@@ -47,9 +47,11 @@ const PLATFORM_INSIGHTS: Record<string, { september: string[]; augustContext: st
   },
   ios: {
     september: [
-      'Eylül\'ün ilk 28 gününde iOS tarafında 1.226 download gerçekleşti. Ortak kanal sınıflandırmasına göre Ads & Referrals 1.075 download ile toplam hacmin %87,7\'sini oluştururken Search %10,0, Browse / Explore ise %2,3 pay aldı.',
+      'Eylül ayı 1.446 download ve 5.333 Product Page View ile tamamlandı; PPV → Download oranı %27,11 oldu. Ads & Referrals 1.276 download ile toplam hacmin %88,2\'sini oluştururken Search %9,5, Browse / Explore ise %2,2 pay aldı.',
+      'Ekim\'in ilk 21 gününde ise download hacmi şimdiden 1.724\'e, Product Page View 6.490\'a ulaştı. Ekim MTD download hacmi Eylül tam ayının %19,2 üzerinde olmasına rağmen iki dönem farklı uzunlukta olduğu için bu artış final MoM olarak değerlendirilmemeli. Store conversion oranı %27,11\'den %26,56\'ya sınırlı gerilerken acquisition hacmi güçlü seyrediyor.',
+      'Ekim\'in ilk 21 gününde iOS acquisition mix daha da referral ağırlıklı hale geldi. Ads & Referrals payı %89,6\'ya yükselerken Search payı %7,3\'e geriledi; Browse / Explore ise %3,2\'ye çıktı.',
     ],
-    augustContext: 'Ağustos tam ayı: 639 downloads · PPV→Download %9,42 → Eylül MTD: %25,76',
+    augustContext: 'iOS acquisition Ekim\'de güçlü ivmesini sürdürüyor: 21 Ekim itibarıyla download hacmi Eylül tam ay toplamını aşmış durumda. Büyümenin ana kaynağı %89,6 pay ile Ads & Referrals. Store conversion rate %27,11\'den %26,56\'ya hafif geriledi.',
   },
 };
 
@@ -95,7 +97,7 @@ export default function SourceBreakdownChart({ data }: SourceBreakdownProps) {
         <div className="mb-4 flex items-start gap-2 bg-amber-50 border border-amber-100 rounded-xl px-4 py-2.5">
           <AlertCircle size={13} className="text-amber-500 mt-0.5 shrink-0" />
           <p className="text-[11px] text-amber-700 leading-relaxed">
-            Eylül 2026 verileri tam ayı kapsamamaktadır. Android 1–19 Eylül, iOS 1–28 Eylül aralığını içerir. Platformların farklı tarih aralıkları nedeniyle toplam download henüz doğrudan karşılaştırılmamaktadır.
+            Ekim 2026 verileri tam ayı kapsamamaktadır (MTD · 1–21 Ekim). Eylül 2026 final ay verisidir. Ekim MTD ile Eylül tam ayı hacim karşılaştırması yönsel (directional) olarak değerlendirilmelidir.
           </p>
         </div>
       )}
