@@ -207,7 +207,11 @@ export function useGrowthData(filters: GrowthFilters) {
 
     setMonthlySourceBreakdown([buildBreakdown('ios'), buildBreakdown('android')]);
     const newMembersRows = newMembersData ?? [];
-    setNewMembers(newMembersRows);
+    setNewMembers(newMembersRows.map(r =>
+      r.month_start === '2026-10-01'
+        ? { ...r, partial: true, partialLabel: 'Ekim 2026 · MTD' }
+        : r
+    ));
 
     if (currRows.length > 0) {
       const iosDownloads = currRows.reduce((s, d) => s + d.ios_downloads, 0);

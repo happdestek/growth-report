@@ -85,6 +85,7 @@ export default function NewMembersChart({ data }: NewMembersChartProps) {
 
   const last = data[n - 1];
   const prev = data[n - 2];
+  const lastIsPartial = !!last.partial;
 
   function getMonthLabel(monthStart: string) {
     const d = new Date(monthStart + 'T00:00:00');
@@ -124,11 +125,19 @@ export default function NewMembersChart({ data }: NewMembersChartProps) {
             key={s.key}
             label={s.label}
             value={fmt(last[s.key])}
-            mom={prev ? pct(last[s.key], prev[s.key]) : null}
+            mom={!lastIsPartial && prev ? pct(last[s.key], prev[s.key]) : null}
             color={COLORS[s.key]}
+            partialLabel={lastIsPartial ? last.partialLabel : undefined}
           />
         ))}
       </div>
+
+      {lastIsPartial && (
+        <div className="mb-4 flex items-center gap-1.5 text-[10px] text-amber-600 bg-amber-50 border border-amber-100 rounded-lg px-3 py-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+          {last.partialLabel || 'MTD'} — ay tamamlanmadığı için MoM karşılaştırması gösterilmemiştir.
+        </div>
+      )}
 
       <div className="relative">
         <svg
@@ -191,7 +200,7 @@ export default function NewMembersChart({ data }: NewMembersChartProps) {
                   fontWeight={isHov ? '600' : '500'}
                   fontFamily="inherit"
                 >
-                  {getMonthLabel(d.month_start)}
+                  {getMonthLabel(d.month_start)}{d.partial ? ' *' : ''}
                 </text>
               </g>
             );
@@ -220,7 +229,7 @@ export default function NewMembersChart({ data }: NewMembersChartProps) {
                 <line x1={cx} x2={cx} y1={PAD.top} y2={bottom} stroke="#cbd5e1" strokeWidth="1" strokeDasharray="4 3" />
                 <foreignObject x={tooltipX} y={tooltipY} width="170" height="130">
                   <div className="bg-gray-900 text-white text-xs rounded-lg px-3 py-2.5 shadow-xl pointer-events-none">
-                    <p className="font-semibold mb-2 text-gray-300">{getMonthLabel(d.month_start)}</p>
+                    <p className="font-semibold mb-2 text-gray-300">{getMonthLabel(d.month_start)}{d.partial ? ' · MTD' : ''}</p>
                     {SERIES.map(s => (
                       <p key={s.key} className="flex justify-between gap-3">
                         <span style={{ color: COLORS[s.key] }}>{s.label}</span>
@@ -242,7 +251,7 @@ export default function NewMembersChart({ data }: NewMembersChartProps) {
   );
 }
 
-function MiniStat({ label, value, mom, color }: { label: string; value: string; mom: number | null; color: string }) {
+function MiniStat({ label, value, mom, color, partialLabel }: { label: string; value: string; mom: number | null; color: string; partialLabel?: string }) {
   return (
     <div className="rounded-xl bg-gray-50 px-3 py-3 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
@@ -250,11 +259,13 @@ function MiniStat({ label, value, mom, color }: { label: string; value: string; 
         <span className="text-xs text-gray-500 font-semibold truncate">{label}</span>
       </div>
       <span className="text-base font-bold text-gray-800">{value}</span>
-      {mom !== null && (
+      {mom !== null ? (
         <span className={`text-xs font-semibold ${mom >= 0 ? 'text-emerald-600' : 'text-red-500'}`}>
           {mom >= 0 ? '+' : ''}{mom}% MoM
         </span>
-      )}
+      ) : partialLabel ? (
+        <span className="text-[10px] font-semibold text-amber-600">{partialLabel}</span>
+      ) : null}
     </div>
   );
 }

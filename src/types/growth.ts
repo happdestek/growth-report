@@ -103,6 +103,8 @@ export interface NewMembersMonthly {
   ios: number;
   web: number;
   total: number;
+  partial?: boolean;
+  partialLabel?: string;
 }
 
 export type DateRange = '7d' | '30d' | '90d';

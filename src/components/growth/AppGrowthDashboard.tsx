@@ -22,19 +22,19 @@ function AnalystNote() {
         <Info size={14} className="text-slate-300" />
       </div>
       <div className="flex flex-col gap-1.5">
-        <p className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Eylül 2026 — Yeni Üye & Sign-up Güncellemesi</p>
+        <p className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Eylül–Ekim 2026 — Yeni Üye & Sign-up Güncellemesi</p>
         <ul className="text-sm text-slate-400 flex flex-col gap-2">
           <li className="flex gap-2">
             <span className="text-slate-500 shrink-0">•</span>
-            Eylül ayında toplam yeni üye hacmi 2.767'ye yükseldi. Check-up Link 2.109 üye ile ana büyüme kaynağı olmaya devam etti. iOS sign-up 291'e yükselerek Ağustos'a göre %91,4 arttı ve Android sign-up 128 olarak gerçekleşti.
+            Eylül 2.936 toplam sign-up ile kapanırken Ekim MTD'de 2.440 sign-up elde edildi. Ekim henüz tamamlanmadığı için toplam hacim karşılaştırması yön göstericidir. Bununla birlikte iOS sign-up %62,6 ve Android sign-up %46,1 artarak app kaynaklı üyelik kazanımında güçlü ivmeye işaret ediyor.
           </li>
           <li className="flex gap-2">
             <span className="text-slate-500 shrink-0">•</span>
-            Mobil uygulama kaynaklı toplam sign-up 419'a yükselerek Ağustos'taki 314 seviyesine göre %33,4 arttı. App indirme başına kayıt dönüşümü %17,5 seviyesine geriledi (Ağustos: %11,7).
+            App sign-up (iOS + Android) Eylül'de 459 iken Ekim MTD'de 723'e çıkarak yaklaşık %57,5 arttı. Check-up Link hâlâ en büyük sign-up kaynağı olsa da toplam payı %75,7'den %64,6'ya geriledi; app kanallarının toplam payı ise %15,6'dan %29,6'ya yükseldi.
           </li>
           <li className="flex gap-2">
             <span className="text-slate-500 shrink-0">•</span>
-            Web sign-up 239 olarak gerçekleşti. Toplam yeni üye içinde Check-up Link %76,2 pay ile baskın kanal konumunu korurken, iOS sign-up'un belirgin toparlanması Eylül'deki en önemli pozitif sinyal oldu.
+            Web sign-up 255'ten 141'e gerilerken Check-up Link 2.222'den 1.576'ya düştü. Ekim MTD hacim düşüşü ay tamamlanmadan değerlendirildiğinde yön göstericidir; app kanallarındaki güçlü büyüme Ekim'in öne çıkan pozitif sinyali.
           </li>
         </ul>
       </div>
