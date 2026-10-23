@@ -84,12 +84,12 @@ export default function AppGrowthDashboard({ embedded = false }: { embedded?: bo
                 <Bot size={13} /> Android
               </div>
               <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-bold text-gray-900 tabular-nums">—</span>
+                <span className="text-2xl font-bold text-gray-900 tabular-nums">1.785</span>
                 <span className="text-xs text-gray-400">downloads</span>
               </div>
-              <span className="text-[10px] font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded-full w-fit">MTD · 1–21 Ekim 2026</span>
+              <span className="text-[10px] font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded-full w-fit">MTD · 1–19 Ekim 2026</span>
               <p className="text-[11px] text-gray-500 leading-relaxed">
-                Eylül tam ayı: 1.162 downloads (1–19 Eylül). Ekim Android verileri bu dashboardda güncellenmemektedir.
+                Eylül tam ayı (final): 1.857 downloads · 7.073 PPV · %26,25 conversion. Ekim MTD download hacmi Eylül tam ayının yaklaşık %96'sına ulaşırken PPV → Download %45,49'a yükseldi.
               </p>
             </div>
             <div className="rounded-xl border border-orange-100 bg-orange-50/50 p-4 flex flex-col gap-2">
@@ -107,7 +107,7 @@ export default function AppGrowthDashboard({ embedded = false }: { embedded?: bo
             </div>
           </div>
           <p className="mt-3 text-[10px] text-amber-600 leading-relaxed bg-amber-50 border border-amber-100 rounded-lg px-3 py-2">
-            Ekim 2026 verileri tam ayı kapsamamaktadır (MTD · 1–21 Ekim). Eylül 2026 final tam ay verisidir. Ekim MTD ile Eylül tam ayı hacim karşılaştırması yönsel (directional) olarak değerlendirilmelidir.
+            Ekim 2026 verileri tam ayı kapsamamaktadır — Android MTD · 1–19 Ekim, iOS MTD · 1–21 Ekim. Eylül 2026 final tam ay verisidir. Ekim MTD ile Eylül tam ayı hacim karşılaştırması yönsel (directional) olarak değerlendirilmelidir.
           </p>
         </div>
 

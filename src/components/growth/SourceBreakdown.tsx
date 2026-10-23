@@ -41,9 +41,11 @@ const CHANNEL_LABELS: Record<string, string> = {
 const PLATFORM_INSIGHTS: Record<string, { september: string[]; augustContext: string }> = {
   android: {
     september: [
-      'Eylül\'ün ilk 19 gününde Android tarafında 1.162 download gerçekleşti. Ads & Referrals %66,7 ile ana acquisition kanalı olurken Browse / Explore %29,9 ve Search %3,4 pay aldı.',
+      'Eylül ayı Android tarafında 7.073 Product Page View ve 1.857 download ile tamamlandı; PPV → Download dönüşümü %26,25 oldu. Ads & Referrals 1.590 download ile toplam hacmin %85,6\'sını oluştururken Browse / Explore %14,4 ve Search %0,0 pay aldı.',
+      'Ekim\'in ilk 19 gününde 3.924 Product Page View\'den 1.785 download elde edildi. Download hacmi şimdiden Eylül tam ayının yaklaşık %96\'sına ulaşırken PPV → Download oranı %45,49\'a yükseldi.',
+      'Ekim\'de acquisition\'ın %95,9\'u Ads & Referrals kanalından gelirken Browse / Explore payı %4,1\'e geriledi. Bu nedenle güçlü download hacminin ağırlıklı olarak paid/referral kaynaklı olduğu dikkate alınmalı.',
     ],
-    augustContext: 'Ağustos tam ayı: 2.038 downloads · PPV→Download %17,83 → Eylül MTD: %22,18',
+    augustContext: 'Android acquisition Ekim\'de güçlü ilerliyor: 19 Ekim itibarıyla download hacmi Eylül tam ayının %96\'sına ulaşırken store conversion %26,25\'ten %45,49\'a çıktı. Ancak büyüme büyük ölçüde Ads & Referrals kaynaklı; organik Browse / Explore payı %14,4\'ten %4,1\'e geriledi.',
   },
   ios: {
     september: [
@@ -69,8 +71,8 @@ export default function SourceBreakdownChart({ data }: SourceBreakdownProps) {
   }
 
   const monthNames = data[0]?.monthNames ?? [];
-  const partialLabels = data[0]?.partialLabels ?? {};
-  const hasPartial = monthNames.some(m => partialLabels[m]);
+  const sharedPartialLabels = data[0]?.partialLabels ?? {};
+  const hasPartial = monthNames.some(m => sharedPartialLabels[m]);
 
   const getMonthTotal = (platform: string, monthName: string) => {
     const platformData = data.find(p => p.platform === platform);
@@ -97,7 +99,7 @@ export default function SourceBreakdownChart({ data }: SourceBreakdownProps) {
         <div className="mb-4 flex items-start gap-2 bg-amber-50 border border-amber-100 rounded-xl px-4 py-2.5">
           <AlertCircle size={13} className="text-amber-500 mt-0.5 shrink-0" />
           <p className="text-[11px] text-amber-700 leading-relaxed">
-            Ekim 2026 verileri tam ayı kapsamamaktadır (MTD · 1–21 Ekim). Eylül 2026 final ay verisidir. Ekim MTD ile Eylül tam ayı hacim karşılaştırması yönsel (directional) olarak değerlendirilmelidir.
+            Ekim 2026 verileri tam ayı kapsamamaktadır — Android MTD · 1–19 Ekim, iOS MTD · 1–21 Ekim. Eylül 2026 final tam ay verisidir. Ekim MTD ile Eylül tam ayı hacim karşılaştırması yönsel (directional) olarak değerlendirilmelidir.
           </p>
         </div>
       )}
@@ -106,6 +108,7 @@ export default function SourceBreakdownChart({ data }: SourceBreakdownProps) {
         {data.map(platform => {
           const meta = PLATFORM_META[platform.platform];
           const insights = PLATFORM_INSIGHTS[platform.platform];
+          const platPartialLabels = platform.partialLabels ?? {};
           return (
             <div key={platform.platform}>
               <div className="flex items-center gap-2 mb-3">
@@ -126,9 +129,9 @@ export default function SourceBreakdownChart({ data }: SourceBreakdownProps) {
                         <th key={m} className="text-right px-4 py-2.5 text-xs font-bold text-gray-600 uppercase tracking-wider">
                           <div className="flex flex-col items-end gap-0.5">
                             <span>{m}</span>
-                            {partialLabels[m] && (
+                            {platPartialLabels[m] && (
                               <span className="text-[9px] font-medium text-amber-600 normal-case tracking-normal bg-amber-50 px-1.5 py-0.5 rounded-full">
-                                {partialLabels[m]}
+                                {platPartialLabels[m]}
                               </span>
                             )}
                           </div>
