@@ -185,11 +185,11 @@ export function useGrowthData(filters: GrowthFilters) {
     const monthNames = monthlySourceMonths.map(m => m.name);
 
     const partialLabels: Record<string, string> = {
-      September: 'Final · Eylül 2026',
+      September: 'Eylül 2026',
       October:   'MTD · 1–21 Ekim 2026',
     };
     const androidPartialLabels: Record<string, string> = {
-      September: 'Final · Eylül 2026',
+      September: 'Eylül 2026',
       October:   'MTD · 1–19 Ekim 2026',
     };
 
