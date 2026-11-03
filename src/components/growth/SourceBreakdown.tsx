@@ -99,7 +99,7 @@ export default function SourceBreakdownChart({ data }: SourceBreakdownProps) {
         <div className="mb-4 flex items-start gap-2 bg-amber-50 border border-amber-100 rounded-xl px-4 py-2.5">
           <AlertCircle size={13} className="text-amber-500 mt-0.5 shrink-0" />
           <p className="text-[11px] text-amber-700 leading-relaxed">
-            Android Ekim 2026 verileri finaldir. iOS Ekim verileri MTD · 1–21 Ekim kapsamındadır; iOS tarafında Eylül–Ekim hacim karşılaştırması yönsel (directional) olarak değerlendirilmelidir.
+            Eylül ve Ekim 2026 verileri final tam ay verileridir.
           </p>
         </div>
       )}

@@ -135,7 +135,7 @@ export default function NewMembersChart({ data }: NewMembersChartProps) {
       {lastIsPartial && (
         <div className="mb-4 flex items-center gap-1.5 text-[10px] text-amber-600 bg-amber-50 border border-amber-100 rounded-lg px-3 py-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-          {last.partialLabel || 'MTD'} — ay tamamlanmadığı için MoM karşılaştırması gösterilmemiştir.
+          {last.partialLabel || 'Final'} — Ekim 2026 final tam ay verisidir.
         </div>
       )}
 

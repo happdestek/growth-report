@@ -128,7 +128,7 @@ export function useGrowthData(filters: GrowthFilters) {
       toTableRow(prevRows, prev.name, prev.start),
       toTableRow(currRows, curr.name, curr.start),
       toTableRow(sepRows, 'September', '2026-09-01'),
-      { ...toTableRow(octRows, 'October', '2026-10-01'), partial: true, partialLabel: 'MTD · Ekim 2026' },
+      toTableRow(octRows, 'October', '2026-10-01'),
     ]);
 
     const toDownloadMonth = (rows: DailyMetric[], name: string): DownloadMonth => ({
@@ -142,7 +142,7 @@ export function useGrowthData(filters: GrowthFilters) {
       toDownloadMonth(prevRows, prev.name),
       toDownloadMonth(currRows, curr.name),
       toDownloadMonth(sepRows, 'September'),
-      { ...toDownloadMonth(octRows, 'October'), partial: true, partialLabel: 'MTD · Ekim 2026' },
+      toDownloadMonth(octRows, 'October'),
     ]);
 
     let filtered = dailyData ?? [];
@@ -186,7 +186,7 @@ export function useGrowthData(filters: GrowthFilters) {
 
     const partialLabels: Record<string, string> = {
       September: 'Eylül 2026',
-      October:   'MTD · 1–21 Ekim 2026',
+      October:   'Ekim 2026 · Final',
     };
     const androidPartialLabels: Record<string, string> = {
       September: 'Eylül 2026',
@@ -207,11 +207,7 @@ export function useGrowthData(filters: GrowthFilters) {
 
     setMonthlySourceBreakdown([buildBreakdown('ios'), buildBreakdown('android')]);
     const newMembersRows = newMembersData ?? [];
-    setNewMembers(newMembersRows.map(r =>
-      r.month_start === '2026-10-01'
-        ? { ...r, partial: true, partialLabel: 'Ekim 2026 · MTD' }
-        : r
-    ));
+    setNewMembers(newMembersRows);
 
     if (currRows.length > 0) {
       const iosDownloads = currRows.reduce((s, d) => s + d.ios_downloads, 0);

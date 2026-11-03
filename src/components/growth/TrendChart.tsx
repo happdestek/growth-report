@@ -120,7 +120,7 @@ export default function TrendChart({ data }: TrendChartProps) {
       {lastIsPartial && (
         <div className="mb-3 flex items-center gap-1.5 text-[10px] text-amber-600 bg-amber-50 border border-amber-100 rounded-lg px-3 py-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-          Ekim 2026 verileri tam ayı kapsamamaktadır — Android MTD · 1–19 Oct, iOS MTD · 1–21 Oct. MoM karşılaştırması gösterilmemiştir.
+          Ekim 2026 verileri final tam ay verileridir.
         </div>
       )}
 
@@ -264,7 +264,7 @@ function MiniStat({ label, value, mom, color, partialLabel }: { label: string; v
           {mom >= 0 ? '+' : ''}{mom}% MoM
         </span>
       ) : partialLabel ? (
-        <span className="text-[10px] font-semibold text-amber-600">MTD · Partial</span>
+        <span className="text-[10px] font-semibold text-gray-400">Final</span>
       ) : null}
     </div>
   );

@@ -26,15 +26,15 @@ function AnalystNote() {
         <ul className="text-sm text-slate-400 flex flex-col gap-2">
           <li className="flex gap-2">
             <span className="text-slate-500 shrink-0">•</span>
-            Eylül 2.936 toplam sign-up ile kapanırken Ekim MTD'de 2.440 sign-up elde edildi. Ekim henüz tamamlanmadığı için toplam hacim karşılaştırması yön göstericidir. Bununla birlikte iOS sign-up %62,6 ve Android sign-up %46,1 artarak app kaynaklı üyelik kazanımında güçlü ivmeye işaret ediyor.
+            Eylül 2.936 toplam sign-up ile kapanırken Ekim'de 2.440 sign-up elde edildi. iOS sign-up %62,6 ve Android sign-up %46,1 artarak app kaynaklı üyelik kazanımında güçlü ivmeye işaret ediyor.
           </li>
           <li className="flex gap-2">
             <span className="text-slate-500 shrink-0">•</span>
-            App sign-up (iOS + Android) Eylül'de 459 iken Ekim MTD'de 723'e çıkarak yaklaşık %57,5 arttı. Check-up Link hâlâ en büyük sign-up kaynağı olsa da toplam payı %75,7'den %64,6'ya geriledi; app kanallarının toplam payı ise %15,6'dan %29,6'ya yükseldi.
+            App sign-up (iOS + Android) Eylül'de 459 iken Ekim'de 723'e çıkarak yaklaşık %57,5 arttı. Check-up Link hâlâ en büyük sign-up kaynağı olsa da toplam payı %75,7'den %64,6'ya geriledi; app kanallarının toplam payı ise %15,6'dan %29,6'ya yükseldi.
           </li>
           <li className="flex gap-2">
             <span className="text-slate-500 shrink-0">•</span>
-            Web sign-up 255'ten 141'e gerilerken Check-up Link 2.222'den 1.576'ya düştü. Ekim MTD hacim düşüşü ay tamamlanmadan değerlendirildiğinde yön göstericidir; app kanallarındaki güçlü büyüme Ekim'in öne çıkan pozitif sinyali.
+            Web sign-up 255'ten 141'e gerilerken Check-up Link 2.222'den 1.576'ya düştü. App kanallarındaki güçlü büyüme Ekim'in öne çıkan pozitif sinyali.
           </li>
         </ul>
       </div>
@@ -106,8 +106,8 @@ export default function AppGrowthDashboard({ embedded = false }: { embedded?: bo
               </p>
             </div>
           </div>
-          <p className="mt-3 text-[10px] text-amber-600 leading-relaxed bg-amber-50 border border-amber-100 rounded-lg px-3 py-2">
-            Eylül ve Ekim 2026 verileri final tam ay verileridir. Ekim performansı Eylül ile doğrudan MoM olarak karşılaştırılabilir.
+          <p className="mt-3 text-[10px] text-emerald-600 leading-relaxed bg-emerald-50 border border-emerald-100 rounded-lg px-3 py-2">
+            Eylül ve Ekim 2026 verileri final tam ay verileridir.
           </p>
         </div>
 
