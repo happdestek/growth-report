@@ -22,19 +22,19 @@ function AnalystNote() {
         <Info size={14} className="text-slate-300" />
       </div>
       <div className="flex flex-col gap-1.5">
-        <p className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Eylül–Ekim 2026 — Yeni Üye & Sign-up Güncellemesi</p>
+        <p className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Eylül–Ekim 2026 — Yeni Üye & Sign-up Final</p>
         <ul className="text-sm text-slate-400 flex flex-col gap-2">
           <li className="flex gap-2">
             <span className="text-slate-500 shrink-0">•</span>
-            Eylül 2.936 toplam sign-up ile kapanırken Ekim'de 2.440 sign-up elde edildi. iOS sign-up %62,6 ve Android sign-up %46,1 artarak app kaynaklı üyelik kazanımında güçlü ivmeye işaret ediyor.
+            Ekim ayında toplam sign-up 2.936'dan 3.394'e yükselerek Eylül'e göre %15,6 büyüdü. Büyümenin ana sürücüsü app kanalları oldu; iOS sign-up 318'den 695'e, Android sign-up ise 141'den 307'ye yükseldi.
           </li>
           <li className="flex gap-2">
             <span className="text-slate-500 shrink-0">•</span>
-            App sign-up (iOS + Android) Eylül'de 459 iken Ekim'de 723'e çıkarak yaklaşık %57,5 arttı. Check-up Link hâlâ en büyük sign-up kaynağı olsa da toplam payı %75,7'den %64,6'ya geriledi; app kanallarının toplam payı ise %15,6'dan %29,6'ya yükseldi.
+            iOS + Android toplam sign-up hacmi 459'dan 1.002'ye çıkarak yaklaşık %118 büyüdü. App kanallarının toplam üyelik içindeki payı %15,6'dan %29,5'e yükselirken Check-up Link'in payı %64,9 seviyesinde gerçekleşti.
           </li>
           <li className="flex gap-2">
             <span className="text-slate-500 shrink-0">•</span>
-            Web sign-up 255'ten 141'e gerilerken Check-up Link 2.222'den 1.576'ya düştü. App kanallarındaki güçlü büyüme Ekim'in öne çıkan pozitif sinyali.
+            Ekim'de acquisition büyümesi yalnızca download tarafında kalmadı; app kaynaklı kullanıcı kazanımı sign-up'a da güçlü şekilde yansıdı. iOS ve Android birlikte Eylül'e göre iki kattan fazla sign-up üretirken toplam yeni üyelik %15,6 arttı.
           </li>
         </ul>
       </div>
