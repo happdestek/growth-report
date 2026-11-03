@@ -355,62 +355,7 @@ export default function PaidMarketingDashboard() {
           </p>
         </div>
 
-        {/* Reklam Bazlı Performans — android_kampanya */}
-        <div className="mt-6">
-          <SectionHeader title="Reklam Bazlı Performans" subtitle="android_kampanya · Haziran 2026" />
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-            <table className="w-full text-xs">
-              <thead>
-                <tr className="border-b border-gray-100 bg-gray-50">
-                  <th className="text-left px-4 py-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider">Reklam</th>
-                  <th className="text-right px-4 py-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider">Harcama</th>
-                  <th className="text-right px-4 py-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider">Install</th>
-                  <th className="text-right px-4 py-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider">CPI</th>
-                  <th className="text-right px-4 py-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider">CTR</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-50">
-                {[
-                  { name: 'android_hangidiyet2_19.06', spend: '₺5.382', install: 304, cpi: '₺17,70', ctr: '%1,13', badge: 'En Düşük CPI', badgeColor: 'bg-emerald-100 text-emerald-800', rowBg: 'bg-emerald-50/50' },
-                  { name: 'android_hangidiyet_16.01',  spend: '₺6.995', install: 278, cpi: '₺25,16', ctr: '%1,00', badge: 'En Yüksek Hacim', badgeColor: 'bg-blue-100 text-blue-700',    rowBg: '' },
-                  { name: 'android_tanıtımAI_09.06 – Test3', spend: '₺793', install: 20, cpi: '₺39,65', ctr: '%3,48', badge: null, badgeColor: '', rowBg: '' },
-                  { name: 'android_tanıtımAI_09.06 – Test1', spend: '₺499', install: 14, cpi: '₺35,66', ctr: '%3,47', badge: null, badgeColor: '', rowBg: '' },
-                  { name: 'android_tanıtımAI_09.06 – Test2', spend: '₺509', install: 11, cpi: '₺46,29', ctr: '%3,71', badge: null, badgeColor: '', rowBg: '' },
-                  { name: 'android_kantahlili_02.04 – Kopya', spend: '₺789', install: 13, cpi: '₺60,66', ctr: '%2,10', badge: 'Pahalı', badgeColor: 'bg-amber-100 text-amber-800', rowBg: 'bg-amber-50/40' },
-                  { name: 'android_hangidstatik_13.03',      spend: '₺301', install: 6,  cpi: '₺50,24', ctr: '%1,58', badge: null, badgeColor: '', rowBg: '' },
-                  { name: 'android_tanıtımAI_09.06 – Test4', spend: '₺270', install: 3,  cpi: '₺90,00', ctr: '%4,62', badge: 'En Yüksek CPI', badgeColor: 'bg-rose-100 text-rose-800', rowBg: 'bg-rose-50/40' },
-                ].map((row, i) => (
-                  <tr key={i} className={`hover:bg-gray-50/60 transition-colors ${row.rowBg}`}>
-                    <td className="px-4 py-3">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="font-mono text-[11px] text-gray-700">{row.name}</span>
-                        {row.badge && (
-                          <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-md ${row.badgeColor}`}>{row.badge}</span>
-                        )}
-                      </div>
-                    </td>
-                    <td className="px-4 py-3 text-right tabular-nums text-gray-600 font-medium">{row.spend}</td>
-                    <td className="px-4 py-3 text-right tabular-nums font-bold text-gray-800">{row.install}</td>
-                    <td className="px-4 py-3 text-right tabular-nums text-gray-600">{row.cpi}</td>
-                    <td className="px-4 py-3 text-right tabular-nums text-gray-500">{row.ctr}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
 
-          {/* Action signals */}
-          <div className="mt-3 flex flex-col gap-2">
-            <div className="flex gap-2.5 items-start bg-emerald-50 border border-emerald-100 rounded-xl px-4 py-3">
-              <TrendingUp size={13} className="text-emerald-600 mt-0.5 shrink-0" />
-              <p className="text-xs text-emerald-800 leading-relaxed"><span className="font-bold">hangidiyet2 ayın yıldızı.</span> ₺17,70 CPI ile tüm reklamlar içinde en verimli. Bütçe artırımına hazır.</p>
-            </div>
-            <div className="flex gap-2.5 items-start bg-amber-50 border border-amber-100 rounded-xl px-4 py-3">
-              <AlertCircle size={13} className="text-amber-500 mt-0.5 shrink-0" />
-              <p className="text-xs text-amber-800 leading-relaxed"><span className="font-bold">kantahlili + statik + AI Test4 durdurulmalı.</span> Üçü birlikte ₺1.360 harcamayla yalnızca 22 install.</p>
-            </div>
-          </div>
-        </div>
 
       </section>
 
