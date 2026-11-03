@@ -10,13 +10,12 @@ const GOOGLE_MONTHLY = [
 
 const META_MONTHLY = [
   { metric: 'Cost',                  subat: '₺42.568', mart: '₺46.313', nisan: '₺45.013', nisanRaw: 45013, mayis: '₺45.123', mayisRaw: 45123, haziran: '₺38.451', haziranRaw: 38451, temmuz: '₺37.067', temmuzRaw: 37067, agustos: '₺42.028', agustosRaw: 42028, eylul: '₺41.087', eylulRaw: 41087, ekim: '₺43.184', ekimRaw: 43184, lowerBetter: true },
-  { metric: 'Total App Installs',     subat: '—', mart: '—', nisan: '—', mayis: '—', haziran: '—', temmuz: '—', agustos: '—', eylul: '1.842', eylulRaw: 1842, ekim: '2.296', ekimRaw: 2296 },
+  { metric: 'Total App Installs',     subat: '—', mart: '—', nisan: '—', mayis: '—', haziran: '—', temmuz: '—', agustos: '—', eylul: '1.884', eylulRaw: 1884, ekim: '2.297', ekimRaw: 2297 },
   { metric: 'iOS Avg CPI',            subat: '—', mart: '—', nisan: '—', mayis: '—', haziran: '—', temmuz: '—', agustos: '—', eylul: '₺13,28', eylulRaw: 13.28, ekim: '₺14,74', ekimRaw: 14.74, lowerBetter: true },
   { metric: 'Android Avg CPI',        subat: '—', mart: '—', nisan: '—', mayis: '—', haziran: '—', temmuz: '—', agustos: '—', eylul: '₺30,39', eylulRaw: 30.39, ekim: '₺17,81', ekimRaw: 17.81, lowerBetter: true },
   { metric: 'Total Clicks',            subat: '5.653', mart: '6.695', nisan: '8.415', nisanRaw: 8415, mayis: '10.625', mayisRaw: 10625, haziran: '10.410', haziranRaw: 10410, temmuz: '6.966', temmuzRaw: 6966, agustos: '8.002', agustosRaw: 8002, eylul: '7.317', eylulRaw: 7317, ekim: '10.986', ekimRaw: 10986 },
   { metric: 'Total Impressions',      subat: '840.515', mart: '885.729', nisan: '1.193.335', nisanRaw: 1193335, mayis: '1.056.189', mayisRaw: 1056189, haziran: '813.089', haziranRaw: 813089, temmuz: '933.074', temmuzRaw: 933074, agustos: '1.062.570', agustosRaw: 1062570, eylul: '885.787', eylulRaw: 885787, ekim: '747.273', ekimRaw: 747273 },
   { metric: 'Instagram Traffic CTR', subat: '%0,67', mart: '%0,76', nisan: '%0,71', nisanRaw: 0.71, mayis: '%1,01', mayisRaw: 1.01, haziran: '%1,28', haziranRaw: 1.28, temmuz: '%0,75', temmuzRaw: 0.75, agustos: '%0,75', agustosRaw: 0.75, eylul: '%4,64', eylulRaw: 4.64, ekim: '%5,54', ekimRaw: 5.54 },
-  { metric: 'Avg CPC',    subat: '₺7,53',    mart: '₺6,92',    nisan: '₺5,35',      nisanRaw: 5.35,     mayis: '₺4,25',      mayisRaw: 4.25,     haziran: '₺3,69',     haziranRaw: 3.69,    temmuz: '₺5,32',     temmuzRaw: 5.32,    agustos: '₺5,25',    agustosRaw: 5.25,   eylul: '—',          eylulRaw: 0, ekim: '—', ekimRaw: 0,     lowerBetter: true },
 ];
 
 const GOOGLE_CAMPAIGN_HIGHLIGHTS = [
@@ -167,7 +166,7 @@ export default function PaidMarketingDashboard() {
         </div>
         <div className="bg-slate-50 border border-slate-200 rounded-2xl px-5 py-3">
           <p className="text-sm text-slate-700 leading-relaxed">
-            Ekim ayında Google Ads harcaması Eylül'e göre yalnızca %1,5 artarak ₺28.676,24 seviyesinde gerçekleşti. Conversion hacmi 101,9'dan 373,2'ye yükselirken Cost / Conv. ₺277,35'ten ₺76,83'e gerileyerek yaklaşık %72 iyileşti. Meta Ads tarafında Ekim install hacmi 2.296’ya ulaştı ve Android CPI %41 iyileşti.
+            Ekim ayında Google Ads harcaması Eylül'e göre yalnızca %1,5 artarak ₺28.676,24 seviyesinde gerçekleşti. Conversion hacmi 101,9'dan 373,2'ye yükselirken Cost / Conv. ₺277,35'ten ₺76,83'e gerileyerek yaklaşık %72 iyileşti. Meta Ads tarafında Ekim install hacmi 2.297’ye ulaştı ve Android CPI %41 iyileşti.
           </p>
           <p className="text-sm text-slate-600 leading-relaxed mt-2">
             Ekim'de kanal bazında en önemli pozitif sinyal Google Ads tarafından geldi. Impression hacmi %25,6 azalmasına rağmen click hacmi %4,7 arttı ve CTR %5,14'ten %7,23'e yükseldi.
@@ -274,13 +273,13 @@ export default function PaidMarketingDashboard() {
               </table>
             </div>
           </div>
-          <InsightNote text="Ekim ayında Meta Ads harcaması %5 artarken toplam app install %25 büyüyerek 2.296’ya ulaştı. En belirgin efficiency kazanımı Android tarafında gerçekleşti; ortalama CPI ₺30,39’dan ₺17,81’e gerileyerek %41 iyileşti." />
+          <InsightNote text="Ekim ayında Meta Ads harcaması %5 artarken toplam app install 1.884’ten 2.297’ye yükselerek Eylül’e göre yaklaşık %22 büyüdü. En belirgin efficiency kazanımı Android tarafında gerçekleşti; ortalama CPI ₺30,39’dan ₺17,81’e gerileyerek %41 iyileşti." />
 
           {/* Önemli Sinyaller */}
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="bg-emerald-50 border border-emerald-100 rounded-xl px-4 py-3.5">
-              <p className="text-xs font-bold text-emerald-700 mb-1">Install hacmi %25 arttı</p>
-              <p className="text-xs text-emerald-600 leading-relaxed">Ekim’de toplam app install hacmi 1.842’den 2.296’ya yükseldi.</p>
+              <p className="text-xs font-bold text-emerald-700 mb-1">Install hacmi %22 arttı</p>
+              <p className="text-xs text-emerald-600 leading-relaxed">Ekim ayında Meta Ads kaynaklı app install hacmi 1.884’ten 2.297’ye yükselerek Eylül’e göre yaklaşık %22 büyüdü.</p>
             </div>
             <div className="bg-blue-50 border border-blue-100 rounded-xl px-4 py-3.5">
               <p className="text-xs font-bold text-blue-700 mb-1">Android efficiency güçlendi</p>
@@ -296,20 +295,20 @@ export default function PaidMarketingDashboard() {
           <div className="mt-3 flex gap-2 items-start">
             <div className="w-1 rounded-full bg-blue-200 self-stretch mt-0.5 shrink-0" style={{ minHeight: 16 }} />
             <div>
-              <p className="text-xs text-gray-500 leading-relaxed">Eylül Featured Install Campaigns: iOS Hangidiyet 1.198 ve Android Hangidiyet 490 olmak üzere toplam 1.688 install; Eylül Meta toplamının 1.842 install değeri içinde yaklaşık %91,6 katkı. Diğer kampanyalar 154 install ile yaklaşık %8,4 katkı sağladı.</p>
+              <p className="text-xs text-gray-500 leading-relaxed">Eylül Featured Install Campaigns: iOS Hangidiyet 1.198 ve Android Hangidiyet 490 olmak üzere toplam 1.688 install; Eylül Meta toplamının 1.884 install değeri içinde yaklaşık %89,6 katkı. Diğer kampanyalar 196 install ile yaklaşık %10,4 katkı sağladı.</p>
             </div>
           </div>
 
           {/* Kısa Yönetici Özeti */}
           <div className="mt-3 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 flex gap-2.5 items-center">
             <TrendingUp size={14} className="text-slate-500 shrink-0" />
-            <p className="text-xs font-medium text-slate-700">Ekim’de Meta Ads toplam app install hacmi 1.842’den 2.296’ya yükselerek %25 büyüdü. Büyümenin ana sürücüsü Android efficiency artışı oldu; Android ortalama CPI %41 iyileşerek ₺17,81’e geriledi.</p>
+            <p className="text-xs font-medium text-slate-700">Ekim’de Meta Ads toplam app install hacmi 1.884’ten 2.297’ye yükselerek yaklaşık %22 büyüdü. Büyümenin ana sürücüsü Android efficiency artışı oldu; Android ortalama CPI %41 iyileşerek ₺17,81’e geriledi.</p>
           </div>
 
           <div className="mt-3 flex gap-2.5 items-start bg-amber-50 border border-amber-200 rounded-xl px-4 py-3">
             <AlertCircle size={14} className="text-amber-500 mt-0.5 shrink-0" />
             <p className="text-xs text-amber-700 leading-relaxed">
-              iOS ortalama CPI %11 yükselerek ₺14,74’e çıkmasına rağmen iOS acquisition halen güçlü seviyede kaldı. Impression %16 azalırken click %50 ve Instagram Traffic CTR %19 arttı; bu da Ekim’de daha yüksek engagement üretildiğini gösteriyor. Öne çıkan üç acquisition kampanyası toplam 1.977 install üreterek Meta Ads toplam install hacminin %86,1’ini oluşturdu.
+              iOS ortalama CPI %11 yükselerek ₺14,74’e çıkmasına rağmen iOS acquisition halen güçlü seviyede kaldı. Impression %16 azalırken click %50 ve Instagram Traffic CTR %19 arttı; bu da Ekim’de daha yüksek engagement üretildiğini gösteriyor. Öne çıkan üç acquisition kampanyası Ekim’de toplam 1.977 install üreterek Meta Ads kaynaklı toplam 2.297 install’ın %86,1’ini oluşturdu. Kalan 320 install diğer kampanyalardan geldi.
             </p>
           </div>
         </section>
@@ -328,7 +327,7 @@ export default function PaidMarketingDashboard() {
       {/* Section 5 — Meta Ads Highlights */}
       <section>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
-          <KPICard label="Toplam Yükleme" value="2.296" sub="Eyl 1.842 → Eki 2.296" color="emerald" change="↑ %25" />
+          <KPICard label="Toplam Yükleme" value="2.297" sub="Eyl 1.884 → Eki 2.297" color="emerald" change="↑ %22" />
           <KPICard label="iOS Ort. CPI" value="₺14,74" sub="Eyl ₺13,28 → Eki ₺14,74" color="rose" change="↑ %11" lowerBetter />
           <KPICard label="Android Ort. CPI" value="₺17,81" sub="Eyl ₺30,39 → Eki ₺17,81" color="blue" change="↓ %41" lowerBetter />
         </div>
@@ -341,8 +340,8 @@ export default function PaidMarketingDashboard() {
           <p className="text-xs font-bold text-slate-700 mb-2">Öne Çıkan Kampanyaların Install Katkısı</p>
           <div className="grid grid-cols-3 gap-3 text-center">
             <div><p className="text-sm font-bold text-slate-800">1.977 install</p><p className="text-[10px] text-emerald-700 font-semibold">%86,1</p><p className="text-[10px] text-gray-500">Öne Çıkan Kampanyalar</p></div>
-            <div><p className="text-sm font-bold text-slate-800">319 install</p><p className="text-[10px] text-gray-500 font-semibold">%13,9</p><p className="text-[10px] text-gray-500">Diğer Kampanyalar</p></div>
-            <div><p className="text-sm font-bold text-slate-800">2.296 install</p><p className="text-[10px] text-slate-600 font-semibold">%100</p><p className="text-[10px] text-gray-500">Toplam Meta Ads</p></div>
+            <div><p className="text-sm font-bold text-slate-800">320 install</p><p className="text-[10px] text-gray-500 font-semibold">%13,9</p><p className="text-[10px] text-gray-500">Diğer Kampanyalar</p></div>
+            <div><p className="text-sm font-bold text-slate-800">2.297 install</p><p className="text-[10px] text-slate-600 font-semibold">%100</p><p className="text-[10px] text-gray-500">Toplam Meta Ads</p></div>
           </div>
         </div>
         <SectionHeader title="Meta Ads" subtitle="Öne Çıkan Kampanyalar · Ekim 2026" />
@@ -354,7 +353,7 @@ export default function PaidMarketingDashboard() {
         <div className="mt-4 flex gap-2 items-start bg-blue-50 border border-blue-100 rounded-xl px-4 py-3.5">
           <TrendingUp size={14} className="text-blue-500 mt-0.5 shrink-0" />
           <p className="text-xs text-blue-700 leading-relaxed">
-            Öne çıkan üç acquisition kampanyası toplam 1.977 install üreterek Meta Ads toplam install hacminin %86,1’ini oluşturdu. Kalan 319 install diğer kampanyalardan geldi.
+            Öne çıkan üç acquisition kampanyası Ekim’de toplam 1.977 install üreterek Meta Ads kaynaklı toplam 2.297 install’ın %86,1’ini oluşturdu. Kalan 320 install diğer kampanyalardan geldi.
           </p>
         </div>
         <div className="mt-3 flex gap-3 items-start bg-rose-50 border border-rose-200 rounded-xl px-4 py-3.5">
