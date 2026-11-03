@@ -209,7 +209,7 @@ export default function SeptemberAnalysis() {
       </div>
 
       {/* 12 — Generative AI Visibility (moved up) */}
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+      <div className="hidden bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
         <div className="flex items-center gap-2.5 mb-4">
           <div className="w-8 h-8 bg-fuchsia-50 rounded-xl flex items-center justify-center">
             <Search size={15} className="text-fuchsia-600" />
