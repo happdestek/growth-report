@@ -42,10 +42,10 @@ const PLATFORM_INSIGHTS: Record<string, { september: string[]; augustContext: st
   android: {
     september: [
       'Eylül ayı Android tarafında 7.073 Product Page View ve 1.857 download ile tamamlandı; PPV → Download dönüşümü %26,25 oldu. Ads & Referrals 1.590 download ile toplam hacmin %85,6\'sını oluştururken Browse / Explore %14,4 ve Search %0,0 pay aldı.',
-      'Ekim\'in ilk 19 gününde 3.924 Product Page View\'den 1.785 download elde edildi. Download hacmi şimdiden Eylül tam ayının yaklaşık %96\'sına ulaşırken PPV → Download oranı %45,49\'a yükseldi.',
-      'Ekim\'de acquisition\'ın %95,9\'u Ads & Referrals kanalından gelirken Browse / Explore payı %4,1\'e geriledi. Bu nedenle güçlü download hacminin ağırlıklı olarak paid/referral kaynaklı olduğu dikkate alınmalı.',
+      'Ekim ayında Android tarafında 2.570 download gerçekleşti. Ortak kanal sınıflandırmasına göre Ads & Referrals 2.384 download ile toplam hacmin %92,8\'ini oluştururken Browse / Explore %6,4, Search ise %0,9 pay aldı.',
+      'Eylül\'e kıyasla Ads & Referrals payı %85,6\'dan %92,8\'e yükselirken Browse / Explore payı %14,4\'ten %6,4\'e geriledi. Bu nedenle Ekim\'deki güçlü download büyümesinin ağırlıklı olarak paid/referral acquisition tarafından taşındığı görülüyor.',
     ],
-    augustContext: 'Android acquisition Ekim\'de güçlü ilerliyor: 19 Ekim itibarıyla download hacmi Eylül tam ayının %96\'sına ulaşırken store conversion %26,25\'ten %45,49\'a çıktı. Ancak büyüme büyük ölçüde Ads & Referrals kaynaklı; organik Browse / Explore payı %14,4\'ten %4,1\'e geriledi.',
+    augustContext: 'Android Ekim performansı hem hacim hem conversion efficiency açısından güçlü kapandı. Product Page View %8,2 azalmasına rağmen download %38,4 arttı ve PPV → Download oranı %26,25\'ten %39,60\'a yükseldi. Ancak acquisition mix\'in %92,8\'inin Ads & Referrals kaynaklı olması, organik Browse / Explore katkısının Eylül\'e göre zayıfladığını gösteriyor.',
   },
   ios: {
     september: [
@@ -99,7 +99,7 @@ export default function SourceBreakdownChart({ data }: SourceBreakdownProps) {
         <div className="mb-4 flex items-start gap-2 bg-amber-50 border border-amber-100 rounded-xl px-4 py-2.5">
           <AlertCircle size={13} className="text-amber-500 mt-0.5 shrink-0" />
           <p className="text-[11px] text-amber-700 leading-relaxed">
-            Ekim 2026 verileri tam ayı kapsamamaktadır — Android MTD · 1–19 Ekim, iOS MTD · 1–21 Ekim. Eylül 2026 final tam ay verisidir. Ekim MTD ile Eylül tam ayı hacim karşılaştırması yönsel (directional) olarak değerlendirilmelidir.
+            Android Ekim 2026 verileri finaldir. iOS Ekim verileri MTD · 1–21 Ekim kapsamındadır; iOS tarafında Eylül–Ekim hacim karşılaştırması yönsel (directional) olarak değerlendirilmelidir.
           </p>
         </div>
       )}

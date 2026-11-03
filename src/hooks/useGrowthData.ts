@@ -190,7 +190,7 @@ export function useGrowthData(filters: GrowthFilters) {
     };
     const androidPartialLabels: Record<string, string> = {
       September: 'Eylül 2026',
-      October:   'MTD · 1–19 Ekim 2026',
+      October:   'Ekim 2026 · Final',
     };
 
     const buildBreakdown = (platform: 'ios' | 'android'): MonthlySourceBreakdown => {
