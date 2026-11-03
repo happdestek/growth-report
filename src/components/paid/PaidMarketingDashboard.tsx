@@ -327,22 +327,14 @@ export default function PaidMarketingDashboard() {
       {/* Section 5 — Meta Ads Highlights */}
       <section>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
-          <KPICard label="Toplam Yükleme" value="2.297" sub="Eyl 1.884 → Eki 2.297" color="emerald" change="↑ %22" />
+          <KPICard label="Toplam Yükleme · Ekim 2026" value="2.297" sub="Eyl 1.884 → Eki 2.297" color="emerald" change="↑ %22" />
           <KPICard label="iOS Ort. CPI" value="₺14,74" sub="Eyl ₺13,28 → Eki ₺14,74" color="rose" change="↑ %11" lowerBetter />
           <KPICard label="Android Ort. CPI" value="₺17,81" sub="Eyl ₺30,39 → Eki ₺17,81" color="blue" change="↓ %41" lowerBetter />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
-          <KPICard label="Toplam Harcama" value="₺43.184" sub="Eylül → Ekim" color="slate" change="↑ %5" />
-          <KPICard label="Toplam Tık" value="10.986" sub="Eylül → Ekim" color="emerald" change="↑ %50" />
-          <KPICard label="Instagram Traffic CTR" value="%5,54" sub="Eylül → Ekim" color="amber" change="↑ %19" />
-        </div>
-        <div className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 mb-4">
-          <p className="text-xs font-bold text-slate-700 mb-2">Öne Çıkan Kampanyaların Install Katkısı</p>
-          <div className="grid grid-cols-3 gap-3 text-center">
-            <div><p className="text-sm font-bold text-slate-800">1.977 install</p><p className="text-[10px] text-emerald-700 font-semibold">%86,1</p><p className="text-[10px] text-gray-500">Öne Çıkan Kampanyalar</p></div>
-            <div><p className="text-sm font-bold text-slate-800">320 install</p><p className="text-[10px] text-gray-500 font-semibold">%13,9</p><p className="text-[10px] text-gray-500">Diğer Kampanyalar</p></div>
-            <div><p className="text-sm font-bold text-slate-800">2.297 install</p><p className="text-[10px] text-slate-600 font-semibold">%100</p><p className="text-[10px] text-gray-500">Toplam Meta Ads</p></div>
-          </div>
+          <KPICard label="Toplam Harcama" value="₺43.184" sub="Eylül 2026 → Ekim 2026" color="slate" change="↑ %5" />
+          <KPICard label="Toplam Tık" value="10.986" sub="Eylül 2026 → Ekim 2026" color="emerald" change="↑ %50" />
+          <KPICard label="Instagram Traffic CTR" value="%5,54" sub="Eylül 2026 → Ekim 2026" color="amber" change="↑ %19" />
         </div>
         <SectionHeader title="Meta Ads" subtitle="Öne Çıkan Kampanyalar · Ekim 2026" />
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
