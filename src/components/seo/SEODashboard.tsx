@@ -3,39 +3,14 @@ import { useState } from 'react';
 import SeptemberAnalysis from './SeptemberAnalysis';
 
 const SEO_KPI = [
-  {
-    label: 'Clicks',
-    current: 27600,
-    prev: 28400,
-    format: (n: number) => n >= 1000 ? (n / 1000).toFixed(1) + 'K' : n.toLocaleString('tr-TR'),
-    color: 'blue',
-  },
-  {
-    label: 'Impressions',
-    current: 4550000,
-    prev: 4740000,
-    format: (n: number) => (n / 1000000).toFixed(2) + 'M',
-    color: 'emerald',
-  },
-  {
-    label: 'CTR',
-    current: 0.6,
-    prev: 0.6,
-    format: (n: number) => n.toFixed(1) + '%',
-    color: 'amber',
-  },
-  {
-    label: 'Average Position',
-    current: 9.3,
-    prev: 9.0,
-    format: (n: number) => n.toFixed(1),
-    color: 'slate',
-    lowerIsBetter: true,
-  },
+  { label: 'Clicks', current: 20300, prev: 24458, benchmark: '7 Aug – 6 Sep: -28%', format: (n: number) => (n / 1000).toFixed(1) + 'K', color: 'blue', changeLabel: '-17%' },
+  { label: 'Impressions', current: 2900000, prev: 4142857, benchmark: '7 Aug – 6 Sep: -37%', format: (n: number) => (n / 1000000).toFixed(1) + 'M', color: 'emerald', changeLabel: '-30%' },
+  { label: 'CTR', current: 0.7, prev: 0.6, benchmark: '7 Aug – 6 Sep: +0.1 pp', format: (n: number) => n.toFixed(1) + '%', color: 'amber', changeLabel: '+0.1 pp' },
+  { label: 'Average Position', current: 10.0, prev: 9.5, benchmark: '7 Aug – 6 Sep: +0.7 worse', format: (n: number) => n.toFixed(1), color: 'slate', lowerIsBetter: true, changeLabel: '+0.5 worse' },
 ];
 
 const MONTHLY_TREND = [
-  { month: 'Ekim',  clicks: 56566,  impressions: 8599623,  ctr: 0.66, position: 7.8,  note: 'Baz değer' },
+  { month: 'Ekim 2025',  clicks: 56566,  impressions: 8599623,  ctr: 0.66, position: 7.8,  note: 'Baz değer' },
   { month: 'Kasım', clicks: 49613,  impressions: 7879672,  ctr: 0.63, position: 7.8,  note: 'Mevsimsel düşüş' },
   { month: 'Aralık',clicks: 50430,  impressions: 8358377,  ctr: 0.60, position: 8.1,  note: 'Yeni içerikler indeksleniyor' },
   { month: 'Ocak',  clicks: 61199,  impressions: 9576143,  ctr: 0.64, position: 8.1,  note: 'En yüksek click' },
@@ -46,6 +21,7 @@ const MONTHLY_TREND = [
   { month: 'Haziran', clicks: 34500,  impressions: 6060000, ctr: 0.60, position: 8.8,  note: 'Mevsimsel düşüş' },
   { month: 'Temmuz',  clicks: 28400,  impressions: 4740000, ctr: 0.60, position: 9.0,  note: 'Görünürlük hacminde daralma' },
   { month: 'Ağustos', clicks: 27600,  impressions: 4550000, ctr: 0.60, position: 9.3,  note: 'Stabilizasyon sinyali' },
+  { month: 'Ekim 2026', clicks: 20300, impressions: 2900000, ctr: 0.70, position: 10.0, note: 'İlk tam ay · canlı sonrası' },
 ];
 
 const catColorMap: Record<string, { bg: string; text: string; border: string }> = {
@@ -76,10 +52,13 @@ const NOBETCI_MONTHLY: NobetciRow[] = [
   { month: 'Haziran 2026', trClicks: 0, arClicks: 0, totalClicks: 28390, totalImpressions: 3540000, partial: true },
   { month: 'Temmuz 2026',  trClicks: 0, arClicks: 0, totalClicks: 16400, totalImpressions: 3670000, partial: true },
   { month: 'Ağustos 2026', trClicks: 0, arClicks: 0, totalClicks: 15700, totalImpressions: 3530000, partial: true },
+  { month: 'Ekim 2026', trClicks: 6284, arClicks: 9951, totalClicks: 16235, totalImpressions: 2396405 },
 ];
 
 const CATEGORY_MONTHLY: Record<string, { month: string; clicks: number; impressions: number; ctr: string; position?: number; note?: string; highlight?: 'warn' | 'peak' }[]> = {
   'Blog İçerikleri': [
+    { month: 'Ekim 2026', clicks: 811, impressions: 232066, ctr: '0.30%', position: 14.9, note: 'İlk tam ay' },
+    { month: 'Pre-live · 7 Ağu–6 Eyl', clicks: 503, impressions: 198664, ctr: '0.30%', position: 17.2, note: 'Karşılaştırma' },
     { month: 'Ağustos 2026', clicks: 472, impressions: 190000, ctr: '0.20%', position: 16.6, note: '' },
     { month: 'Temmuz 2026', clicks: 416, impressions: 160000, ctr: '0.30%', position: 17.0, note: '' },
     { month: 'Haziran 2026', clicks: 402, impressions: 175000, ctr: '0.20%', note: '' },
@@ -93,6 +72,8 @@ const CATEGORY_MONTHLY: Record<string, { month: string; clicks: number; impressi
     { month: 'Ekim 2025', clicks: 642, impressions: 100524, ctr: '0.64%', note: 'Baz değer' },
   ],
   'Check-up': [
+    { month: 'Ekim 2026', clicks: 187, impressions: 6700, ctr: '2.80%', position: 13.0, note: 'İlk tam ay' },
+    { month: 'Pre-live · 7 Ağu–6 Eyl', clicks: 110, impressions: 6267, ctr: '1.80%', position: 12.1, note: 'Karşılaştırma' },
     { month: 'Ağustos 2026', clicks: 119, impressions: 5990, ctr: '2.00%', position: 12.4, note: '' },
     { month: 'Temmuz 2026', clicks: 127, impressions: 4270, ctr: '3.00%', position: 10.6, note: '' },
     { month: 'Haziran 2026', clicks: 134, impressions: 5100, ctr: '2.65%', position: 12.1, note: '' },
@@ -106,6 +87,8 @@ const CATEGORY_MONTHLY: Record<string, { month: string; clicks: number; impressi
     { month: 'Ekim 2025',  clicks: 224, impressions: 9711,  ctr: '2.31%', position: 7.1 },
   ],
   'Evde Sağlık': [
+    { month: 'Ekim 2026', clicks: 125, impressions: 6623, ctr: '1.90%', position: 11.9, note: 'İlk tam ay' },
+    { month: 'Pre-live · 7 Ağu–6 Eyl', clicks: 86, impressions: 5480, ctr: '1.60%', position: 14.5, note: 'Karşılaştırma' },
     { month: 'Ağustos 2026', clicks: 92, impressions: 5440, ctr: '1.70%', position: 14.0, note: '' },
     { month: 'Temmuz 2026', clicks: 113, impressions: 5130, ctr: '2.20%', position: 11.4, note: '' },
     { month: 'Haziran 2026', clicks: 106, impressions: 4600, ctr: '2.30%', position: 10.4, note: '' },
@@ -190,16 +173,17 @@ function CategoryModal({ cat, onClose }: CategoryModalProps) {
                 </tbody>
               </table>
             </div>
-            <div className="rounded-xl border border-amber-100 bg-amber-50 px-4 py-3">
-              <p className="text-xs font-semibold text-amber-700 mb-1">Ağustos 2026 Değerlendirmesi</p>
-              <p className="text-xs text-amber-700 leading-relaxed">
-                Ağustos ayında Nöbetçi Eczane organik performansı Temmuz’a göre sınırlı geriledi. Click hacmi %4,3, impression hacmi %3,8 azalırken CTR %0,4 seviyesinde korundu. Ortalama pozisyon 8,7’den 8,9’a sınırlı şekilde geriledi.
-              </p>
-            </div>
             <div className="rounded-xl border border-blue-100 bg-blue-50 px-4 py-3 space-y-2">
-              <p className="text-xs text-blue-700 leading-relaxed">
-                Düşüşün CTR kaynaklı olmaması, kaybın daha çok görünürlük ve sıralama hacmindeki sınırlı gerilemeden kaynaklandığını gösteriyor.
-              </p>
+              <p className="text-xs font-semibold text-blue-700">Ekim 2026 · Pre-live karşılaştırması</p>
+              <p className="text-xs text-blue-700 leading-relaxed">Toplam: 16.235 click · 2.396.405 impression · %0,7 CTR · 9,3 average position. Pre-live: 25.730 click · 4.009.188 impression · %0,6 CTR · 8,8 average position. Click değişimi -37%.</p>
+            </div>
+            <div className="rounded-xl border border-amber-100 bg-amber-50 px-4 py-3 space-y-2">
+              <p className="text-xs font-semibold text-amber-700">Dil kırılımı</p>
+              <p className="text-xs text-amber-700 leading-relaxed">TR /nobetci-eczane/: 16.069 → 6.284 click (-61%), 3.621.240 → 2.147.916 impression, %0,4 → %0,3 CTR, 8,9 → 9,6 position.</p>
+              <p className="text-xs text-amber-700 leading-relaxed">AR / RU / EN /duty-pharmacy/: 9.661 → 9.951 click (+3%), 387.948 → 248.489 impression, %2,5 → %4,0 CTR, 7,8 → 6,9 position.</p>
+            </div>
+            <div className="rounded-xl border border-slate-700 bg-slate-800 px-4 py-3">
+              <p className="text-xs text-slate-300 leading-relaxed">Nöbetçi Eczane düşüşü tüm dil yapısında değil, esas olarak Türkçe /nobetci-eczane/ yapısında yoğunlaşıyor. Yabancı dil sayfaları click tarafında büyürken sıralama da iyileşti.</p>
             </div>
           </div>
         ) : rows ? (
@@ -245,10 +229,8 @@ function CategoryModal({ cat, onClose }: CategoryModalProps) {
             {cat.name === 'Check-up' && (
               <div className="space-y-2">
                 <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3">
-                  <p className="text-xs font-semibold text-amber-700 mb-1">Ağustos 2026 Değerlendirmesi</p>
-                  <p className="text-xs text-amber-700 leading-relaxed">
-                    Ağustos ayında Check-Up aramalarında görünürlük güçlü şekilde arttı; impression hacmi Temmuz’a göre %40,3 yükselerek 5,99 bine ulaştı. Buna karşın click hacmi %6,3 geriledi ve CTR %3,0’dan %2,0’ye düştü. Ortalama pozisyonun 10,6’dan 12,4’e gerilemesi de artan görünürlüğün aynı oranda trafiğe dönüşmemesinde etkili oldu.
-                  </p>
+                  <p className="text-xs font-semibold text-amber-700 mb-1">Ekim 2026 Değerlendirmesi</p>
+                  <p className="text-xs text-amber-700 leading-relaxed">Check-Up Ekim’de 187 click, 6.700 impression, %2,8 CTR ve 13,0 average position üretti. Pre-live döneme göre click %70 arttı.</p>
                 </div>
                 <div className="rounded-xl border border-amber-100 bg-amber-50/50 px-4 py-3 space-y-2">
                   <p className="text-xs text-amber-600 leading-relaxed">
@@ -258,7 +240,7 @@ function CategoryModal({ cat, onClose }: CategoryModalProps) {
                 <div className="rounded-xl border border-slate-700 bg-slate-800 px-4 py-3">
                   <p className="text-[10px] font-semibold text-slate-300 uppercase tracking-wider mb-1">Yönetim Yorumu</p>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Check-Up Ağustos’ta daha geniş bir arama görünürlüğüne ulaştı ancak trafik verimliliği zayıfladı. Impression artışı pozitif; CTR ve average position tarafındaki gerileme ise visibility artışının henüz click büyümesine dönüşmediğini gösteriyor.
+                    Check-Up click ve CTR tarafında güçlü büyüdü. Average position hafif gerilese de daha fazla görünürlük click’e dönüştü.
                   </p>
                 </div>
               </div>
@@ -266,9 +248,9 @@ function CategoryModal({ cat, onClose }: CategoryModalProps) {
             {cat.name === 'Evde Sağlık' && (
               <div className="space-y-2">
                 <div className="rounded-xl border border-teal-200 bg-teal-50 px-4 py-3">
-                  <p className="text-xs font-semibold text-teal-700 mb-1">Ağustos 2026 Değerlendirmesi</p>
+                  <p className="text-xs font-semibold text-teal-700 mb-1">Ekim 2026 Değerlendirmesi</p>
                   <p className="text-xs text-teal-700 leading-relaxed">
-                    Ağustos ayında Evde Sağlık kategorisi 5,44 bin impression ve 92 click üretti. CTR %1,7 seviyesinde kalırken average position 14,0 olarak gerçekleşti. Kategori görünürlük üretmeye devam etse de trafik verimliliğini artırmak için hem sıralama hem de CTR tarafında ek optimizasyon alanı bulunuyor.
+                    Ekim’de Evde Sağlık kategorisi 6.623 impression ve 125 click üretti. CTR %1,9’a yükselirken average position 11,9’a geriledi. Pre-live döneme göre click +45% büyüdü; canlı sonrası ilk tam ayda kategori hem trafik hem CTR tarafında güçlendi.
                   </p>
                 </div>
                 <div className="rounded-xl border border-teal-100 bg-teal-50/50 px-4 py-3 space-y-2">
@@ -279,7 +261,7 @@ function CategoryModal({ cat, onClose }: CategoryModalProps) {
                 <div className="rounded-xl border border-slate-700 bg-slate-800 px-4 py-3">
                   <p className="text-[10px] font-semibold text-slate-300 uppercase tracking-wider mb-1">Yönetim Yorumu</p>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Evde Sağlık kategorisi Ağustos ayında organik görünürlüğünü korurken click verimliliği tarafında geliştirme alanı bıraktı. Bu kategori, görünürlüğü daha yüksek kaliteli trafiğe çevirmek için SEO optimizasyonu gerektiren başlıklardan biri olarak değerlendirilebilir.
+                    Evde Sağlık canlı sonrası dönemde hem trafik hem CTR hem sıralama tarafında büyüdü.
                   </p>
                 </div>
               </div>
@@ -287,9 +269,9 @@ function CategoryModal({ cat, onClose }: CategoryModalProps) {
             {cat.name === 'Blog İçerikleri' && (
               <div className="space-y-2">
                 <div className="rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3">
-                  <p className="text-xs font-semibold text-emerald-700 mb-1">Ağustos 2026 Değerlendirmesi</p>
+                  <p className="text-xs font-semibold text-emerald-700 mb-1">Ekim 2026 Değerlendirmesi</p>
                   <p className="text-xs text-emerald-700 leading-relaxed">
-                    Ağustos ayında Blog organik görünürlüğü Temmuz’a göre güçlendi. Impression hacmi %18,8 artarak 190 bine, click hacmi ise %13,5 artarak 472’ye ulaştı. Ortalama pozisyon 17,0’dan 16,6’ya iyileşirken CTR %0,3’ten %0,2’ye geriledi.
+                    Ekim’de Blog 232.066 impression ve 811 click üretti. Pre-live döneme göre click +61% büyürken average position 17,2’den 14,9’a iyileşti. CTR %0,3 seviyesinde kaldı; yüksek impression hacmini daha yüksek CTR’a çevirmek ana geliştirme alanı.
                   </p>
                 </div>
                 <div className="rounded-xl border border-emerald-100 bg-emerald-50/40 px-4 py-3">
@@ -300,7 +282,7 @@ function CategoryModal({ cat, onClose }: CategoryModalProps) {
                 <div className="rounded-xl border border-slate-700 bg-slate-800 px-4 py-3">
                   <p className="text-[10px] font-semibold text-slate-300 uppercase tracking-wider mb-1">Yönetim Yorumu</p>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Blog tarafında Ağustos görünürlük açısından pozitif geçti. Impression ve click hacmi birlikte büyürken ortalama pozisyon da iyileşti. Ana geliştirme alanı, artan görünürlüğü daha yüksek CTR ile trafiğe çevirmek.
+                    Blog tarafında click %61 arttı ve average position 17,2’den 14,9’a iyileşti. Ana geliştirme alanı yüksek impression hacmini daha yüksek CTR’a çevirmek.
                   </p>
                 </div>
               </div>
@@ -326,53 +308,53 @@ function CategoryModal({ cat, onClose }: CategoryModalProps) {
 const CATEGORIES = [
   {
     name: 'Nöbetçi Eczane',
-    clicks: 15700,
-    impressions: 3530000,
-    ctr: 0.40,
-    avgPosition: 8.9,
+    clicks: 16235,
+    impressions: 2396405,
+    ctr: 0.70,
+    avgPosition: 9.3,
     query: 80270,
     landingPage: 22787,
-    changes: { clicks: -4.3, impressions: -3.8, ctr: 0, avgPosition: +2.3, query: 0, landingPage: 0 },
-    period: 'Ağustos 2026',
+    changes: { clicks: -37, impressions: -40.2, ctr: 16.7, avgPosition: +0.5, query: 0, landingPage: 0 },
+    period: 'Ekim 2026',
     color: 'blue',
-    comment: 'Ağustos ayında Nöbetçi Eczane organik performansı Temmuz’a göre sınırlı geriledi. Click hacmi %4,3, impression hacmi %3,8 azalırken CTR %0,4 seviyesinde korundu. Ortalama pozisyon 8,7’den 8,9’a sınırlı şekilde geriledi.',
-    comment2: 'Düşüşün CTR kaynaklı olmaması, kaybın daha çok görünürlük ve sıralama hacmindeki sınırlı gerilemeden kaynaklandığını gösteriyor.',
+    comment: 'Ekim’de Nöbetçi Eczane toplam 16.235 click ve 2.396.405 impression üretti. Pre-live döneme göre click değişimi -37%.',
+    comment2: 'Nöbetçi Eczane düşüşü tüm dil yapısında değil, esas olarak Türkçe /nobetci-eczane/ yapısında yoğunlaşıyor. Yabancı dil sayfaları click tarafında büyürken sıralama da iyileşti.',
     icon: '💊',
   },
   {
     name: 'Blog İçerikleri',
-    clicks: 472,
-    impressions: 190000,
-    ctr: 0.20,
-    period: 'Ağustos 2026',
-    prevPeriod: 'Temmuz 2026',
-    prev: { clicks: 416, impressions: 160000, ctr: 0.30 },
+    clicks: 811,
+    impressions: 232066,
+    ctr: 0.30,
+    period: 'Ekim 2026',
+    prevPeriod: 'Pre-live · 7 Ağu–6 Eyl',
+    prev: { clicks: 503, impressions: 198664, ctr: 0.30 },
     color: 'emerald',
-    comment: 'Ağustos ayında Blog organik görünürlüğü Temmuz’a göre güçlendi. Impression hacmi %18,8 artarak 190 bine, click hacmi ise %13,5 artarak 472’ye ulaştı. Ortalama pozisyon 17,0’dan 16,6’ya iyileşirken CTR %0,3’ten %0,2’ye geriledi.',
+    comment: 'Blog tarafında click %61 arttı ve average position 17,2’den 14,9’a iyileşti. Ana geliştirme alanı yüksek impression hacmini daha yüksek CTR’a çevirmek.',
     icon: '📝',
   },
   {
     name: 'Check-up',
-    clicks: 119,
-    impressions: 5990,
-    ctr: 2.0,
-    period: 'Ağustos 2026',
-    prevPeriod: 'Temmuz 2026',
-    prev: { clicks: 127, impressions: 4270, ctr: 3.0 },
+    clicks: 187,
+    impressions: 6700,
+    ctr: 2.8,
+    period: 'Ekim 2026',
+    prevPeriod: 'Pre-live · 7 Ağu–6 Eyl',
+    prev: { clicks: 110, impressions: 6267, ctr: 1.8 },
     color: 'amber',
-    comment: 'Ağustos ayında Check-Up aramalarında görünürlük güçlü şekilde arttı; impression hacmi Temmuz’a göre %40,3 yükselerek 5,99 bine ulaştı. Buna karşın click hacmi %6,3 geriledi ve CTR %3,0’dan %2,0’ye düştü. Ortalama pozisyonun 10,6’dan 12,4’e gerilemesi de artan görünürlüğün aynı oranda trafiğe dönüşmemesinde etkili oldu.',
+    comment: 'Check-Up click ve CTR tarafında güçlü büyüdü. Average position hafif gerilese de daha fazla görünürlük click’e dönüştü.',
     icon: '🩺',
   },
   {
     name: 'Evde Sağlık',
-    clicks: 92,
-    impressions: 5440,
-    ctr: 1.70,
-    period: 'Ağustos 2026',
-    prevPeriod: 'Temmuz 2026',
-    prev: { clicks: 113, impressions: 5130, ctr: 2.20 },
+    clicks: 125,
+    impressions: 6623,
+    ctr: 1.90,
+    period: 'Ekim 2026',
+    prevPeriod: 'Pre-live · 7 Ağu–6 Eyl',
+    prev: { clicks: 86, impressions: 5480, ctr: 1.6 },
     color: 'teal',
-    comment: 'Ağustos ayında Evde Sağlık kategorisi 5,44 bin impression ve 92 click üretti. CTR %1,7 seviyesinde kalırken average position 14,0 olarak gerçekleşti. Kategori görünürlük üretmeye devam etse de trafik verimliliğini artırmak için hem sıralama hem de CTR tarafında ek optimizasyon alanı bulunuyor.',
+    comment: 'Evde Sağlık canlı sonrası dönemde hem trafik hem CTR hem sıralama tarafında büyüdü.',
     icon: '🏠',
   },
 ];
@@ -424,11 +406,14 @@ function KPICard({ kpi }: { kpi: typeof SEO_KPI[0] }) {
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 flex flex-col gap-3">
       <div className="flex items-center justify-between">
         <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">{kpi.label}</span>
-        <span className={`text-sm px-3 py-1 rounded-full font-semibold ${colorMap[kpi.color]}`}>Ağustos</span>
+        <span className={`text-sm px-3 py-1 rounded-full font-semibold ${colorMap[kpi.color]}`}>Ekim 2026</span>
       </div>
       <div className="text-2xl font-bold text-gray-900 tabular-nums">{kpi.format(kpi.current)}</div>
       <div className="flex items-center justify-between">
-        <span className="text-xs text-gray-400">Temmuz: <span className="text-gray-600 font-medium">{kpi.format(kpi.prev)}</span></span>
+        <div className="flex flex-col gap-0.5">
+          <span className="text-xs text-gray-400">Eylül: <span className="text-gray-600 font-medium">{kpi.format(kpi.prev)}</span></span>
+          <span className="text-[10px] text-gray-400">{kpi.benchmark}</span>
+        </div>
         {change !== null && (
           <span className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-md ${
             isPositive ? 'bg-emerald-50 text-emerald-600' :
@@ -436,7 +421,7 @@ function KPICard({ kpi }: { kpi: typeof SEO_KPI[0] }) {
             'bg-gray-50 text-gray-400'
           }`}>
             {isPositive ? <TrendingUp size={11} /> : isNegative ? <TrendingDown size={11} /> : <Minus size={11} />}
-            {change > 0 ? '+' : ''}{change}%
+            {kpi.changeLabel ?? `${change > 0 ? '+' : ''}${change}%`}
           </span>
         )}
       </div>
@@ -518,7 +503,7 @@ export default function SEODashboard() {
       {/* Page Title */}
       <div className="flex flex-col gap-1">
         <h1 className="text-2xl font-bold text-gray-900 tracking-tight">SEO 10 Aylık Performans Analizi</h1>
-        <p className="text-sm text-gray-400">Ekim 2025 — Ağustos 2026 · Google Search Console verileri</p>
+        <p className="text-sm text-gray-400">Ekim 2025 — Ekim 2026 · Google Search Console verileri</p>
       </div>
 
       {/* KPI Section */}
@@ -589,7 +574,7 @@ export default function SEODashboard() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-gray-800">Aylık Trend</p>
-                <p className="text-xs text-gray-400">Ekim — Ağustos performans özeti</p>
+                <p className="text-xs text-gray-400">Ekim 2025 — Ekim 2026 performans özeti</p>
               </div>
             </div>
 
@@ -620,19 +605,20 @@ export default function SEODashboard() {
                     const isOcak = row.month === 'Ocak';
                     const isSubat = row.month === 'Şubat';
                     const isAgustos = row.month === 'Ağustos';
+                    const isEkim = row.month === 'Ekim 2026';
                     const isTemmuz = row.month === 'Temmuz';
                     return (
-                      <tr key={i} className={`border-t border-gray-100 ${isAgustos ? 'bg-blue-50/60' : isMart ? 'bg-emerald-50/40' : isOcak ? 'bg-blue-50/40' : isSubat ? 'bg-amber-50/40' : 'hover:bg-gray-50/60'} transition-colors`}>
+                      <tr key={i} className={`border-t border-gray-100 ${isEkim ? 'bg-blue-50/60' : isAgustos ? 'bg-blue-50/40' : isMart ? 'bg-emerald-50/40' : isOcak ? 'bg-blue-50/40' : isSubat ? 'bg-amber-50/40' : 'hover:bg-gray-50/60'} transition-colors`}>
                         <td className="px-3 py-2.5 font-semibold text-gray-700">
                           <div className="flex items-center gap-1.5">
                             {row.month}
-                            {isAgustos && <span className="text-[9px] bg-blue-100 text-blue-700 font-bold px-1.5 py-0.5 rounded-full">SON AY</span>}
+                            {isEkim && <span className="text-[9px] bg-blue-100 text-blue-700 font-bold px-1.5 py-0.5 rounded-full">SON AY</span>}
                             {isMart && !isAgustos && <span className="text-[9px] bg-emerald-100 text-emerald-700 font-bold px-1.5 py-0.5 rounded-full">EN YÜKSEK IMP.</span>}
                             {isOcak && <span className="text-[9px] bg-blue-100 text-blue-600 font-bold px-1.5 py-0.5 rounded-full">EN YÜKSEK CLICK</span>}
                             {isSubat && <span className="text-[9px] bg-amber-100 text-amber-600 font-bold px-1.5 py-0.5 rounded-full">GEÇİCİ DÜŞÜŞ</span>}
                           </div>
                         </td>
-                        <td className={`px-3 py-2.5 text-right tabular-nums font-semibold ${isAgustos ? 'text-blue-700' : isOcak ? 'text-blue-600' : 'text-gray-700'}`}>{row.clicks.toLocaleString('tr-TR')}</td>
+                        <td className={`px-3 py-2.5 text-right tabular-nums font-semibold ${isEkim ? 'text-blue-700' : isAgustos ? 'text-blue-600' : isOcak ? 'text-blue-600' : 'text-gray-700'}`}>{row.clicks.toLocaleString('tr-TR')}</td>
                         <td className={`px-3 py-2.5 text-right tabular-nums font-semibold ${isMart ? 'text-emerald-600' : 'text-gray-700'}`}>{row.impressions.toLocaleString('tr-TR')}</td>
                         <td className="px-3 py-2.5 text-right tabular-nums text-gray-700">{row.ctr.toFixed(2)}%</td>
                         <td className="px-3 py-2.5 text-right tabular-nums text-gray-700">{row.position.toFixed(2)}</td>
@@ -658,10 +644,10 @@ export default function SEODashboard() {
             </div>
             <ul className="flex flex-col gap-2.5">
               {[
-                'SEO görünürlüğü artıyor',
-                'Mart ayında en yüksek impression değerine ulaşıldı',
-                'CTR düşüşü SEO performans düşüşü anlamına gelmez',
-                'Yeni içerik üretimi sayesinde daha fazla sorguda görünürlük artıyor',
+                'Ekim, 7 Eylül’deki canlıya çıkış sonrası ilk tam ay oldu',
+                'TR Nöbetçi Eczane kaybı toplam düşüşün ana kaynağı',
+                'TR Nöbetçi Eczane hariç sitenin geri kalanı %18 büyüdü',
+                'Yeni /tr, Online Doktor, Blog ve Check-Up alanlarında büyüme var',
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-2 text-xs text-gray-600">
                   <span className="w-4 h-4 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 font-bold text-[9px]">{i + 1}</span>
@@ -670,20 +656,18 @@ export default function SEODashboard() {
               ))}
             </ul>
             <div className="mt-4 bg-amber-50 rounded-xl p-3 border border-amber-100">
-              <p className="text-xs font-semibold text-amber-700 mb-1">Ağustos 2026 Değerlendirmesi</p>
-              <p className="text-xs text-amber-700 leading-relaxed">
-                Ağustos ayında organik arama performansı Temmuz'a kıyasla büyük ölçüde stabil kaldı. Click hacmi %2,8, impression hacmi ise %4,0 gerilerken CTR %0,6 seviyesini korudu. Ortalama pozisyon 9,0'dan 9,3'e sınırlı şekilde geriledi.
-              </p>
+              <p className="text-xs font-semibold text-amber-700 mb-1">Ekim 2026 · Yönetim değerlendirmesi</p>
+              <p className="text-xs text-amber-700 leading-relaxed">Ekim, canlıya çıkış sonrası ilk tam ay oldu. Toplam organik click canlı öncesi eşit 31 günlük döneme göre %28 geriledi; kaybın neredeyse tamamı Türkçe Nöbetçi Eczane sayfalarından geliyor.</p>
             </div>
             <div className="mt-2 bg-blue-50 rounded-xl p-3 border border-blue-100">
               <p className="text-xs text-blue-700 leading-relaxed">
-                Temmuz'daki daha sert görünürlük kaybının ardından Ağustos'ta düşüş hızının belirgin şekilde yavaşlaması olumlu bir stabilizasyon sinyali. Bununla birlikte impression ve average position tarafındaki sınırlı gerileme nedeniyle organik görünürlüğün henüz tam olarak toparlandığı söylenemez.
+                TR Nöbetçi Eczane hariç tutulduğunda sitenin geri kalan organik trafiği canlı öncesine göre %18 büyüdü. Bu distinction yönetim değerlendirmesinde görsel olarak öne çıkarılmalıdır.
               </p>
             </div>
             <div className="mt-2 bg-slate-800 rounded-xl p-3 border border-slate-700">
               <p className="text-[10px] font-semibold text-slate-300 uppercase tracking-wider mb-1">Yönetim Özeti</p>
               <p className="text-[11px] text-slate-400 leading-relaxed">
-                Ağustos SEO performansı Temmuz'a göre stabilizasyon gösterdi. Click ve impression kaybı düşük tek haneli seviyelere inerken CTR korundu. Ortalama pozisyondaki 0,3 puanlık gerileme ise görünürlük tarafında hâlâ optimizasyon alanı bulunduğunu gösteriyor.
+                Ekim’de doğru yönetim hikâyesi site-wide trafik decline değil; TR Duty Pharmacy decline + growth in the rest of the site.
               </p>
             </div>
           </div>
@@ -851,10 +835,16 @@ export default function SEODashboard() {
                 <TrendingDown size={15} className="text-red-500" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-gray-800">Ağustos 2026 SEO Düşüşü — Kök Neden Analizi</p>
-                <p className="text-xs text-gray-400 mt-0.5">Organik trafik, sıralama ve görünürlük kaybının çok boyutlu incelenmesi</p>
+                <p className="text-sm font-semibold text-gray-800">Ekim 2026 SEO Düşüşü — Kök Neden Analizi</p>
+                <p className="text-xs text-gray-400 mt-0.5">İlk tam ay verisiyle organik trafik, sıralama ve görünürlük kaybının çok boyutlu incelenmesi</p>
               </div>
             </div>
+          </div>
+
+          <div className="rounded-2xl bg-blue-50 border border-blue-100 p-5">
+            <p className="text-xs font-bold text-blue-800 mb-2">Ekim yorumu</p>
+            <p className="text-xs text-blue-700 leading-relaxed mb-2">Ekim’de average position yalnızca 9,3 / 9,6 bandına sınırlı gerilerken toplam click kaybı çok daha yüksek görünüyor. Bunun nedeni site genelinde eşit bir ranking kaybı değil; yüksek trafik hacmine sahip TR Nöbetçi Eczane kümesindeki sert düşüşün toplam trafiği aşağı çekmesi.</p>
+            <p className="text-xs text-blue-700 leading-relaxed">Aynı dönemde Evde Sağlık, Check-Up, Blog, Online Doktor ve yabancı dil Nöbetçi Eczane sayfaları büyümeye devam ediyor. Bu nedenle site-wide average position tek başına SEO sağlığını açıklamıyor.</p>
           </div>
 
           {/* 1 — Trend Summary */}
@@ -1194,13 +1184,13 @@ export default function SEODashboard() {
 
           {/* 6 — Final Management Summary */}
           <div className="rounded-2xl bg-slate-800 p-5">
-            <p className="text-[10px] font-semibold text-slate-300 uppercase tracking-wider mb-2">Final Management Summary</p>
+            <p className="text-[10px] font-semibold text-slate-300 uppercase tracking-wider mb-2">Final Management Summary — Ekim 2026</p>
             <p className="text-xs text-slate-300 leading-relaxed mb-3">
-              Ağustos'taki SEO kaybı tek bir metriğe bağlı görünmüyor. En büyük kısa vadeli risk, yüksek trafik taşıyan Nöbetçi Eczane sorgularındaki sıralama kayıpları ve aynı sorguda birden fazla URL'nin görünmesi. Bunun yanında Şubat'tan beri Top 3 ve Top 10 görünürlüğündeki sürekli erime, site genelinde daha geniş kapsamlı bir SEO kalite / otorite problemi olabileceğine işaret ediyor.
+              Ekim verileri, site-wide -28%'lik click kaybının büyük bölümünün TR Nöbetçi Eczane kümesinden geldiğini gösteriyor. Average position 9,5 → 10,0 bandına sınırlı gerilemiş olsa da, TR Nöbetçi Eczane sayfalarındaki -61%'lik sert düşüş tüm site ortalamasını aşağı çekiyor. Nöbetçi Eczane hariç tutulduğunda site geneli click'ler +18% ile büyümede: Evde Sağlık, Check-Up, Blog, Online Doktor ve yabancı dil Nöbetçi Eczane sayfaları canlı sonrası ilk tam ayda güçlenmeye devam ediyor.
             </p>
             <div className="pt-3 border-t border-slate-700">
               <p className="text-xs text-slate-400 leading-relaxed">
-                Öncelik sırası; cannibalization ve canonical problemlerinin çözülmesi, Nöbetçi Eczane şehir sayfalarının içerik açısından güçlendirilmesi ve kaybedilen yüksek hacimli keyword'lerin geri kazanılması olmalı. Teknik tarafta Cloudflare, caching ve Core Web Vitals kontrolleri paralel yürütülmeli.
+                Bu tablo, düşüşün site geneli bir kalite problemi olmaktan çok, yeni şablonla yayına alınan TR Nöbetçi Eczane kümesine özgü güçlü bir teknik / template sinyali olduğuna işaret ediyor. Öncelik: TR Nöbetçi Eczane teknik incelemesi (canonical, URL迁移 doğrulaması, JS rendering), paralel olarak büyüyen bölümlerin desteklenmesi ve EN/RU cleanup.
               </p>
             </div>
           </div>

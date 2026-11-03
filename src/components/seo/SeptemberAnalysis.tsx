@@ -6,35 +6,16 @@ import {
 // ─── Data ───
 
 const EXEC_CARDS = [
-  {
-    title: 'Genel Tablo',
-    main: '-%10,8',
-    secondary: 'Takvim düzeltmeli: -%3,1',
-    text: '7 Eylül sonrası 19 günlük dönemde 14.755 organik tıklama elde edildi. Önceki eşit dönemde 16.542 tıklama vardı. Hafta sonu dağılımı normalize edildiğinde kayıp yalnızca %3,1.',
-    color: 'blue',
-  },
-  {
-    title: 'Mevsimsellik',
-    main: '2025: -%25,9',
-    secondary: '2026: -%10,8',
-    status: 'Mevsimsel beklentiden daha iyi',
-    text: 'Site geneli geçen yıl aynı sezonsal geçişte daha sert düşmüştü.',
-    color: 'emerald',
-  },
-  {
-    title: 'Gerçek Kayıp Alanı',
-    main: '7 kritik ilçe',
-    districts: ['Ümraniye', 'Kaş', 'Silivri', 'Eyüp', 'Beylikdüzü', 'Gürsu', 'Akçakale'],
-    text: 'Bu sayfalardaki düşüş mevsimsel beklentinin üzerinde ve sıralama kaybıyla birlikte gerçekleşiyor.',
-    color: 'red',
-  },
+  { title: 'Genel Tablo', main: '-%28', secondary: 'Ekim 2026 · ilk tam ay', text: 'Ekim, 7 Eylül’deki canlıya çıkış sonrası ilk tam ay oldu. Toplam organik click canlı öncesi eşit 31 günlük döneme göre %28 geriledi. Ancak kaybın neredeyse tamamı Türkçe Nöbetçi Eczane sayfalarından geliyor.', color: 'blue' },
+  { title: 'Site Geneli Hariç', main: '+%18', secondary: 'TR Nöbetçi Eczane hariç', status: 'Büyüme sinyali', text: 'TR Nöbetçi Eczane hariç tutulduğunda sitenin geri kalan organik trafiği canlı öncesine göre %18 büyüdü.', color: 'emerald' },
+  { title: 'Teknik Sinyal', main: 'TR template', secondary: 'Strong technical / template signal', districts: ['/nobetci-eczane/', '/tr', 'Blog', 'Check-Up'], text: 'Düşüş Türkçe yapı üzerinde yoğunlaşırken yeni /tr yapı, Online Doktor, Blog, Check-Up ve yabancı dil alanlarında büyüme görüldü.', color: 'red' },
 ];
 
 const KPI_COMPARISON = [
-  { label: 'Tıklama', before: '16.542', after: '14.755', raw: '-%10,8', adjusted: '-%3,1', status: 'raw' },
-  { label: 'Gösterim', before: '2,82M', after: '2,54M', raw: '-%10,0', adjusted: '-%5,3', status: 'raw' },
-  { label: 'CTR', before: '%0,59', after: '%0,58', raw: null, adjusted: null, status: 'stable' },
-  { label: 'Avg. Position', before: '9,3', after: '9,6', raw: null, adjusted: null, status: 'slight' },
+  { label: 'Tıklama', before: '25.100', after: '20.3K', raw: '-%17', adjusted: '-%28 vs pre-live', status: 'raw' },
+  { label: 'Gösterim', before: '4,14M', after: '2,9M', raw: '-%30', adjusted: '-%37 vs pre-live', status: 'raw' },
+  { label: 'CTR', before: '%0,6', after: '%0,7', raw: '+0,1 pp', adjusted: '+0,1 pp', status: 'stable' },
+  { label: 'Avg. Position', before: '9,5', after: '10,0', raw: '+0,5 worse', adjusted: '+0,7 worse vs pre-live', status: 'slight' },
 ];
 
 const WEEKLY_TREND = [
@@ -56,32 +37,31 @@ const SEASONALITY = [
 ];
 
 const POSITIVE_SIGNALS = [
-  { group: '/tr doktor & online pages', change: '+45%' },
-  { group: '/tr homepage + root migration', change: '+27%' },
-  { group: 'Blog', change: '+27%' },
-  { group: 'Russian duty pharmacy pages', change: '+15%' },
-  { group: 'Brand searches — Happ / Happ Health', change: '+39%' },
-  { group: 'Desktop clicks', change: '+14%' },
+  { group: 'Online Doctor', change: '+77%' },
+  { group: '/tr Blog', change: 'NEW · 638' },
+  { group: 'Check-Up', change: '+76%' },
+  { group: '/tr Homepage', change: '+6000%' },
+  { group: 'AR / RU / EN Nöbetçi Eczane', change: '+3% click' },
+];
+
+const GROWING_SECTIONS = [
+  ['TR Nöbetçi Eczane', '16.100', '6.280', '-61%'], ['AR Nöbetçi Eczane', '7.960', '8.180', '+3%'], ['Online Doctor', '1.550', '2.740', '+77%'], ['RU Nöbetçi Eczane', '935', '1.310', '+40%'], ['/tr Blog', '0', '638', 'NEW'], ['/tr Homepage', '5', '305', '+6000%'], ['Check-Up', '92', '162', '+76%'],
 ];
 
 const WINNING_PAGES = [
-  { page: '/tr', click: '5 → 116', imp: '244 → 1.912', pos: '4,9 → 4,7' },
-  { page: '/duty-pharmacy/ar', click: '40 → 147', imp: '12,0K → 18,1K', pos: '8,7 → 8,2' },
-  { page: '/duty-pharmacy/ar/sanliurfa', click: '116 → 182', imp: '724 → 827', pos: '3,0 → 3,5' },
-  { page: '/tr/blog/eczane-kacta-kapanir-ve-acilir', click: '0 → 43', imp: '0 → 31,5K', pos: '→ 10,8' },
-  { page: '/tr/check-up/medicalpark', click: '0 → 36', imp: '0 → 1.459', pos: '→ 7,3' },
-  { page: '/tr/blog/tiroid-hastasi-zayiflama-ignesi', click: '0 → 33', imp: '0 → 1.192', pos: '→ 4,0' },
-  { page: '/nobetci-eczane/gaziantep/nizip', click: '8 → 31', imp: '3,9K → 7,7K', pos: '8,6 → 8,0' },
+  { page: '/tr', click: '5 → 305', imp: '—', pos: '4,9 → 4,2' },
+  { page: '/duty-pharmacy/ar', click: '64 → 187', imp: '—', pos: '—' },
+  { page: 'Arabic Şanlıurfa', click: '188 → 294', imp: '—', pos: '—' },
+  { page: 'Arabic Bursa', click: '173 → 271', imp: '—', pos: '—' },
+  { page: 'Nöbetçi Eczane İstanbul hub', click: '22 → 102', imp: '—', pos: '—' },
+  { page: '/tr/check-up/medicalpark', click: '0 → 92', imp: '—', pos: '6,9' },
 ];
 
 const LOSING_PAGES = [
-  { page: 'Dikili', click: '189 → 68', pos: '5,0 → 5,5' },
-  { page: 'Sarıyer', click: '178 → 67', pos: '5,9 → 6,7' },
-  { page: 'Eyüp', click: '111 → 46', pos: '6,7 → 8,0' },
-  { page: 'Gürsu', click: '111 → 63', pos: '5,7 → 6,1' },
-  { page: 'Beylikdüzü', click: '138 → 91', pos: '6,3 → 6,7' },
-  { page: 'Kaş', click: '53 → 10', pos: '6,6 → 8,0' },
-  { page: 'Ümraniye', click: '52 → 12', pos: '7,8 → 9,7' },
+  { page: 'Sarıyer', click: '316 → 81', pos: '5,8 → 7,5' },
+  { page: 'Elmalı', click: '244 → 91', pos: '4,9 → 5,8' },
+  { page: 'Kahta', click: '286 → 160', pos: '5,2 → 5,5' },
+  { page: 'Arabic Osmangazi', click: '320 → 181', pos: '2,2 → 3,8' },
 ];
 
 const OPPORTUNITIES = [
@@ -93,6 +73,11 @@ const OPPORTUNITIES = [
 ];
 
 const TASKS = [
+  { title: 'PRIORITY 1 — TR NÖBETÇİ ECZANE TECHNICAL REVIEW', status: 'CRITICAL / IN PROGRESS', statusType: 'progress' as const, badges: ['noindex', 'canonical', 'internal linking', 'SSR'], detail: '/nobetci-eczane/izmir/urkmez noindex örnekleri arasında görünüyor. Eski ve yeni template farkları karşılaştırılmalı.' },
+  { title: 'PRIORITY 2 — URL MIGRATION / REDIRECT VALIDATION', status: 'CRITICAL / IN PROGRESS', statusType: 'progress' as const, badges: ['check-up-listesi → check-up', '301', '404'], detail: '301 redirect, final destination, 404 listesi ve eski migrate URL’ler doğrulanmalı.' },
+  { title: 'PRIORITY 3 — EN / RU CONTENT CLEANUP', status: 'IN PROGRESS', statusType: 'progress' as const, badges: ['/en/', '/ru/', 'hreflang'], detail: 'Türkçe içerik ve slug kalan sayfalar çevrilmeli veya noindex / hreflang ile yönetilmeli.' },
+  { title: 'PRIORITY 4 — BLOG CTR OPTIMIZATION', status: 'IN PROGRESS', statusType: 'progress' as const, badges: ['title', 'meta description', 'content depth'], detail: 'Yüksek impression alan “eczane kaçta kapanır” gibi sayfalarda snippet ve içerik optimizasyonu yapılmalı.' },
+  { title: 'PRIORITY 5 — SUPPORT GROWING AREAS', status: 'NEXT', statusType: 'review' as const, badges: ['doctor profile links', 'Blog', 'Check-Up'], detail: 'Doktor profil sayfalarından Blog, Check-Up ve ilgili hizmetlere internal link vererek Online Doctor, /tr homepage ve brand search büyümesi desteklenmeli.' },
   {
     title: 'Mobile Core Web Vitals',
     status: 'TAMAMLANDI',
@@ -133,32 +118,28 @@ const TASKS = [
 ];
 
 const INDEXING = [
-  { label: 'Indexed Pages', value: '78,1K', type: 'normal' as const },
-  { label: 'Non-indexed', value: '44,1K', type: 'normal' as const },
-  { label: 'Excluded by noindex', value: '2.389', type: 'warn' as const },
-  { label: 'Duplicate — Google chose different canonical', value: '2.211', type: 'normal' as const, trend: 'improving' },
-  { label: 'Crawled – currently not indexed', value: '22.872', type: 'normal' as const, sub: 'Monitor' },
-  { label: 'Page with redirect', value: '1.581', type: 'normal' as const },
-  { label: '404', value: '256', type: 'normal' as const },
-  { label: 'Blocked 4xx', value: '15', type: 'normal' as const },
-  { label: '403', value: '1', type: 'normal' as const },
-  { label: 'Redirect errors', value: '3', type: 'normal' as const },
-  { label: 'Mobile CWV', value: '4.016 Good / 47 NI / 0 Poor', type: 'good' as const },
-  { label: 'Desktop', value: '4.063 Good · 100% Good', type: 'good' as const },
+  { label: 'Indexed Pages', value: '58.536', type: 'normal' as const },
+  { label: 'Not Indexed', value: '62.667', type: 'normal' as const },
+  { label: 'Excluded by noindex', value: '26.103', type: 'warn' as const },
+  { label: 'Crawled – currently not indexed', value: '21.036', type: 'warn' as const, sub: '2. büyük sorun' },
+  { label: 'Alternate page with proper canonical', value: '11.430', type: 'normal' as const },
+  { label: 'Duplicate — Google chose different canonical', value: '1.522', type: 'normal' as const },
+  { label: 'Page with redirect', value: '1.482', type: 'normal' as const },
+  { label: 'Not found 404', value: '673', type: 'normal' as const },
+  { label: 'Discovered – currently not indexed', value: '365', type: 'normal' as const },
+  { label: 'Blocked by robots.txt', value: '44', type: 'normal' as const },
+  { label: 'Server error 5xx', value: '5', type: 'normal' as const },
 ];
 
 const NEXT_ACTIONS_TECH = [
-  'Noindex kararını netleştir. Stop producing: "/nobetci-eczane/eczane/undefined/{id}"',
-  'Clean migration leftovers: 15 x 4xx, 1 x 403, 3 redirect errors',
-  'Sample and analyze: "Crawled – currently not indexed" 22,9K URLs',
-  'Close remaining: 47 mobile CWV URLs',
+  'TR Nöbetçi Eczane template logicini incele: noindex, canonical, internal linking, pharmacy list SSR ve eski/yeni template farkları. Örnek: /nobetci-eczane/izmir/urkmez.',
+  'URL migrationı doğrula: check-up-listesi → check-up, 301 redirect, final destination, 404 listesi ve eski URL’ler.',
+  'EN / RU sayfalarında Türkçe içerik ve slug kalan URL’leri çevir veya noindex / hreflang ile yönet.',
 ];
 
 const NEXT_ACTIONS_CONTENT = [
-  'Create unique district content for: Ümraniye, Kaş, Silivri, Eyüp, Beylikdüzü, Gürsu, Akçakale',
-  'Push first-page threshold pages: Istanbul #10,4, Gaziantep #11,7, Bursa Osmangazi #10,8',
-  'Improve snippets: Sultangazi, Idrar Yolu Enfeksiyonu blog',
-  'Deepen AI-visible content: Eczane kaçta kapanır, Açılmış ilaçların kullanım süreleri, Kan grubu',
+  'Blog CTR optimizasyonu: title, meta description, content depth ve yüksek impression alan “eczane kaçta kapanır” sayfası.',
+  'Doktor profil sayfalarından Blog, Check-Up ve ilgili hizmetlere internal link vererek Online Doctor, /tr homepage ve brand search büyümesini destekle.',
 ];
 
 // ─── Helpers ───
@@ -195,10 +176,8 @@ export default function SeptemberAnalysis() {
           </div>
           <div className="flex-1">
             <h2 className="text-lg font-bold text-gray-900">7 Eylül Sonrası SEO Durumu</h2>
-            <p className="text-sm text-gray-400 mt-0.5">19 Ağustos – 6 Eylül vs 7 – 25 Eylül 2026</p>
-            <p className="text-[11px] text-gray-400 mt-1.5">
-              Karşılaştırma eşit 19 günlük iki dönemi kapsar. 26–27 Eylül eksik veri riski nedeniyle karşılaştırma dışında tutulmuştur.
-            </p>
+            <p className="text-sm text-gray-400 mt-0.5">Ekim 2026 — Canlı Sonrası İlk Tam Ay</p>
+            <p className="text-[11px] text-gray-400 mt-1.5">Yeni tam-ay verisi, önceki kısa dönem analizini daha net hale getiriyor. Site genelindeki negatif görünüm esas olarak TR Nöbetçi Eczane kaybından kaynaklanıyor; yeni /tr yapısı, Online Doktor, Blog, Check-Up ve yabancı dil Nöbetçi Eczane alanlarında büyüme görülüyor.</p>
             <p className="text-[10px] text-gray-300 mt-1">Kaynak: Google Search Console</p>
           </div>
         </div>
@@ -280,8 +259,8 @@ export default function SeptemberAnalysis() {
         <div className="flex items-center justify-between mb-4">
           <p className="text-xs font-bold text-gray-500 uppercase tracking-wider">Before / After KPI Karşılaştırması</p>
           <div className="flex items-center gap-2 text-[10px] font-semibold">
-            <span className="text-gray-400 bg-gray-50 px-2 py-1 rounded-full">Öncesi: 19 Ağu – 6 Eyl</span>
-            <span className="text-blue-600 bg-blue-50 px-2 py-1 rounded-full">Sonrası: 7 – 25 Eyl</span>
+            <span className="text-gray-400 bg-gray-50 px-2 py-1 rounded-full">Pre-live: 7 Ağu – 6 Eyl</span>
+            <span className="text-blue-600 bg-blue-50 px-2 py-1 rounded-full">Ekim: 1 – 31 Eki</span>
           </div>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -290,12 +269,12 @@ export default function SeptemberAnalysis() {
               <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">{k.label}</span>
               <div className="flex items-center gap-2">
                 <div className="flex flex-col">
-                  <span className="text-[9px] text-gray-300 font-medium">19 Ağu – 6 Eyl</span>
+                  <span className="text-[9px] text-gray-300 font-medium">7 Ağu – 6 Eyl</span>
                   <span className="text-sm font-semibold text-gray-400 line-through">{k.before}</span>
                 </div>
                 <ArrowRight size={12} className="text-gray-300" />
                 <div className="flex flex-col">
-                  <span className="text-[9px] text-blue-400 font-medium">7 – 25 Eyl</span>
+                  <span className="text-[9px] text-blue-400 font-medium">Ekim 2026</span>
                   <span className="text-lg font-bold text-gray-900 tabular-nums">{k.after}</span>
                 </div>
               </div>
@@ -313,7 +292,7 @@ export default function SeptemberAnalysis() {
             </div>
           ))}
         </div>
-        <p className="text-[10px] text-gray-400 mt-3">Ham düşüş tek başına değerlendirilmemelidir — takvim düzeltmeli değerler raw değerlerin yanında gösterilmiştir.</p>
+        <p className="text-[10px] text-gray-400 mt-3">Ekim tam-ay verisi, canlı öncesi eşit 31 günlük dönemle karşılaştırılmıştır. Average position’da yüksek sayı daha kötü performans anlamına gelir.</p>
       </div>
 
       {/* 4 — Weekly Trend + 5 — Seasonality */}
@@ -387,7 +366,7 @@ export default function SeptemberAnalysis() {
           </div>
           <div className="rounded-lg bg-amber-50 border border-amber-100 px-3 py-2">
             <p className="text-[11px] text-amber-700 leading-relaxed">
-              TR Nöbetçi Eczane trafiğindeki yaklaşık %30'luk genel düşüş geçen yılki sezonsal hareketle neredeyse aynı. Müdahale önceliği site geneli yerine mevsimselliğin üzerinde kayıp yaşayan belirli ilçe sayfaları olmalı.
+              Ekim tam-ay verisi, TR Nöbetçi Eczane düşüşünün yalnızca mevsimsellikle açıklanmaması gerektiğini gösteriyor. Düşüş Türkçe yapı üzerinde yoğunlaşırken AR / RU / EN sayfalarında aynı negatif hareket görülmüyor. Bu nedenle yeni sürümle gelen template, noindex, canonical, internal linking ve server-side rendering farklılıkları öncelikli olarak incelenmeli. Bu, strong technical / template signal olarak ele alınmalı; proven migration penalty olarak yorumlanmamalı.
             </p>
           </div>
         </div>
@@ -418,13 +397,19 @@ export default function SeptemberAnalysis() {
               </tbody>
             </table>
           </div>
+          <div className="overflow-x-auto rounded-xl border border-gray-100 mb-3">
+            <table className="w-full text-xs border-collapse">
+              <thead><tr className="bg-gray-50"><th className="text-left px-3 py-2 font-semibold text-gray-500">Section</th><th className="text-right px-3 py-2 font-semibold text-gray-500">Pre-live</th><th className="text-right px-3 py-2 font-semibold text-gray-500">October</th><th className="text-right px-3 py-2 font-semibold text-gray-500">Change</th></tr></thead>
+              <tbody>{GROWING_SECTIONS.map((row, i) => <tr key={i} className="border-t border-gray-100"><td className="px-3 py-2 font-medium text-gray-700">{row[0]}</td><td className="px-3 py-2 text-right text-gray-500">{row[1]}</td><td className="px-3 py-2 text-right font-semibold text-gray-700">{row[2]}</td><td className="px-3 py-2 text-right font-bold text-emerald-600">{row[3]}</td></tr>)}</tbody>
+            </table>
+          </div>
           <div className="flex flex-wrap gap-1.5 mb-3">
             <span className="text-[10px] text-gray-600 bg-emerald-50 border border-emerald-100 px-2 py-1 rounded-full">Arabic pages: Impressions +27%</span>
             <span className="text-[10px] text-gray-600 bg-emerald-50 border border-emerald-100 px-2 py-1 rounded-full">Istanbul / Gaziantep / Bursa hubs: 1,5x–6x impression growth</span>
           </div>
           <div className="rounded-lg bg-emerald-50 border border-emerald-100 px-3 py-2">
             <p className="text-[11px] text-emerald-700 leading-relaxed">
-              Yeni /tr yapısı, doktor-online sayfaları, blog ve çok dilli içeriklerde büyüme görülüyor. Bu alanlarda 7 Eylül sonrası değişikliklerin negatif bir SEO etkisi görülmüyor.
+              Yeni site yapısının tamamı zayıflamıyor. Online Doktor, Blog, Check-Up, /tr homepage ve yabancı dil Nöbetçi Eczane alanları canlı sonrası büyüme gösteriyor.
             </p>
           </div>
         </div>
@@ -456,7 +441,7 @@ export default function SeptemberAnalysis() {
           </div>
           <div className="rounded-lg bg-red-50 border border-red-100 px-3 py-2">
             <p className="text-[11px] text-red-700 leading-relaxed font-medium">
-              Asıl SEO kaybı site genelinden çok belirli ilçe sayfalarında yoğunlaşıyor. Özellikle Ümraniye, Kaş ve Eyüp hem trafik hem sıralama kaybı açısından öncelikli müdahale alanları.
+              Losers: Sarıyer, Elmalı, Kahta ve Arabic Osmangazi. Kazananlar: /tr, /duty-pharmacy/ar, Arabic Şanlıurfa, Arabic Bursa, İstanbul hub ve /tr/check-up/medicalpark.
             </p>
           </div>
         </div>
@@ -604,11 +589,11 @@ export default function SeptemberAnalysis() {
       <div className="rounded-2xl bg-slate-800 p-5">
         <p className="text-[10px] font-semibold text-slate-300 uppercase tracking-wider mb-2">Yönetim Özeti</p>
         <p className="text-xs text-slate-300 leading-relaxed mb-3">
-          7 Eylül sonrası veriler, yapılan migration ve site değişikliklerinin genel organik performansta ani bir negatif kırılma yaratmadığını gösteriyor. Lansman haftası dönem içindeki en yüksek organik trafik seviyesine ulaşırken, ham düşüşün önemli bölümü takvim ve mevsimsellik etkisiyle açıklanabiliyor.
+          Ekim, yeni happ.health yapısının ilk tam aylık SEO sonucunu gösteriyor. Toplam organik trafik canlı öncesine göre %28 gerilemiş olsa da bu kaybın ana kaynağı Türkçe Nöbetçi Eczane sayfaları. Bu alan hariç tutulduğunda sitenin geri kalanı %18 büyüyor.
         </p>
         <div className="pt-3 border-t border-slate-700">
           <p className="text-xs text-slate-400 leading-relaxed">
-            Pozitif etki yeni /tr yapısı, blog, doktor-online sayfaları, çok dilli içerikler, marka aramaları ve AI görünürlüğünde görülüyor. Bundan sonraki ana SEO odağı site genelini yeniden değiştirmek yerine, mevsimsel beklentinin üzerinde kayıp yaşayan 7 ilçe sayfasını düzeltmek, noindex/undefined URL sorununu kapatmak ve hızla büyüyen impression fırsatlarını click'e çevirmek olmalı.
+            Yeni /tr yapı, Blog, Online Doktor, Check-Up ve yabancı dil sayfalarında pozitif sinyal var. Bu nedenle öncelik tüm siteyi yeniden değiştirmek değil; TR Nöbetçi Eczane template/indexing sorununu izole etmek, noindex/canonical yapısını doğrulamak ve büyüyen kategorileri desteklemek olmalı.
           </p>
         </div>
       </div>
