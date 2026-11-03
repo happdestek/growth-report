@@ -504,7 +504,7 @@ export default function SeptemberAnalysis() {
       </div>
 
       {/* 10 — Task Status */}
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+      <div className="hidden bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
         <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">SEO Task Status — Güncel Durum</p>
         <div className="flex flex-col gap-3">
           {TASKS.map((t) => (
