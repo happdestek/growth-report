@@ -21,37 +21,46 @@ const META_MONTHLY = [
 const GOOGLE_CAMPAIGN_HIGHLIGHTS = [
   {
     color: 'slate',
-    title: 'Ana Trafik + Conversion Kaynağı',
+    title: 'EN İYİ KAMPANYA — ANA TRAFİK + CONVERSION KAYNAĞI',
     campaign: 'nobetci-eczane-istanbul',
+    period: '1–31 Ekim 2026',
+    type: 'Search',
+    budget: '₺300 / gün',
+    badge: 'Main Traffic Driver · Measurement Change · SEO Support',
     metrics: [
       { label: 'Clicks', value: '17.550' }, { label: 'Impressions', value: '115.736' }, { label: 'CTR', value: '%15,16' },
       { label: 'Avg CPC', value: '₺0,52' }, { label: 'Spend', value: '₺9.120,21' }, { label: 'Conversions', value: '222,33' },
       { label: 'Cost / Conv', value: '₺41,02' }, { label: 'CVR', value: '%1,27' },
     ],
-    comment: 'Nöbetçi Eczane ana kampanyasında trafik hacmi gerilerken CTR ve conversion efficiency çok güçlü iyileşti. Harcama neredeyse sabit kalmasına rağmen conversion 222,33 seviyesine çıktı. Eylül conversion baseline’ı tracking veya campaign structure değişiminden etkilenmiş olabilir.',
+    comment: "Nöbetçi Eczane İstanbul kampanyasında impression %32 ve click %14,5 gerilerken CTR %12,05’ten %15,16’ya yükseldi. Harcama yaklaşık sabit kaldı. Conversion’ın 3’ten 222’ye çıkması doğrudan performans artışı olarak okunmamalı. 16 Ekim’de 'Yol Tarifi' dönüşümünün ölçüme eklenmesi conversion tanımını değiştirdi; Ekim conversionlarının 221’i Yol Tarifi, 1’i arama aksiyonundan oluşuyor. 22 Ekim’de SEO / organik görünürlük tarafında düşüş yaşayan ilçeleri paid search ile desteklemek amacıyla Esenyurt, Pendik, Sultanbeyli ve Kartal için ilçe bazlı yeni reklam grupları devreye alındı.",
   },
   {
     color: 'emerald',
-    title: 'Nöbetçi Eczane — Düşüş Yaşayan Lokasyonlar',
-    campaign: 'Campaign name unavailable in source',
-    badge: 'SEO Support / Location Recovery',
+    title: 'EN VERİMLİ KAMPANYA — DÜŞÜK MALİYETLİ YOL TARİFİ',
+    campaign: 'nöbetçi_eczane_ankara_search_13.11',
+    period: '15–31 Ekim 2026 · 17 gün',
+    type: 'Search · ₺150 / gün',
+    badge: 'Best Cost / Conv.',
     metrics: [
       { label: 'Clicks', value: '3.931' }, { label: 'Impressions', value: '18.891' }, { label: 'CTR', value: '%20,81' },
       { label: 'Avg CPC', value: '₺0,46' }, { label: 'Spend', value: '₺1.800,81' }, { label: 'Conversions', value: '93,00' },
       { label: 'Cost / Conv', value: '₺19,36' }, { label: 'CVR', value: '%2,37' },
     ],
-    comment: 'Ekim ayında organik görünürlükte en fazla düşüş yaşayan Nöbetçi Eczane lokasyonlarını desteklemek amacıyla yeni reklam yapısı devreye alındı. Kampanya 3.931 click ve 93 conversion üretirken CPA ₺19,36 seviyesinde gerçekleşti.',
+    comment: '15 Ekim’de yeniden yayına alınan Ankara kampanyası yalnızca 17 günde 3.931 click ve 93 Yol Tarifi conversion üretti. ₺19,36 Cost / Conv. ile Ekim’in en verimli lokasyon kampanyası oldu; Ankara’nın Cost / Conv. seviyesi İstanbul’un yaklaşık yarısı. Kampanya teklif stratejisiyle sınırlı durumda; 0,60 TL click ceiling nedeniyle günlük bütçenin yalnızca yaklaşık %70’i kullanılabiliyor. Ekim bütçe değişimleri 250 TL → 200 TL → 0,19 TL → 200 TL → 150 TL oldu. Kasım’da daha stabil bütçe ve kontrollü şekilde daha esnek CPC tavanı ile scale testi yapılabilir. Eylül: paused / no delivery.',
   },
   {
     color: 'amber',
-    title: 'Traffic Growth / Conversion Efficiency Risk',
+    title: 'EN YÜKSEK HARCAMA — CHECK-UP SATIN ALMA HUNİSİ',
     campaign: 'Check up - Search- 22.01',
+    period: '1–31 Ekim 2026',
+    type: 'Search · ₺400 / gün',
+    badge: 'Traffic Growth / Funnel Risk · Bütçeyle sınırlı',
     metrics: [
       { label: 'Clicks', value: '1.496' }, { label: 'Impressions', value: '44.041' }, { label: 'CTR', value: '%3,40' },
       { label: 'Avg CPC', value: '₺7,80' }, { label: 'Spend', value: '₺11.674,17' }, { label: 'Conversions', value: '25,91' },
       { label: 'Cost / Conv', value: '₺450,62' }, { label: 'CVR', value: '%1,73' },
     ],
-    comment: 'Check-Up kampanyasında trafik hacmi çok güçlü büyüdü ve CPC belirgin şekilde geriledi; ancak conversion hacmi düştü ve CPA ₺210,94’ten ₺450,62’ye yükseldi.',
+    comment: 'Check-Up kampanyasında Ekim’de trafik ölçeği çok güçlü büyüdü. Click yaklaşık 5 katına, impression ise yaklaşık 8,5 katına çıkarken Avg CPC ₺26,29’dan ₺7,80’e geriledi. Buna rağmen conversion 36,5’ten 25,9’a geriledi, CVR %12,46’dan %1,73’e düştü ve Cost / Conv. ₺210,94’ten ₺450,62’ye yükseldi. Bu nedenle Ekim Check-Up performansı trafik satın alma açısından güçlü, satın alma / conversion efficiency açısından zayıf okunmalı.',
   },
   {
     color: 'blue',
@@ -166,10 +175,10 @@ export default function PaidMarketingDashboard() {
         </div>
         <div className="bg-slate-50 border border-slate-200 rounded-2xl px-5 py-3">
           <p className="text-sm text-slate-700 leading-relaxed">
-            Ekim ayında Google Ads harcaması Eylül'e göre yalnızca %1,5 artarak ₺28.676,24 seviyesinde gerçekleşti. Conversion hacmi 101,9'dan 373,2'ye yükselirken Cost / Conv. ₺277,35'ten ₺76,83'e gerileyerek yaklaşık %72 iyileşti. Meta Ads tarafında Ekim install hacmi 2.297’ye ulaştı ve Android CPI %41 iyileşti.
+            Ekim’de Google Ads tarafında kampanya performansları farklılaştı. Nöbetçi Eczane İstanbul yüksek trafik ve CTR üretmeye devam ederken conversion hacmindeki sert artışın ana nedeni 16 Ekim’de Yol Tarifi conversion’ının ölçüme eklenmesi oldu.
           </p>
           <p className="text-sm text-slate-600 leading-relaxed mt-2">
-            Ekim'de kanal bazında en önemli pozitif sinyal Google Ads tarafından geldi. Impression hacmi %25,6 azalmasına rağmen click hacmi %4,7 arttı ve CTR %5,14'ten %7,23'e yükseldi.
+            Ankara Nöbetçi Eczane kampanyası ₺19,36 Cost / Conv. ve %20,81 CTR ile lokasyon bazlı kampanyalar içinde en verimli sonucu üretirken, Check-Up kampanyasında trafik hacmi güçlü büyümesine rağmen CVR ve CPA tarafında belirgin bozulma görüldü.
           </p>
         </div>
       </section>
@@ -221,10 +230,10 @@ export default function PaidMarketingDashboard() {
               </table>
             </div>
           </div>
-          <InsightNote text="Ekim ayında Google Ads harcaması Eylül'e göre yalnızca %1,5 artarken conversion hacmi 101,9'dan 373,2'ye yükseldi. Cost / Conv. ₺277,35'ten ₺76,83'e gerileyerek yaklaşık %72 iyileşti." />
+          <InsightNote text="Ekim’de Google Ads tarafında kampanya performansları farklılaştı. Nöbetçi Eczane İstanbul yüksek trafik ve CTR üretmeye devam ederken conversion hacmindeki sert artışın ana nedeni 16 Ekim’de Yol Tarifi conversion’ının ölçüme eklenmesi oldu." />
           <div className="mt-2 flex gap-2 items-start">
             <div className="w-1 rounded-full bg-emerald-200 self-stretch mt-0.5 shrink-0" style={{ minHeight: 16 }} />
-            <p className="text-xs text-gray-500 leading-relaxed">Impression hacmi %25,6 azalmasına rağmen click hacmi %4,7 arttı ve CTR %5,14'ten %7,23'e yükseldi. Bu durum Ekim'de daha düşük gösterim hacminden daha yüksek trafik ve conversion verimliliği elde edildiğini gösteriyor.</p>
+            <p className="text-xs text-gray-500 leading-relaxed">Ankara ₺19,36 Cost / Conv. ile İstanbul’un yaklaşık yarı maliyetinde kaldı. Check-Up’ta trafik büyürken CVR ve CPA bozuldu; düşük CPC’nin düşük kaliteli trafik nedeniyle oluşup oluşmadığı incelenmeli.</p>
           </div>
         </section>
 
@@ -365,12 +374,12 @@ export default function PaidMarketingDashboard() {
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
           <ol className="flex flex-col gap-2.5">
             {[
-              'Android Nöbetçi Eczane V2 kampanyasını kontrollü bütçe artışıyla ölçekle.',
-              'iOS Nöbetçi Eczane V2 kampanyasının ₺13,43 CPI performansını daha yüksek bütçede doğrula.',
-              'iOS Hangidiyet kampanyasında creative refresh / budget reduction test et.',
-              'instagram_traffic_idrar_23.10 kampanyası için App Install objective varyasyonu test et.',
-              'Android ortalama CPI’daki %41 iyileşmenin Kasım ayında sürdürülebilir olup olmadığını takip et.',
-              'Featured campaign install contribution oranını aylık olarak takip et: October baseline = %86,1.',
+              'İstanbul Nöbetçi Eczane’de Yol Tarifi, Arama, WhatsApp ve Purchase conversionlarını ayrı raporla.',
+              'Esenyurt, Pendik, Sultanbeyli ve Kartal reklam gruplarının incremental click ve Yol Tarifi katkısını takip et.',
+              'Ankara kampanyasında ₺19,36 CPA seviyesinin daha yüksek bütçede korunup korunmadığını test et.',
+              'Check-Up Search’te search terms, keyword match type, landing page, device, location, audience ve conversion funnel bazında CVR düşüşünü incele.',
+              'Check-Up kampanyasında düşük CPC’nin düşük kaliteli trafik nedeniyle oluşup oluşmadığını kontrol et.',
+              'Anında Doktor policy rejection çözülene kadar sıfır Ekim trafiğini talep veya kampanya performansı düşüşü olarak yorumlama.',
             ].map((action, i) => (
               <li key={i} className="flex items-start gap-3">
                 <span className="w-5 h-5 rounded-full bg-slate-700 text-white text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
@@ -439,10 +448,13 @@ function InsightNote({ text }: { text: string }) {
 }
 
 
-function MetaCampaignCard({ color, title, campaign, metrics, comment, badge }: {
+function MetaCampaignCard({ color, title, campaign, period, type, budget, metrics, comment, badge }: {
   color: string;
   title: string;
   campaign: string;
+  period?: string;
+  type?: string;
+  budget?: string;
   metrics: { label: string; value: string }[];
   comment: string;
   badge?: string;
@@ -453,6 +465,7 @@ function MetaCampaignCard({ color, title, campaign, metrics, comment, badge }: {
       <div>
         <p className={`text-[10px] font-semibold uppercase tracking-wider ${c.text} mb-1`}>{title}</p>
         <p className="text-xs font-mono text-gray-500 truncate">{campaign}</p>
+        {(period || type || budget) && <p className="text-[10px] text-gray-400 mt-1">{[period, type, budget].filter(Boolean).join(' · ')}</p>}
         {badge && <span className={`inline-flex mt-2 text-[9px] font-bold px-1.5 py-0.5 rounded-md ${c.bg} ${c.text}`}>{badge}</span>}
       </div>
       <div className="grid grid-cols-3 gap-2">
