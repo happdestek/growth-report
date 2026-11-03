@@ -74,8 +74,8 @@ export default function AppGrowthDashboard({ embedded = false }: { embedded?: bo
               <Info size={16} className="text-amber-600" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-gray-800">Ekim 2026 — Partial Data (MTD)</p>
-              <p className="text-xs text-gray-400">Platform bazlı download özeti (tamamlanmamış ay)</p>
+              <p className="text-sm font-semibold text-gray-800">Ekim 2026 — Final Data</p>
+              <p className="text-xs text-gray-400">Platform bazlı final download özeti</p>
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -84,12 +84,12 @@ export default function AppGrowthDashboard({ embedded = false }: { embedded?: bo
                 <Bot size={13} /> Android
               </div>
               <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-bold text-gray-900 tabular-nums">1.785</span>
+                <span className="text-2xl font-bold text-gray-900 tabular-nums">2.570</span>
                 <span className="text-xs text-gray-400">downloads</span>
               </div>
-              <span className="text-[10px] font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded-full w-fit">MTD · 1–19 Ekim 2026</span>
+              <span className="text-[10px] font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded-full w-fit">Ekim 2026 · Final</span>
               <p className="text-[11px] text-gray-500 leading-relaxed">
-                Eylül tam ayı (final): 1.857 downloads · 7.073 PPV · %26,25 conversion. Ekim MTD download hacmi Eylül tam ayının yaklaşık %96'sına ulaşırken PPV → Download %45,49'a yükseldi.
+                Eylül finali: 1.857 downloads · 7.073 PPV · %26,25 conversion. Ekim finalinde 2.570 downloads ve 6.490 PPV ile PPV → Download %39,60 oldu; download hacmi %38,4 arttı.
               </p>
             </div>
             <div className="rounded-xl border border-orange-100 bg-orange-50/50 p-4 flex flex-col gap-2">
@@ -107,7 +107,7 @@ export default function AppGrowthDashboard({ embedded = false }: { embedded?: bo
             </div>
           </div>
           <p className="mt-3 text-[10px] text-amber-600 leading-relaxed bg-amber-50 border border-amber-100 rounded-lg px-3 py-2">
-            Ekim 2026 verileri tam ayı kapsamamaktadır — Android MTD · 1–19 Ekim, iOS MTD · 1–21 Ekim. Eylül 2026 final tam ay verisidir. Ekim MTD ile Eylül tam ayı hacim karşılaştırması yönsel (directional) olarak değerlendirilmelidir.
+            Eylül ve Ekim 2026 verileri final tam ay verileridir. Ekim performansı Eylül ile doğrudan MoM olarak karşılaştırılabilir.
           </p>
         </div>
 
