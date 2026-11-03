@@ -168,7 +168,7 @@ export default function CRMDashboard() {
   const [segmentFilter, setSegmentFilter] = useState('Tümü');
   const [periodFilter, setPeriodFilter]   = useState('Mart');
   const [sortKey, setSortKey]             = useState<SortKey>('redirectRate');
-  const [emailMonthFilter, setEmailMonthFilter] = useState('Eylül');
+  const [emailMonthFilter, setEmailMonthFilter] = useState('Ekim');
   const [smsExpanded, setSmsExpanded]     = useState(false);
   const [mpMonth, setMpMonth]             = useState<'temmuz' | 'agustos'>('agustos');
   const [livMonth, setLivMonth]           = useState<'temmuz' | 'agustos'>('agustos');
@@ -269,12 +269,16 @@ export default function CRMDashboard() {
                     <th className="text-left px-5 py-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider">Ay</th>
                     <th className="text-right px-4 py-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider">Kampanya Sayısı</th>
                     <th className="text-right px-4 py-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider">Toplam Gönderim</th>
-                    <th className="text-right px-5 py-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider">Ort. Open Rate</th>
+                    <th className="text-right px-4 py-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider">Açılma</th>
+                    <th className="text-right px-4 py-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider">Click</th>
+                    <th className="text-right px-4 py-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider">Click Rate</th>
+                    <th className="text-right px-5 py-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider">Weighted Open Rate</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50">
                   {[
-                    { ay: 'Eylül 2026', kampanya: 3,  gonderim: '16.04K', openRate: '%10,3', avgCtr: '%0,1', note: 'MTD · 1–20 Eylül' },
+                    { ay: 'Ekim 2026', kampanya: 8, gonderim: '46.549', opens: '5.044', clicks: '49', openRate: '%10,84', avgCtr: '%0,11', note: 'FINAL' },
+                    { ay: 'Eylül 2026', kampanya: 3, gonderim: '16.045', opens: '1.711', clicks: '20', openRate: '%10,66', avgCtr: '%0,12', note: 'FINAL' },
                     { ay: 'Ağustos 2026', kampanya: 8,  gonderim: '40.785', openRate: '%10,7', avgCtr: '%0,1',  note: null },
                     { ay: 'Temmuz 2026',  kampanya: 7,  gonderim: '33.681', openRate: '%11,6', avgCtr: '%0,2',  note: null },
                     { ay: 'Haziran 2026', kampanya: 6,  gonderim: '26.942', openRate: '%10,1', avgCtr: '%0,18', note: null },
@@ -295,6 +299,9 @@ export default function CRMDashboard() {
                       </td>
                       <td className="px-4 py-3.5 text-right tabular-nums text-gray-600">{row.kampanya ?? '—'}</td>
                       <td className="px-4 py-3.5 text-right tabular-nums text-gray-700 font-semibold">{row.gonderim}</td>
+                      <td className="px-4 py-3.5 text-right tabular-nums text-gray-600">{row.opens ?? '—'}</td>
+                      <td className="px-4 py-3.5 text-right tabular-nums text-gray-600">{row.clicks ?? '—'}</td>
+                      <td className="px-4 py-3.5 text-right tabular-nums text-gray-600">{row.avgCtr ?? '—'}</td>
                       <td className="px-5 py-3.5 text-right">
                         <span className={`font-semibold tabular-nums ${row.openRate === '—' ? 'text-gray-300' : 'text-blue-600'}`}>{row.openRate}</span>
                       </td>
@@ -318,11 +325,12 @@ export default function CRMDashboard() {
             </div>
             <ul className="flex flex-col gap-2.5">
               {[
-                'Eylül’ün ilk 20 gününde 3 mailing kampanyasında 16,04 bin teslimat ve yaklaşık 1,65 bin açılma elde edildi. Open rate %10,3 seviyesinde gerçekleşerek Ağustos tam ayındaki %10,7 seviyesine yakın seyretti.',
-                'Kampanya bazında en güçlü aksiyon “Prostat kontrolü ne zaman başlamalı?” mailinginden geldi; %10,6 open rate ve 11 click ile Eylül döneminin en yüksek click hacmini üretti.',
-                'Sonbahar beslenme içeriği %9,8 open rate ve 2 click ile diğer iki mailingin gerisinde kaldı.',
-                'Eylül MTD verisinde mailing engagement seviyesi Ağustos’a yakın seyrediyor. Open rate yalnızca 0,4 puan gerilerken click rate %0,1 seviyesinde sabit kaldı.',
-                'Sağlık ihtiyacını doğrudan ifade eden konu başlığı — Prostat kontrolü — genel bülten ve yaşam tarzı içeriğine kıyasla daha yüksek click üretmiş görünüyor.',
+                'Ekim ayında 8 mailing kampanyasında 46,5 bin teslimat ve 5 binin üzerinde açılma elde edildi. Kampanya sayısındaki artış hacmi belirgin şekilde büyütürken weighted open rate %10,84 ile Eylül’deki %10,66 seviyesine yakın kaldı.',
+                'En yüksek open rate %11,7 ile Meme Sağlığı Check-Up mailinginde gerçekleşti. Click tarafında ise Meme Sağlığı ve Diyetisyen kampanyaları 9’ar click ile öne çıktı.',
+                'Bilgilendirici / mevsimsel içerikler open rate tarafında güçlü performans üretirken, kampanya ve ayrıcalık içeren mailingler click davranışında daha güçlü sinyal verdi. Bu, Ekim ayındaki bir örüntü olarak değerlendirilmelidir.',
+                'Ay sonuna doğru mailing erişim kitlesinin yaklaşık 5,7K seviyesinden 6,1K seviyesine yükseldiği görülüyor.',
+                'September → October: delivered 16.045 → 46.549 (+190,1%), opens 1.711 → 5.044 (+194,8%), clicks 20 → 49 (+145,0%); open rate +0,18 puan, click rate -0,01 puan.',
+                'October volume growth was primarily driven by increased campaign frequency, while engagement rates remained broadly stable.',
               ].map((text, i) => (
                 <li key={i} className="flex items-start gap-2 text-xs text-gray-600 leading-relaxed">
                   <CheckCircle size={11} className="text-amber-500 shrink-0 mt-0.5" />
@@ -332,13 +340,13 @@ export default function CRMDashboard() {
             </ul>
             <div className="bg-amber-50 rounded-xl px-3 py-2.5 border border-amber-100 mt-auto">
               <p className="text-[11px] text-amber-800 leading-relaxed">
-                Eylül’ün ilk 20 gününde 3 mailing kampanyasında 16,04 bin teslimat ve yaklaşık 1,65 bin açılma elde edildi. Open rate %10,3 seviyesinde gerçekleşerek Ağustos tam ayındaki %10,7 seviyesine yakın seyretti. Kampanya bazında en güçlü aksiyon ‘Prostat kontrolü ne zaman başlamalı?’ mailinginden geldi; %10,6 open rate ve 11 click ile Eylül döneminin en yüksek click hacmini üretti.
+                Ekim CRM mailing performansında ana gelişim kampanya sıklığı ve erişim hacmi tarafında oldu. 8 mailing ile delivered hacmi Eylül’e göre yaklaşık 3 katına çıkarken open rate %10,8 bandında korunarak engagement seviyesi stabil kaldı. Kampanya hacmi artışının temel nedeni daha yüksek mailing sıklığıdır.
               </p>
             </div>
             <div className="bg-blue-50 rounded-xl px-3 py-2 border border-blue-100">
               <p className="text-[10px] text-blue-700 leading-relaxed flex items-start gap-1.5">
                 <Info size={11} className="shrink-0 mt-0.5" />
-                Eylül 2026 mailing verileri 1–20 Eylül dönemini kapsamaktadır. Ay henüz tamamlanmadığı için Ağustos hacim karşılaştırmaları yön göstericidir; final MoM değerlendirmesi ay kapanışında yapılmalıdır.
+                Eylül verisi düzeltilmiş final kampanya verisidir; Ekim 2026 verisi 8 kampanyalık final dönemi kapsar.
               </p>
             </div>
           </div>
@@ -354,7 +362,7 @@ export default function CRMDashboard() {
           {/* Month filter */}
           <div className="px-5 py-3 border-b border-gray-100 flex items-center gap-2 flex-wrap">
             <span className="text-[10px] font-semibold text-gray-400 mr-1">Ay:</span>
-            {['Tüm Aylar', 'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül'].map(m => (
+            {['Tüm Aylar', 'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim'].map(m => (
               <button
                 key={m}
                 onClick={() => setEmailMonthFilter(m)}
@@ -382,9 +390,17 @@ export default function CRMDashboard() {
               </thead>
               <tbody className="divide-y divide-gray-50">
                 {([
-                  { name: 'Sonbahara geçerken beslenmen hazır mı? 🍂',                       period: 'Eylül 2026', ay: 'Eylül', date: '20 Eyl 2026', segment: 'Login_2025and26.06.2026 (5066)', delivered: 5338, opens: 521, openRate: 9.8, ctr: 0.0, outlier: false },
-                  { name: 'Prostat kontrolü ne zaman başlamalı?',                              period: 'Eylül 2026', ay: 'Eylül', date: '06 Eyl 2026', segment: 'Login_2025and26.06.2026 (5066)', delivered: 5348, opens: 567, openRate: 10.6, ctr: 0.2, outlier: false },
-                  { name: 'Happ Bülten: Ağustos\u2019ta Öne Çıkanlar',                              period: 'Eylül 2026', ay: 'Eylül', date: '04 Eyl 2026', segment: 'Login_2025and26.06.2026 (5066)', delivered: 5359, opens: 567, openRate: 10.6, ctr: 0.1, outlier: false },
+                  { name: 'Daha uzun yaşamak mı, daha uzun süre sağlıklı kalmak mı?', period: 'Ekim 2026', ay: 'Ekim', date: '25 Eki 2026', segment: 'Login_2025and26.06.2026 (5066)', delivered: 6072, opens: 641, openRate: 10.6, ctr: 0.0, outlier: false },
+                  { name: 'Anında Doktor Artık 550 TL 💙', period: 'Ekim 2026', ay: 'Ekim', date: '23 Eki 2026', segment: 'Login_2025and26.06.2026 (5066)', delivered: 6060, opens: 627, openRate: 10.3, ctr: 0.1, outlier: false },
+                  { name: 'Soğuk algınlığında evde ne iyi gelir? 🤧', period: 'Ekim 2026', ay: 'Ekim', date: '18 Eki 2026', segment: 'Login_2025and26.06.2026 (5066)', delivered: 5705, opens: 594, openRate: 10.4, ctr: 0.1, outlier: false },
+                  { name: 'Meme Sağlığı Check-Up paketlerinde %25 ayrıcalık', period: 'Ekim 2026', ay: 'Ekim', date: '16 Eki 2026', segment: 'Login_2025and26.06.2026 (5066)', delivered: 5718, opens: 606, openRate: 10.6, ctr: 0.1, outlier: false },
+                  { name: '“İdare Ediyorum” Demeden Önce Bir Dur', period: 'Ekim 2026', ay: 'Ekim', date: '10 Eki 2026', segment: 'Login_2025and26.06.2026 (5066)', delivered: 5730, opens: 622, openRate: 10.9, ctr: 0.1, outlier: false },
+                  { name: 'Diyetisyen Paketlerinde %10 Ayrıcalık 🥗', period: 'Ekim 2026', ay: 'Ekim', date: '09 Eki 2026', segment: 'Login_2025and26.06.2026 (5066)', delivered: 5747, opens: 619, openRate: 10.8, ctr: 0.2, outlier: false },
+                  { name: 'Hava birden soğudu, vücudun hazır mı? 🌧️', period: 'Ekim 2026', ay: 'Ekim', date: '04 Eki 2026', segment: 'Login_2025and26.06.2026 (5066)', delivered: 5759, opens: 659, openRate: 11.4, ctr: 0.1, outlier: false },
+                  { name: 'Meme Sağlığı Check-Up paketlerinde %25 ayrıcalık', period: 'Ekim 2026', ay: 'Ekim', date: '02 Eki 2026', segment: 'Login_2025and26.06.2026 (5066)', delivered: 5758, opens: 676, openRate: 11.7, ctr: 0.2, outlier: false },
+                  { name: 'Sonbahara geçerken beslenmen hazır mı? 🍂', period: 'Eylül 2026', ay: 'Eylül', date: '20 Eyl 2026', segment: 'Login_2025and26.06.2026 (5066)', delivered: 5338, opens: 556, openRate: 10.4, ctr: 0.1, outlier: false },
+                  { name: 'Prostat kontrolü ne zaman başlamalı?', period: 'Eylül 2026', ay: 'Eylül', date: '06 Eyl 2026', segment: 'Login_2025and26.06.2026 (5066)', delivered: 5348, opens: 578, openRate: 10.8, ctr: 0.2, outlier: false },
+                  { name: 'Happ Bülten: Ağustos’ta Öne Çıkanlar', period: 'Eylül 2026', ay: 'Eylül', date: '04 Eyl 2026', segment: 'Login_2025and26.06.2026 (5066)', delivered: 5359, opens: 577, openRate: 10.8, ctr: 0.1, outlier: false },
                   { name: 'Okula Dönüş Sadece Çocuklar İçin mi Zor?',                     period: 'Ağustos 2026', ay: 'Ağustos', date: '30 Ağu 2026', segment: 'Login_2025and26.06.2026 (5066)', delivered: 5365, opens: 571, openRate: 10.6, ctr: 0.1, outlier: false },
                   { name: 'Dermokozmetik uygulamalarda %20 Happ ayrıcalığı',                 period: 'Ağustos 2026', ay: 'Ağustos', date: '28 Ağu 2026', segment: 'Login_2025and26.06.2026 (5066)', delivered: 5365, opens: 558, openRate: 10.4, ctr: 0.1, outlier: false },
                   { name: 'Hangi Doktora Gitmeliyim?',                                       period: 'Ağustos 2026', ay: 'Ağustos', date: '23 Ağu 2026', segment: 'Login_2025and26.06.2026 (5066)', delivered: 5003, opens: 524, openRate: 10.5, ctr: 0.1, outlier: false },
@@ -427,6 +443,7 @@ export default function CRMDashboard() {
                   .filter(row => emailMonthFilter === 'Tüm Aylar' || row.ay === emailMonthFilter)
                   .map((row, i) => {
                   const periodColorMap: Record<string, string> = {
+                    'Ekim 2026': 'bg-slate-100 text-slate-700',
                     'Eylül 2026':  'bg-blue-50 text-blue-700',
                     'Ağustos 2026': 'bg-orange-50 text-orange-700',
                     'Temmuz 2026':  'bg-cyan-50 text-cyan-700',
@@ -471,7 +488,7 @@ export default function CRMDashboard() {
           </div>
           <div className="border-t border-rose-100 bg-rose-50 px-5 py-4 flex flex-col gap-2">
             <p className="text-[11px] text-rose-800 leading-relaxed">
-              Eylül MTD verisinde mailing engagement seviyesi Ağustos’a yakın seyrediyor. Open rate yalnızca 0,4 puan gerilerken click rate %0,1 seviyesinde sabit kaldı. Sağlık ihtiyacını doğrudan ifade eden konu başlığı — Prostat kontrolü — genel bülten ve yaşam tarzı içeriğine kıyasla daha yüksek click üretmiş görünüyor.
+              Ekim’de en yüksek open rate Meme Sağlığı Check-Up ve hava değişimi temalı mailinglerde görüldü; click tarafında Meme Sağlığı ve Diyetisyen kampanyaları öne çıktı. Kampanya sayısı 3’ten 8’e çıktığı için hacim artışı tek başına engagement artışı olarak yorumlanmamalıdır.
             </p>
             <p className="text-[10px] text-rose-600 leading-relaxed flex items-start gap-1.5">
               <Info size={11} className="shrink-0 mt-0.5" />
