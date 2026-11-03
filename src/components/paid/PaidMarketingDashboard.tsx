@@ -319,49 +319,6 @@ export default function PaidMarketingDashboard() {
             <MetaCampaignCard key={c.title} {...c} />
           ))}
         </div>
-        <div className="mt-3 flex gap-2 items-start bg-amber-50 border border-amber-200 rounded-xl px-4 py-3.5">
-          <AlertCircle size={14} className="text-amber-500 mt-0.5 shrink-0" />
-          <p className="text-xs text-amber-700 leading-relaxed">
-            Google Ads Ekim performansında üç farklı hikâye öne çıktı: Nöbetçi Eczane tarafında conversion efficiency belirgin şekilde güçlendi ve SEO kayıplarını desteklemek için yeni lokasyon kampanyaları devreye alındı. Check-Up tarafında trafik hacmi güçlü büyürken conversion efficiency zayıfladı. Anında Doktor ise Google Ads policy rejection nedeniyle yayına çıkamadı.
-          </p>
-        </div>
-        <div className="mt-3 flex gap-2 items-start bg-blue-50 border border-blue-100 rounded-xl px-4 py-3.5">
-          <TrendingUp size={14} className="text-blue-500 mt-0.5 shrink-0" />
-          <p className="text-xs text-blue-700 leading-relaxed">
-            Ekim’de SEO tarafında Nöbetçi Eczane lokasyonlarında yaşanan görünürlük kayıplarını desteklemek amacıyla paid search genişletildi. En fazla düşüş yaşayan lokasyonlara özel reklam yapısı devreye alındı. Yeni lokasyon kampanyası %20,81 CTR, 93 conversion ve ₺19,36 CPA ile güçlü bir erken performans üretti.
-          </p>
-        </div>
-
-        {/* Campaign Priority */}
-        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-3">
-          {[
-            { label: 'Nöbetçi Eczane', campaign: 'Conversion efficiency', value: '222,33 conv · ₺41,02 CPA', color: 'bg-emerald-50 border-emerald-200 text-emerald-700' },
-            { label: 'Location Recovery', campaign: 'Nöbetçi Eczane', value: '93 conv · ₺19,36 CPA', color: 'bg-blue-50 border-blue-200 text-blue-700' },
-            { label: 'Traffic Growth', campaign: 'Check-Up', value: '1.496 clicks · %1,73 CVR', color: 'bg-amber-50 border-amber-200 text-amber-700' },
-            { label: 'Policy Rejected', campaign: 'Anında Doktor', value: 'Not serving · review required', color: 'bg-rose-50 border-rose-200 text-rose-700' },
-            { label: 'App Acquisition', campaign: 'iOS App Install', value: '32 conv · ₺190,03 CPA', color: 'bg-slate-100 border-slate-200 text-slate-700' },
-          ].map(item => (
-            <div key={item.label} className={`rounded-xl border px-4 py-3 ${item.color}`}>
-              <p className="text-[10px] font-bold uppercase tracking-wider opacity-70 mb-1">{item.label}</p>
-              <p className="text-xs font-bold mb-0.5">{item.campaign}</p>
-              <p className="text-[11px] tabular-nums opacity-80">{item.value}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Ekim Kanal Karşılaştırması */}
-        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div className="bg-blue-50 border border-blue-100 rounded-xl px-4 py-3.5">
-            <p className="text-xs font-bold text-blue-700 mb-1">Google Ads · Ekim 2026</p>
-            <p className="text-xs text-blue-600 leading-relaxed">Spend: ₺28.676,24 · Conversions: 373,24 · CPA: ₺76,83</p>
-            <p className="text-[11px] text-blue-500 leading-relaxed mt-1">Primary signal: Conversion efficiency improved ~72% vs Eylül</p>
-          </div>
-          <div className="bg-rose-50 border border-rose-100 rounded-xl px-4 py-3.5">
-            <p className="text-xs font-bold text-rose-700 mb-1">Meta Ads · Eylül 2026</p>
-            <p className="text-xs text-rose-600 leading-relaxed">Spend: ₺38.732 · Install: 1.803 · CPI: ₺21,48</p>
-            <p className="text-[11px] text-rose-500 leading-relaxed mt-1">Primary signal: Acquisition efficiency improved (Ekim verileri bekleniyor)</p>
-          </div>
-        </div>
       </section>
 
       {/* Section 5 — Meta Ads Highlights */}
