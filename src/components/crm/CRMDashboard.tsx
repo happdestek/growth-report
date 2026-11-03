@@ -164,6 +164,7 @@ type SortKey = 'redirectRate' | 'openRate' | 'deliveryRate' | 'unsubRate';
 
 export default function CRMDashboard() {
   const [typeFilter, setTypeFilter]       = useState('Tümü');
+  const [isAppPerformanceExpanded, setIsAppPerformanceExpanded] = useState(true);
   const [segmentFilter, setSegmentFilter] = useState('Tümü');
   const [periodFilter, setPeriodFilter]   = useState('Mart');
   const [sortKey, setSortKey]             = useState<SortKey>('redirectRate');
@@ -520,7 +521,19 @@ export default function CRMDashboard() {
 
       {/* ── MEDICAL PARK & LIV HOSPITAL APP İÇİ PERFORMANS ── */}
       <div className="flex flex-col gap-4">
-        <div className="flex items-center gap-3">
+        <div
+          className="flex items-center gap-3 cursor-pointer select-none"
+          onClick={() => setIsAppPerformanceExpanded((expanded) => !expanded)}
+          role="button"
+          tabIndex={0}
+          aria-expanded={isAppPerformanceExpanded}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              setIsAppPerformanceExpanded((expanded) => !expanded);
+            }
+          }}
+        >
           <div className="w-8 h-8 bg-rose-50 rounded-xl flex items-center justify-center">
             <ChevronRight size={15} className="text-rose-500" />
           </div>
@@ -530,7 +543,7 @@ export default function CRMDashboard() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-5">
+        <div className={`flex flex-col gap-5 ${isAppPerformanceExpanded ? '' : 'hidden'}`}>
 
           {/* ── C) App İçi Tanıtım Performansı ── */}
           <div className="flex flex-col gap-3">
