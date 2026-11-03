@@ -406,7 +406,7 @@ function KPICard({ kpi }: { kpi: typeof SEO_KPI[0] }) {
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 flex flex-col gap-3">
       <div className="flex items-center justify-between">
         <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">{kpi.label}</span>
-        <span className={`text-sm px-3 py-1 rounded-full font-semibold ${colorMap[kpi.color]}`}>Ekim 2026</span>
+        <span className={`text-sm px-3 py-1 rounded-full font-semibold ${colorMap[kpi.color]}`}>Ekim</span>
       </div>
       <div className="text-2xl font-bold text-gray-900 tabular-nums">{kpi.format(kpi.current)}</div>
       <div className="flex items-center justify-between">
@@ -503,7 +503,7 @@ export default function SEODashboard() {
       {/* Page Title */}
       <div className="flex flex-col gap-1">
         <h1 className="text-2xl font-bold text-gray-900 tracking-tight">SEO 10 Aylık Performans Analizi</h1>
-        <p className="text-sm text-gray-400">Ekim 2025 — Ekim 2026 · Google Search Console verileri</p>
+        <p className="text-sm text-gray-400">Ekim 2026 — Eylül 2026 · Google Search Console verileri</p>
       </div>
 
       {/* KPI Section */}
