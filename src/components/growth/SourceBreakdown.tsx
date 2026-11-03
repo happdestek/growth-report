@@ -50,10 +50,10 @@ const PLATFORM_INSIGHTS: Record<string, { september: string[]; augustContext: st
   ios: {
     september: [
       'Eylül ayı 1.446 download ve 5.333 Product Page View ile tamamlandı; PPV → Download oranı %27,11 oldu. Ads & Referrals 1.276 download ile toplam hacmin %88,2\'sini oluştururken Search %9,5, Browse / Explore ise %2,2 pay aldı.',
-      'Ekim\'in ilk 21 gününde ise download hacmi şimdiden 1.724\'e, Product Page View 6.490\'a ulaştı. Ekim MTD download hacmi Eylül tam ayının %19,2 üzerinde olmasına rağmen iki dönem farklı uzunlukta olduğu için bu artış final MoM olarak değerlendirilmemeli. Store conversion oranı %27,11\'den %26,56\'ya sınırlı gerilerken acquisition hacmi güçlü seyrediyor.',
-      'Ekim\'in ilk 21 gününde iOS acquisition mix daha da referral ağırlıklı hale geldi. Ads & Referrals payı %89,6\'ya yükselerken Search payı %7,3\'e geriledi; Browse / Explore ise %3,2\'ye çıktı.',
+      'Ekim ayında iOS tarafında 10.003 Product Page View ve 2.524 download elde edildi. Product Page View hacmi Eylül\'e göre %87,6, download hacmi ise %74,6 arttı.',
+      'PPV → Download dönüşümü %27,11\'den %25,23\'e sınırlı gerilese de Ekim iOS acquisition hacmi belirgin şekilde büyüdü.',
     ],
-    augustContext: 'iOS acquisition Ekim\'de güçlü ivmesini sürdürüyor: 21 Ekim itibarıyla download hacmi Eylül tam ay toplamını aşmış durumda. Büyümenin ana kaynağı %89,6 pay ile Ads & Referrals. Store conversion rate %27,11\'den %26,56\'ya hafif geriledi.',
+    augustContext: 'iOS Ekim performansı güçlü hacim büyümesiyle kapandı. Product Page View yaklaşık %88 artarken download %75 büyüyerek 2.524\'e ulaştı. Store conversion %25,23 ile Eylül\'ün 1,88 puan altında kalsa da artan trafik güçlü biçimde download hacmine yansıdı.',
   },
 };
 

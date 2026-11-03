@@ -97,12 +97,12 @@ export default function AppGrowthDashboard({ embedded = false }: { embedded?: bo
                 <Apple size={13} /> iOS
               </div>
               <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-bold text-gray-900 tabular-nums">1.724</span>
+                <span className="text-2xl font-bold text-gray-900 tabular-nums">2.524</span>
                 <span className="text-xs text-gray-400">downloads</span>
               </div>
-              <span className="text-[10px] font-medium text-orange-600 bg-orange-50 px-2 py-1 rounded-full w-fit">MTD · 1–21 Ekim 2026</span>
+              <span className="text-[10px] font-medium text-orange-600 bg-orange-50 px-2 py-1 rounded-full w-fit">Ekim 2026 · Final</span>
               <p className="text-[11px] text-gray-500 leading-relaxed">
-                Eylül tam ayı (final): 1.446 downloads · 5.333 PPV · %27,11 conversion. Ekim MTD download hacmi Eylül tam ayını aşmış durumda.
+                Eylül finali: 1.446 downloads · 5.333 PPV · %27,11 conversion. Ekim finalinde 2.524 downloads ve 10.003 PPV ile PPV → Download %25,23 oldu; trafik yaklaşık %87,6, download hacmi %74,6 arttı.
               </p>
             </div>
           </div>
