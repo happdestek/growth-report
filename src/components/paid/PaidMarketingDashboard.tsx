@@ -9,11 +9,14 @@ const GOOGLE_MONTHLY = [
 ];
 
 const META_MONTHLY = [
-  { metric: 'Cost',       subat: '₺42.568',  mart: '₺46.313',  nisan: '₺45.013',    nisanRaw: 45013,    mayis: '₺45.123',    mayisRaw: 45123,    haziran: '₺38.451',   haziranRaw: 38451,   temmuz: '₺37.067',   temmuzRaw: 37067,   agustos: '₺42.028',  agustosRaw: 42028,  eylul: '₺38.732',    eylulRaw: 38732,  lowerBetter: true },
-  { metric: 'Click',      subat: '5.653',    mart: '6.695',    nisan: '8.415',      nisanRaw: 8415,     mayis: '10.625',     mayisRaw: 10625,    haziran: '10.410',    haziranRaw: 10410,   temmuz: '6.966',     temmuzRaw: 6966,    agustos: '8.002',    agustosRaw: 8002,   eylul: '—',          eylulRaw: 0 },
-  { metric: 'Impression', subat: '840.515',  mart: '885.729',  nisan: '1.193.335',  nisanRaw: 1193335,  mayis: '1.056.189',  mayisRaw: 1056189,  haziran: '813.089',   haziranRaw: 813089,  temmuz: '933.074',   temmuzRaw: 933074,  agustos: '1.062.570',agustosRaw: 1062570, eylul: '—',          eylulRaw: 0 },
-  { metric: 'CTR',        subat: '%0,67',    mart: '%0,76',    nisan: '%0,71',      nisanRaw: 0.71,     mayis: '%1,01',      mayisRaw: 1.01,     haziran: '%1,28',     haziranRaw: 1.28,    temmuz: '%0,75',     temmuzRaw: 0.75,    agustos: '%0,75',    agustosRaw: 0.75,   eylul: '—',          eylulRaw: 0 },
-  { metric: 'Avg CPC',    subat: '₺7,53',    mart: '₺6,92',    nisan: '₺5,35',      nisanRaw: 5.35,     mayis: '₺4,25',      mayisRaw: 4.25,     haziran: '₺3,69',     haziranRaw: 3.69,    temmuz: '₺5,32',     temmuzRaw: 5.32,    agustos: '₺5,25',    agustosRaw: 5.25,   eylul: '—',          eylulRaw: 0,     lowerBetter: true },
+  { metric: 'Cost',                  subat: '₺42.568', mart: '₺46.313', nisan: '₺45.013', nisanRaw: 45013, mayis: '₺45.123', mayisRaw: 45123, haziran: '₺38.451', haziranRaw: 38451, temmuz: '₺37.067', temmuzRaw: 37067, agustos: '₺42.028', agustosRaw: 42028, eylul: '₺41.087', eylulRaw: 41087, ekim: '₺43.184', ekimRaw: 43184, lowerBetter: true },
+  { metric: 'Total App Installs',     subat: '—', mart: '—', nisan: '—', mayis: '—', haziran: '—', temmuz: '—', agustos: '—', eylul: '1.842', eylulRaw: 1842, ekim: '2.296', ekimRaw: 2296 },
+  { metric: 'iOS Avg CPI',            subat: '—', mart: '—', nisan: '—', mayis: '—', haziran: '—', temmuz: '—', agustos: '—', eylul: '₺13,28', eylulRaw: 13.28, ekim: '₺14,74', ekimRaw: 14.74, lowerBetter: true },
+  { metric: 'Android Avg CPI',        subat: '—', mart: '—', nisan: '—', mayis: '—', haziran: '—', temmuz: '—', agustos: '—', eylul: '₺30,39', eylulRaw: 30.39, ekim: '₺17,81', ekimRaw: 17.81, lowerBetter: true },
+  { metric: 'Total Clicks',            subat: '5.653', mart: '6.695', nisan: '8.415', nisanRaw: 8415, mayis: '10.625', mayisRaw: 10625, haziran: '10.410', haziranRaw: 10410, temmuz: '6.966', temmuzRaw: 6966, agustos: '8.002', agustosRaw: 8002, eylul: '7.317', eylulRaw: 7317, ekim: '10.986', ekimRaw: 10986 },
+  { metric: 'Total Impressions',      subat: '840.515', mart: '885.729', nisan: '1.193.335', nisanRaw: 1193335, mayis: '1.056.189', mayisRaw: 1056189, haziran: '813.089', haziranRaw: 813089, temmuz: '933.074', temmuzRaw: 933074, agustos: '1.062.570', agustosRaw: 1062570, eylul: '885.787', eylulRaw: 885787, ekim: '747.273', ekimRaw: 747273 },
+  { metric: 'Instagram Traffic CTR', subat: '%0,67', mart: '%0,76', nisan: '%0,71', nisanRaw: 0.71, mayis: '%1,01', mayisRaw: 1.01, haziran: '%1,28', haziranRaw: 1.28, temmuz: '%0,75', temmuzRaw: 0.75, agustos: '%0,75', agustosRaw: 0.75, eylul: '%4,64', eylulRaw: 4.64, ekim: '%5,54', ekimRaw: 5.54 },
+  { metric: 'Avg CPC',    subat: '₺7,53',    mart: '₺6,92',    nisan: '₺5,35',      nisanRaw: 5.35,     mayis: '₺4,25',      mayisRaw: 4.25,     haziran: '₺3,69',     haziranRaw: 3.69,    temmuz: '₺5,32',     temmuzRaw: 5.32,    agustos: '₺5,25',    agustosRaw: 5.25,   eylul: '—',          eylulRaw: 0, ekim: '—', ekimRaw: 0,     lowerBetter: true },
 ];
 
 const GOOGLE_CAMPAIGN_HIGHLIGHTS = [
@@ -78,47 +81,43 @@ const GOOGLE_CAMPAIGN_HIGHLIGHTS = [
 const META_CAMPAIGN_HIGHLIGHTS = [
   {
     color: 'emerald',
-    title: 'iOS — Acquisition Efficiency Improved',
-    campaign: 'ios_app_26.08',
+    title: 'Android — Ayın Reklamı',
+    campaign: 'android_nobetcieczane_v2_08.10',
+    badge: 'Best Android Acquisition',
     metrics: [
-      { label: 'Harcama', value: '₺38.732' },
-      { label: 'Install', value: '1.803' },
-      { label: 'CPI', value: '₺21,48' },
+      { label: 'Harcama', value: '₺11.539' }, { label: 'Install', value: '754' }, { label: 'CPI', value: '₺15,30' }, { label: 'CTR', value: '%1,59' }, { label: 'Status', value: 'ACTIVE' },
     ],
-    comment: 'ios_app_26.08 kampanyası Eylül tam ayında 1.803 install ve ₺21,48 CPI ile güçlü acquisition performansını sürdürdü. Ağustos\'a göre install hacmi %82 artarken CPI yaklaşık %50 iyileşti.',
-  },
-  {
-    color: 'rose',
-    title: 'iOS UGC — PAUSED',
-    campaign: 'ios_UGC_13.08 · PAUSED',
-    metrics: [
-      { label: 'Harcama', value: '₺0' },
-      { label: 'Install', value: '0' },
-      { label: 'Durum', value: 'Durduruldu' },
-    ],
-    comment: 'iOS UGC kampanyası yüksek frekans ve düşük CTR nedeniyle durduruldu. Yerine ios_app_26.08 kampanyası güçlü performans gösterdi.',
-  },
-  {
-    color: 'slate',
-    title: 'Android — Ana Kazanım Motoru',
-    campaign: 'android_kampanya_06.11',
-    metrics: [
-      { label: 'Harcama', value: '—' },
-      { label: 'Install', value: '—' },
-      { label: 'CPI', value: '—' },
-    ],
-    comment: 'Android kampanya performansı Eylül döneminde ios_app_26.08\'in güçlü performansının gölgesinde kaldı. Detaylı reklam bazlı veri için Ağustos raporuna bakılabilir.',
+    comment: 'Nöbetçi Eczane V2 videosu 754 install ve ₺15,30 CPI ile Ekim’in en güçlü Android acquisition kreatifi oldu. Hangidiyet temelli eski Android reklama kıyasla CPI belirgin şekilde iyileşti.',
   },
   {
     color: 'blue',
-    title: 'Instagram Traffic',
-    campaign: 'instagram_traffic_24.11',
+    title: 'iOS — Nöbetçi Eczane Yeni',
+    campaign: 'ios_nobetcieczane_v2_06.10',
+    badge: 'Strong New iOS Creative',
     metrics: [
-      { label: 'Harcama', value: '—' },
-      { label: 'CTR', value: '—' },
-      { label: 'Install', value: '—' },
+      { label: 'Harcama', value: '₺8.138' }, { label: 'Install', value: '606' }, { label: 'CPI', value: '₺13,43' }, { label: 'CTR', value: '%1,59' }, { label: 'Status', value: 'ACTIVE' },
     ],
-    comment: 'Instagram traffic kampanyası Eylül döneminde aktif olarak takip edilmedi. Detaylı veri için Ağustos raporuna bakılabilir.',
+    comment: 'Yeni iOS Nöbetçi Eczane V2 kreatifi 606 install ve ₺13,43 CPI ile güçlü bir başlangıç yaptı. Yeni video formatı hem CTR hem acquisition efficiency tarafında pozitif sinyal verdi.',
+  },
+  {
+    color: 'amber',
+    title: 'Instagram Traffic — Yeni & Güçlü',
+    campaign: 'instagram_traffic_idrar_23.10',
+    badge: 'Highest Traffic CTR',
+    metrics: [
+      { label: 'Harcama', value: '₺1.639' }, { label: 'Clicks', value: '1.893' }, { label: 'CTR', value: '%7,87' }, { label: 'Status', value: 'ACTIVE' },
+    ],
+    comment: 'İdrar yolu odaklı traffic kampanyası %7,87 CTR ile güçlü click engagement üretti. Düşük harcama ile 1.893 click elde edilmesi konu-kitle uyumunun güçlü olduğunu gösteriyor.',
+  },
+  {
+    color: 'rose',
+    title: 'iOS — Uzun Soluklu',
+    campaign: 'ios_Nhangidiyet_19.06',
+    badge: 'Creative Fatigue Watch',
+    metrics: [
+      { label: 'Harcama', value: '₺9.717' }, { label: 'Install', value: '617' }, { label: 'CPI', value: '₺15,75' }, { label: 'Önceki CPI', value: '₺12,92' }, { label: 'Status', value: 'ACTIVE' },
+    ],
+    comment: 'Uzun süredir çalışan Hangidiyet kreatifi Ekim’de 617 install üretmeye devam etti ancak CPI ₺12,92’den ₺15,75’e yükseldi. Yeni Nöbetçi Eczane kreatiflerinin gerisinde kalması creative fatigue sinyali oluşturuyor.',
   },
 ];
 
@@ -159,16 +158,16 @@ export default function PaidMarketingDashboard() {
       {/* Section 1 — KPI Cards */}
       <section>
         <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-4 mb-4">
-          <KPICard label="Toplam Ads Harcama"     value="₺67.408,24"   sub="Ekim 2026"   color="violet"  change="↓ %7,3"  />
+          <KPICard label="Toplam Ads Harcama"     value="₺71.860,24"   sub="Ekim 2026"   color="violet"  change="↑ %6,6"  />
           <KPICard label="Google Ads Harcama"    value="₺28.676,24"   sub="Ekim 2026"   color="blue"    change="↓ %15,6" />
-          <KPICard label="Meta Ads Harcama"      value="₺38.732"      sub="Eylül 2026"   color="rose"    change="—"  />
+          <KPICard label="Meta Ads Harcama"      value="₺43.184"      sub="Ekim 2026"   color="rose"    change="↑ %5"  />
           <KPICard label="Google Ads Click"      value="24.088"       sub="Ekim 2026"   color="emerald" change="↑ %4,7" />
           <KPICard label="Google Ads Impression" value="333.215"      sub="Ekim 2026"   color="amber"   change="↓ %25,6" />
           <KPICard label="Google Ads Avg CPC"    value="₺1,19"        sub="Ekim 2026"   color="slate"   change="↓ %3,3" lowerBetter />
         </div>
         <div className="bg-slate-50 border border-slate-200 rounded-2xl px-5 py-3">
           <p className="text-sm text-slate-700 leading-relaxed">
-            Ekim ayında Google Ads harcaması Eylül'e göre yalnızca %1,5 artarak ₺28.676,24 seviyesinde gerçekleşti. Conversion hacmi 101,9'dan 373,2'ye yükselirken Cost / Conv. ₺277,35'ten ₺76,83'e gerileyerek yaklaşık %72 iyileşti. Meta Ads tarafında Ekim verileri ayrıca güncellenecektir; mevcut KPI'lar Eylül baz alınarak gösterilmektedir.
+            Ekim ayında Google Ads harcaması Eylül'e göre yalnızca %1,5 artarak ₺28.676,24 seviyesinde gerçekleşti. Conversion hacmi 101,9'dan 373,2'ye yükselirken Cost / Conv. ₺277,35'ten ₺76,83'e gerileyerek yaklaşık %72 iyileşti. Meta Ads tarafında Ekim install hacmi 2.296’ya ulaştı ve Android CPI %41 iyileşti.
           </p>
           <p className="text-sm text-slate-600 leading-relaxed mt-2">
             Ekim'de kanal bazında en önemli pozitif sinyal Google Ads tarafından geldi. Impression hacmi %25,6 azalmasına rağmen click hacmi %4,7 arttı ve CTR %5,14'ten %7,23'e yükseldi.
@@ -247,6 +246,7 @@ export default function PaidMarketingDashboard() {
                     <th className="text-right px-4 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Temmuz</th>
                     <th className="text-right px-4 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Ağustos</th>
                     <th className="text-right px-4 py-3 text-xs font-semibold text-gray-700 uppercase tracking-wider">Eylül</th>
+                    <th className="text-right px-4 py-3 text-xs font-semibold text-blue-700 uppercase tracking-wider">Ekim</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -264,27 +264,31 @@ export default function PaidMarketingDashboard() {
                         <span className={`font-semibold ${row.eylul === '—' ? 'text-gray-300' : 'text-gray-900'}`}>{row.eylul}</span>
                         {row.eylulRaw > 0 && row.agustosRaw > 0 && <ChangeBadge curr={row.eylulRaw} prev={row.agustosRaw} lowerBetter={row.lowerBetter} />}
                       </td>
+                      <td className="px-4 py-3 text-right tabular-nums whitespace-nowrap">
+                        <span className={`font-semibold ${row.ekim === '—' ? 'text-gray-300' : 'text-gray-900'}`}>{row.ekim}</span>
+                        {row.ekimRaw > 0 && row.eylulRaw > 0 && <ChangeBadge curr={row.ekimRaw} prev={row.eylulRaw} lowerBetter={row.lowerBetter} />}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
           </div>
-          <InsightNote text="Eylül 2026 döneminde Meta Ads tarafında ₺38.732 harcama ile 1.803 install elde edildi ve CPI ₺21,48 seviyesine geriledi. Acquisition efficiency Ağustos'a göre belirgin şekilde güçlendi." />
+          <InsightNote text="Ekim ayında Meta Ads harcaması %5 artarken toplam app install %25 büyüyerek 2.296’ya ulaştı. En belirgin efficiency kazanımı Android tarafında gerçekleşti; ortalama CPI ₺30,39’dan ₺17,81’e gerileyerek %41 iyileşti." />
 
           {/* Önemli Sinyaller */}
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="bg-emerald-50 border border-emerald-100 rounded-xl px-4 py-3.5">
-              <p className="text-xs font-bold text-emerald-700 mb-1">Install hacmi %82 arttı</p>
-              <p className="text-xs text-emerald-600 leading-relaxed">Eylül'de ios_app_26.08 tam ay çalışarak install hacmini belirgin şekilde artırdı ve CPI yaklaşık %50 iyileşti.</p>
+              <p className="text-xs font-bold text-emerald-700 mb-1">Install hacmi %25 arttı</p>
+              <p className="text-xs text-emerald-600 leading-relaxed">Ekim’de toplam app install hacmi 1.842’den 2.296’ya yükseldi.</p>
             </div>
             <div className="bg-blue-50 border border-blue-100 rounded-xl px-4 py-3.5">
-              <p className="text-xs font-bold text-blue-700 mb-1">Harcama kontrollü azaldı</p>
-              <p className="text-xs text-blue-600 leading-relaxed">Meta harcaması ₺42.028'den ₺38.732'ye gerileyerek %7,8 azaldı; buna karşın acquisition verimliliği güçlendi.</p>
+              <p className="text-xs font-bold text-blue-700 mb-1">Android efficiency güçlendi</p>
+              <p className="text-xs text-blue-600 leading-relaxed">Android ortalama CPI ₺30,39’dan ₺17,81’e gerileyerek %41 iyileşti.</p>
             </div>
             <div className="bg-rose-50 border border-rose-100 rounded-xl px-4 py-3.5">
-              <p className="text-xs font-bold text-rose-700 mb-1">iOS UGC durduruldu</p>
-              <p className="text-xs text-rose-600 leading-relaxed">Eski iOS UGC kampanyası fatigue nedeniyle PAUSED konumunda; yeni ios_app_26.08 kampanyası güçlü CPI performansını sürdürüyor.</p>
+              <p className="text-xs font-bold text-rose-700 mb-1">iOS CPI takipte</p>
+              <p className="text-xs text-rose-600 leading-relaxed">iOS ortalama CPI %11 yükselerek ₺14,74’e çıktı; acquisition halen güçlü seviyede.</p>
             </div>
           </div>
 
@@ -292,20 +296,20 @@ export default function PaidMarketingDashboard() {
           <div className="mt-3 flex gap-2 items-start">
             <div className="w-1 rounded-full bg-blue-200 self-stretch mt-0.5 shrink-0" style={{ minHeight: 16 }} />
             <div>
-              <p className="text-xs text-gray-500 leading-relaxed">Eylül'de Meta Ads tarafında harcama %7,8 azalmasına rağmen install hacmi %82 arttı ve CPI yaklaşık %50 iyileşti. ios_app_26.08 kampanyası tam ay aktif olarak çalıştı.</p>
+              <p className="text-xs text-gray-500 leading-relaxed">Eylül Featured Install Campaigns: iOS Hangidiyet 1.198 ve Android Hangidiyet 490 olmak üzere toplam 1.688 install; Eylül Meta toplamının 1.842 install değeri içinde yaklaşık %91,6 katkı. Diğer kampanyalar 154 install ile yaklaşık %8,4 katkı sağladı.</p>
             </div>
           </div>
 
           {/* Kısa Yönetici Özeti */}
           <div className="mt-3 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 flex gap-2.5 items-center">
             <TrendingUp size={14} className="text-slate-500 shrink-0" />
-            <p className="text-xs font-medium text-slate-700">Eylül ayında Meta Ads tarafında acquisition efficiency belirgin şekilde güçlendi. Harcama azalmasına rağmen install hacmi artarken CPI ₺21,48 seviyesine geriledi. ios_app_26.08 kampanyası ölçeklenebilirlik açısından takip edilmeye devam etmeli.</p>
+            <p className="text-xs font-medium text-slate-700">Ekim’de Meta Ads toplam app install hacmi 1.842’den 2.296’ya yükselerek %25 büyüdü. Büyümenin ana sürücüsü Android efficiency artışı oldu; Android ortalama CPI %41 iyileşerek ₺17,81’e geriledi.</p>
           </div>
 
           <div className="mt-3 flex gap-2.5 items-start bg-amber-50 border border-amber-200 rounded-xl px-4 py-3">
             <AlertCircle size={14} className="text-amber-500 mt-0.5 shrink-0" />
             <p className="text-xs text-amber-700 leading-relaxed">
-              Ekim'de kanal bazında en önemli pozitif sinyal Google Ads tarafından geldi. Conversion hacmi 101,9'dan 373,2'ye yükselirken CPA ₺277,35'ten ₺76,83'e gerileyerek yaklaşık %72 iyileşti. Meta Ads tarafında Eylül verileri baz alınmıştır; Ekim Meta verileri ayrıca güncellenecektir.
+              iOS ortalama CPI %11 yükselerek ₺14,74’e çıkmasına rağmen iOS acquisition halen güçlü seviyede kaldı. Impression %16 azalırken click %50 ve Instagram Traffic CTR %19 arttı; bu da Ekim’de daha yüksek engagement üretildiğini gösteriyor. Öne çıkan üç acquisition kampanyası toplam 1.977 install üreterek Meta Ads toplam install hacminin %86,1’ini oluşturdu.
             </p>
           </div>
         </section>
@@ -323,7 +327,25 @@ export default function PaidMarketingDashboard() {
 
       {/* Section 5 — Meta Ads Highlights */}
       <section>
-        <SectionHeader title="Meta Ads" subtitle="Öne Çıkan Kampanyalar · Eylül 2026" />
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
+          <KPICard label="Toplam Yükleme" value="2.296" sub="Eyl 1.842 → Eki 2.296" color="emerald" change="↑ %25" />
+          <KPICard label="iOS Ort. CPI" value="₺14,74" sub="Eyl ₺13,28 → Eki ₺14,74" color="rose" change="↑ %11" lowerBetter />
+          <KPICard label="Android Ort. CPI" value="₺17,81" sub="Eyl ₺30,39 → Eki ₺17,81" color="blue" change="↓ %41" lowerBetter />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+          <KPICard label="Toplam Harcama" value="₺43.184" sub="Eylül → Ekim" color="slate" change="↑ %5" />
+          <KPICard label="Toplam Tık" value="10.986" sub="Eylül → Ekim" color="emerald" change="↑ %50" />
+          <KPICard label="Instagram Traffic CTR" value="%5,54" sub="Eylül → Ekim" color="amber" change="↑ %19" />
+        </div>
+        <div className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 mb-4">
+          <p className="text-xs font-bold text-slate-700 mb-2">Öne Çıkan Kampanyaların Install Katkısı</p>
+          <div className="grid grid-cols-3 gap-3 text-center">
+            <div><p className="text-sm font-bold text-slate-800">1.977 install</p><p className="text-[10px] text-emerald-700 font-semibold">%86,1</p><p className="text-[10px] text-gray-500">Öne Çıkan Kampanyalar</p></div>
+            <div><p className="text-sm font-bold text-slate-800">319 install</p><p className="text-[10px] text-gray-500 font-semibold">%13,9</p><p className="text-[10px] text-gray-500">Diğer Kampanyalar</p></div>
+            <div><p className="text-sm font-bold text-slate-800">2.296 install</p><p className="text-[10px] text-slate-600 font-semibold">%100</p><p className="text-[10px] text-gray-500">Toplam Meta Ads</p></div>
+          </div>
+        </div>
+        <SectionHeader title="Meta Ads" subtitle="Öne Çıkan Kampanyalar · Ekim 2026" />
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
           {META_CAMPAIGN_HIGHLIGHTS.map(c => (
             <MetaCampaignCard key={c.title} {...c} />
@@ -332,13 +354,13 @@ export default function PaidMarketingDashboard() {
         <div className="mt-4 flex gap-2 items-start bg-blue-50 border border-blue-100 rounded-xl px-4 py-3.5">
           <TrendingUp size={14} className="text-blue-500 mt-0.5 shrink-0" />
           <p className="text-xs text-blue-700 leading-relaxed">
-            Eylül 2026'da ios_app_26.08 kampanyası 1.803 install ve ₺21,48 CPI ile güçlü acquisition performansını sürdürdü. Ağustos'a göre install hacmi %82 artarken CPI yaklaşık %50 iyileşti. Harcama ₺38.732 seviyesinde gerçekleşti.
+            Öne çıkan üç acquisition kampanyası toplam 1.977 install üreterek Meta Ads toplam install hacminin %86,1’ini oluşturdu. Kalan 319 install diğer kampanyalardan geldi.
           </p>
         </div>
         <div className="mt-3 flex gap-3 items-start bg-rose-50 border border-rose-200 rounded-xl px-4 py-3.5">
           <AlertCircle size={14} className="text-rose-500 mt-0.5 shrink-0" />
           <p className="text-xs text-rose-700 leading-relaxed">
-            iOS UGC kampanyası fatigue nedeniyle durduruldu. ios_app_26.08 kampanyası güçlü CPI performansını sürdürüyor; ölçeklenebilirlik kontrollü şekilde takip edilmeli.
+            Yeni Nöbetçi Eczane kreatifleri hem iOS hem Android’de güçlü acquisition performansı gösterirken uzun süredir çalışan iOS Hangidiyet kreatifinde CPI artışı creative fatigue sinyali oluşturdu.
           </p>
         </div>
 
@@ -407,11 +429,12 @@ export default function PaidMarketingDashboard() {
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
           <ol className="flex flex-col gap-2.5">
             {[
-              'Nöbetçi Eczane lokasyon kampanyalarının SEO kaybı yaşayan ilçelerdeki incremental katkısını takip et.',
-              'Ana Nöbetçi Eczane kampanyasında Eylül → Ekim conversion artışının tracking / conversion definition değişiminden etkilenip etkilenmediğini doğrula.',
-              'Check-Up kampanyasında artan trafik hacmine rağmen düşen CVR’nin nedenini search term, landing page ve conversion funnel bazında incele.',
-              'Anında Doktor landing page’deki e-reçete ifadesini Google Ads politika uyumluluğuna göre revize et ve reklamı yeniden review’a gönder.',
-              'iOS App campaign’de hacim düşüşüne karşı CPA’nın büyük ölçüde korunup korunmadığını Kasım’da takip et.',
+              'Android Nöbetçi Eczane V2 kampanyasını kontrollü bütçe artışıyla ölçekle.',
+              'iOS Nöbetçi Eczane V2 kampanyasının ₺13,43 CPI performansını daha yüksek bütçede doğrula.',
+              'iOS Hangidiyet kampanyasında creative refresh / budget reduction test et.',
+              'instagram_traffic_idrar_23.10 kampanyası için App Install objective varyasyonu test et.',
+              'Android ortalama CPI’daki %41 iyileşmenin Kasım ayında sürdürülebilir olup olmadığını takip et.',
+              'Featured campaign install contribution oranını aylık olarak takip et: October baseline = %86,1.',
             ].map((action, i) => (
               <li key={i} className="flex items-start gap-3">
                 <span className="w-5 h-5 rounded-full bg-slate-700 text-white text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
