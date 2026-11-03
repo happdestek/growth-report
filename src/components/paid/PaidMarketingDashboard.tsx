@@ -1,14 +1,14 @@
 import { TrendingUp, TrendingDown, Minus, AlertCircle } from 'lucide-react';
 
 const GOOGLE_MONTHLY = [
-  { metric: 'Cost',           subat: '₺54.719',  mart: '₺53.043',  nisan: '₺54.127,14', nisanRaw: 54127.14, mayis: '₺46.178,33', mayisRaw: 46178.33, haziran: '₺44.507,07', haziranRaw: 44507.07, temmuz: '₺54.852,49', temmuzRaw: 54852.49, agustos: '₺63.647,81', agustosRaw: 63647.81, eylul: '₺33.984,63', eylulRaw: 33984.63, lowerBetter: true },
-  { metric: 'Click',          subat: '25.371',   mart: '39.817',   nisan: '56.115',     nisanRaw: 56115,    mayis: '29.863',     mayisRaw: 29863,    haziran: '23.126',    haziranRaw: 23126,   temmuz: '22.930',     temmuzRaw: 22930,    agustos: '27.437',    agustosRaw: 27437,   eylul: '22.176',     eylulRaw: 22176 },
-  { metric: 'Impression',     subat: '496.920',  mart: '824.381',  nisan: '1.158.780',  nisanRaw: 1158780,  mayis: '737.090',    mayisRaw: 737090,   haziran: '462.963',   haziranRaw: 462963,  temmuz: '382.915',   temmuzRaw: 382915,   agustos: '632.051',  agustosRaw: 632051,  eylul: '441.183',    eylulRaw: 441183 },
-  { metric: 'CTR',            subat: '%5,11',    mart: '%4,83',    nisan: '%4,84',      nisanRaw: 4.84,     mayis: '%4,05',      mayisRaw: 4.05,     haziran: '%5,00',     haziranRaw: 5.00,    temmuz: '%5,99',     temmuzRaw: 5.99,     agustos: '%4,34',    agustosRaw: 4.34,    eylul: '%5,03',      eylulRaw: 5.03 },
-  { metric: 'Avg CPC',        subat: '₺2,16',    mart: '₺1,33',    nisan: '₺0,96',      nisanRaw: 0.96,     mayis: '₺1,55',      mayisRaw: 1.55,     haziran: '₺1,92',     haziranRaw: 1.92,    temmuz: '₺2,39',     temmuzRaw: 2.39,     agustos: '₺2,32',    agustosRaw: 2.32,    eylul: '₺1,53',      eylulRaw: 1.53,   lowerBetter: true },
-  { metric: 'Conversions',    subat: '—',        mart: '—',        nisan: '—',          nisanRaw: 0,        mayis: '—',          mayisRaw: 0,        haziran: '—',         haziranRaw: 0,       temmuz: '411,76',     temmuzRaw: 411.76,    agustos: '396,10',   agustosRaw: 396.10,  eylul: '108,93',     eylulRaw: 108.93 },
-  { metric: 'Cost / Conv.',   subat: '—',        mart: '—',        nisan: '—',          nisanRaw: 0,        mayis: '—',          mayisRaw: 0,        haziran: '—',         haziranRaw: 0,       temmuz: '₺133,21',    temmuzRaw: 133.21,    agustos: '₺160,69',  agustosRaw: 160.69,  eylul: '₺311,99',    eylulRaw: 311.99, lowerBetter: true },
-  { metric: 'Conv. Rate',     subat: '—',        mart: '—',        nisan: '—',          nisanRaw: 0,        mayis: '—',          mayisRaw: 0,        haziran: '—',         haziranRaw: 0,       temmuz: '%1,79',      temmuzRaw: 1.79,      agustos: '%0,45',    agustosRaw: 0.45,    eylul: '%0,15',      eylulRaw: 0.15 },
+  { metric: 'Cost',           subat: '₺54.719',  mart: '₺53.043',  nisan: '₺54.127,14', nisanRaw: 54127.14, mayis: '₺46.178,33', mayisRaw: 46178.33, haziran: '₺44.507,07', haziranRaw: 44507.07, temmuz: '₺54.852,49', temmuzRaw: 54852.49, agustos: '₺63.647,81', agustosRaw: 63647.81, eylul: '₺28.260,81', eylulRaw: 28260.81, ekim: '₺28.676,24', ekimRaw: 28676.24, lowerBetter: true },
+  { metric: 'Click',          subat: '25.371',   mart: '39.817',   nisan: '56.115',     nisanRaw: 56115,    mayis: '29.863',     mayisRaw: 29863,    haziran: '23.126',    haziranRaw: 23126,   temmuz: '22.930',     temmuzRaw: 22930,    agustos: '27.437',    agustosRaw: 27437,   eylul: '23.008',     eylulRaw: 23008, ekim: '24.088', ekimRaw: 24088 },
+  { metric: 'Impression',     subat: '496.920',  mart: '824.381',  nisan: '1.158.780',  nisanRaw: 1158780,  mayis: '737.090',    mayisRaw: 737090,   haziran: '462.963',   haziranRaw: 462963,  temmuz: '382.915',   temmuzRaw: 382915,   agustos: '632.051',  agustosRaw: 632051,  eylul: '447.699',    eylulRaw: 447699, ekim: '333.215', ekimRaw: 333215 },
+  { metric: 'CTR',            subat: '%5,11',    mart: '%4,83',    nisan: '%4,84',      nisanRaw: 4.84,     mayis: '%4,05',      mayisRaw: 4.05,     haziran: '%5,00',     haziranRaw: 5.00,    temmuz: '%5,99',     temmuzRaw: 5.99,     agustos: '%4,34',    agustosRaw: 4.34,    eylul: '%5,14',      eylulRaw: 5.14, ekim: '%7,23', ekimRaw: 7.23 },
+  { metric: 'Avg CPC',        subat: '₺2,16',    mart: '₺1,33',    nisan: '₺0,96',      nisanRaw: 0.96,     mayis: '₺1,55',      mayisRaw: 1.55,     haziran: '₺1,92',     haziranRaw: 1.92,    temmuz: '₺2,39',     temmuzRaw: 2.39,     agustos: '₺2,32',    agustosRaw: 2.32,    eylul: '₺1,23',      eylulRaw: 1.23, ekim: '₺1,19', ekimRaw: 1.19, lowerBetter: true },
+  { metric: 'Conversions',    subat: '—',        mart: '—',        nisan: '—',          nisanRaw: 0,        mayis: '—',          mayisRaw: 0,        haziran: '—',         haziranRaw: 0,       temmuz: '411,76',     temmuzRaw: 411.76,    agustos: '396,10',   agustosRaw: 396.10,  eylul: '101,90',     eylulRaw: 101.90, ekim: '373,24', ekimRaw: 373.24 },
+  { metric: 'Cost / Conv.',   subat: '—',        mart: '—',        nisan: '—',          nisanRaw: 0,        mayis: '—',          mayisRaw: 0,        haziran: '—',         haziranRaw: 0,       temmuz: '₺133,21',    temmuzRaw: 133.21,    agustos: '₺160,69',  agustosRaw: 160.69,  eylul: '₺277,35',    eylulRaw: 277.35, ekim: '₺76,83', ekimRaw: 76.83, lowerBetter: true },
+  { metric: 'Conv. Rate',     subat: '—',        mart: '—',        nisan: '—',          nisanRaw: 0,        mayis: '—',          mayisRaw: 0,        haziran: '—',         haziranRaw: 0,       temmuz: '%1,79',      temmuzRaw: 1.79,      agustos: '%0,45',    agustosRaw: 0.45,    eylul: '%0,14',      eylulRaw: 0.14, ekim: '%0,67', ekimRaw: 0.67 },
 ];
 
 const META_MONTHLY = [
@@ -22,68 +22,59 @@ const META_MONTHLY = [
 const GOOGLE_CAMPAIGN_HIGHLIGHTS = [
   {
     color: 'slate',
-    title: 'Trafik Driver',
-    campaign: 'nobetci-eczane-istanbul · Search',
+    title: 'Ana Trafik + Conversion Kaynağı',
+    campaign: 'nobetci-eczane-istanbul',
     metrics: [
-      { label: 'Clicks', value: '19.487' },
-      { label: 'Impressions', value: '162.628' },
-      { label: 'CTR', value: '%11,98' },
-      { label: 'Avg CPC', value: '₺0,44' },
-      { label: 'Cost', value: '₺8.654,78' },
+      { label: 'Clicks', value: '17.550' }, { label: 'Impressions', value: '115.736' }, { label: 'CTR', value: '%15,16' },
+      { label: 'Avg CPC', value: '₺0,52' }, { label: 'Spend', value: '₺9.120,21' }, { label: 'Conversions', value: '222,33' },
+      { label: 'Cost / Conv', value: '₺41,02' }, { label: 'CVR', value: '%1,27' },
     ],
-    comment: 'Çok yüksek trafik hacmi üretmeye devam ediyor ancak conversion katkısı sınırlı. Impression büyürken click ve CTR Ağustos\'a göre geriledi.',
-  },
-  {
-    color: 'blue',
-    title: 'iOS App Install',
-    campaign: 'ios_app_install_2811 · App',
-    metrics: [
-      { label: 'Clicks', value: '1.988' },
-      { label: 'Impressions', value: '264.133' },
-      { label: 'CTR', value: '%0,75' },
-      { label: 'Avg CPC', value: '₺3,97' },
-      { label: 'Cost', value: '₺7.895,28' },
-    ],
-    comment: 'iOS App campaign trafik ve install/conversion üretmeye devam ediyor ancak Ağustos\'a göre conversion hacmi geriledi. 39 conversion ve ₺202,44 CPA ile verimlilik zayıfladı.',
+    comment: 'Nöbetçi Eczane ana kampanyasında trafik hacmi gerilerken CTR ve conversion efficiency çok güçlü iyileşti. Harcama neredeyse sabit kalmasına rağmen conversion 222,33 seviyesine çıktı. Eylül conversion baseline’ı tracking veya campaign structure değişiminden etkilenmiş olabilir.',
   },
   {
     color: 'emerald',
-    title: 'Best Conversion Rate',
-    campaign: 'Check up - Search- 22.01 · Search',
+    title: 'Nöbetçi Eczane — Düşüş Yaşayan Lokasyonlar',
+    campaign: 'Campaign name unavailable in source',
+    badge: 'SEO Support / Location Recovery',
     metrics: [
-      { label: 'Clicks', value: '286' },
-      { label: 'Impressions', value: '4.996' },
-      { label: 'CTR', value: '%5,72' },
-      { label: 'Avg CPC', value: '₺25,68' },
-      { label: 'Cost', value: '₺7.343,95' },
+      { label: 'Clicks', value: '3.931' }, { label: 'Impressions', value: '18.891' }, { label: 'CTR', value: '%20,81' },
+      { label: 'Avg CPC', value: '₺0,46' }, { label: 'Spend', value: '₺1.800,81' }, { label: 'Conversions', value: '93,00' },
+      { label: 'Cost / Conv', value: '₺19,36' }, { label: 'CVR', value: '%2,37' },
     ],
-    comment: 'Check-Up kampanyası yüksek conversion rate üretmeye devam etse de conversion hacmi ve CPA tarafında Ağustos\'a göre belirgin verimlilik kaybı var. 36,51 conv · ₺201,15 CPA · %12,77 CVR.',
-  },
-  {
-    color: 'rose',
-    title: 'Efficiency Watch',
-    campaign: 'Happ_GLP1_Test_Search_TR · Search',
-    metrics: [
-      { label: 'Clicks', value: '234' },
-      { label: 'Impressions', value: '5.537' },
-      { label: 'CTR', value: '%4,23' },
-      { label: 'Avg CPC', value: '₺28,86' },
-      { label: 'Cost', value: '₺6.752,67' },
-    ],
-    comment: 'GLP Search kampanyası yüksek CPA üretmeye devam ediyor; efficiency açısından yakın takip edilmeli. 14,23 conv · ₺474,43 CPA. Ağustos\'a göre CPA iyileşti ancak hâlà yüksek seviyede.',
+    comment: 'Ekim ayında organik görünürlükte en fazla düşüş yaşayan Nöbetçi Eczane lokasyonlarını desteklemek amacıyla yeni reklam yapısı devreye alındı. Kampanya 3.931 click ve 93 conversion üretirken CPA ₺19,36 seviyesinde gerçekleşti.',
   },
   {
     color: 'amber',
-    title: 'Conversion Decline',
-    campaign: 'anindadoktor_search_17.07 · Search',
+    title: 'Traffic Growth / Conversion Efficiency Risk',
+    campaign: 'Check up - Search- 22.01',
     metrics: [
-      { label: 'Clicks', value: '181' },
-      { label: 'Impressions', value: '3.889' },
-      { label: 'CTR', value: '%4,65' },
-      { label: 'Avg CPC', value: '₺18,44' },
-      { label: 'Cost', value: '₺3.337,95' },
+      { label: 'Clicks', value: '1.496' }, { label: 'Impressions', value: '44.041' }, { label: 'CTR', value: '%3,40' },
+      { label: 'Avg CPC', value: '₺7,80' }, { label: 'Spend', value: '₺11.674,17' }, { label: 'Conversions', value: '25,91' },
+      { label: 'Cost / Conv', value: '₺450,62' }, { label: 'CVR', value: '%1,73' },
     ],
-    comment: 'Anında Doktor\'da trafik maliyeti düşmüş olsa da conversion hacmi Ağustos seviyesinin altında. 18,19 conv · ₺183,54 CPA · %10,05 CVR. Conversion rate ve hacim belirgin şekilde geriledi.',
+    comment: 'Check-Up kampanyasında trafik hacmi çok güçlü büyüdü ve CPC belirgin şekilde geriledi; ancak conversion hacmi düştü ve CPA ₺210,94’ten ₺450,62’ye yükseldi.',
+  },
+  {
+    color: 'blue',
+    title: 'Stable Efficiency / Lower Volume',
+    campaign: 'ios_app_install',
+    metrics: [
+      { label: 'Clicks', value: '1.111' }, { label: 'Impressions', value: '154.547' }, { label: 'CTR', value: '%0,72' },
+      { label: 'Avg CPC', value: '₺5,47' }, { label: 'Spend', value: '₺6.081,06' }, { label: 'Conversions', value: '32' },
+      { label: 'Cost / Conv', value: '₺190,03' }, { label: 'CVR', value: '%0,10' },
+    ],
+    comment: 'iOS App campaign Ekim’de daha düşük bütçe ve trafik hacmiyle çalıştı. Conversion 44’ten 32’ye gerilerken CPA ₺183,93’ten ₺190,03’e sınırlı yükseldi.',
+  },
+  {
+    color: 'rose',
+    title: 'POLICY REJECTED / NOT SERVING',
+    campaign: 'anindadoktor_search',
+    badge: 'Policy review required',
+    metrics: [
+      { label: 'Clicks', value: '0' }, { label: 'Impressions', value: '0' }, { label: 'Spend', value: '₺0' },
+      { label: 'Conversions', value: '0' }, { label: 'September ref', value: '181 clicks' }, { label: 'September conv', value: '18,39' },
+    ],
+    comment: 'Anında Doktor kampanyası Ekim’de performans nedeniyle değil, landing page’de yer alan ‘e-reçete’ ifadesi nedeniyle Google Ads policy rejection aldığı için yayına çıkamadı. Landing page ve reklam metinlerindeki e-reçete ifadesi politika uyumluluğu açısından revize edilmeli; ardından kampanya yeniden review’a gönderilmeli.',
   },
 ];
 
@@ -171,19 +162,19 @@ export default function PaidMarketingDashboard() {
       {/* Section 1 — KPI Cards */}
       <section>
         <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-4 mb-4">
-          <KPICard label="Toplam Ads Harcama"     value="₺72.716,63"   sub="Eylül 2026"   color="violet"  change="↓ %31,2"  />
-          <KPICard label="Google Ads Harcama"    value="₺33.984,63"   sub="Eylül 2026"   color="blue"    change="↓ %46,6" />
-          <KPICard label="Meta Ads Harcama"      value="₺38.732"      sub="Eylül 2026"   color="rose"    change="↓ %7,8"  />
-          <KPICard label="Google Ads Click"      value="22.176"       sub="Eylül 2026"   color="emerald" change="↓ %19,2" />
-          <KPICard label="Google Ads Impression" value="441.183"      sub="Eylül 2026"   color="amber"   change="↓ %30,2" />
-          <KPICard label="Google Ads Avg CPC"    value="₺1,53"        sub="Eylül 2026"   color="slate"   change="↓ %34,1" lowerBetter />
+          <KPICard label="Toplam Ads Harcama"     value="₺67.408,24"   sub="Ekim 2026"   color="violet"  change="↓ %7,3"  />
+          <KPICard label="Google Ads Harcama"    value="₺28.676,24"   sub="Ekim 2026"   color="blue"    change="↓ %15,6" />
+          <KPICard label="Meta Ads Harcama"      value="₺38.732"      sub="Eylül 2026"   color="rose"    change="—"  />
+          <KPICard label="Google Ads Click"      value="24.088"       sub="Ekim 2026"   color="emerald" change="↑ %4,7" />
+          <KPICard label="Google Ads Impression" value="333.215"      sub="Ekim 2026"   color="amber"   change="↓ %25,6" />
+          <KPICard label="Google Ads Avg CPC"    value="₺1,19"        sub="Ekim 2026"   color="slate"   change="↓ %3,3" lowerBetter />
         </div>
         <div className="bg-slate-50 border border-slate-200 rounded-2xl px-5 py-3">
           <p className="text-sm text-slate-700 leading-relaxed">
-            Eylül ayında toplam reklam yatırımı Ağustos'a göre %31,2 azalarak ₺72,7 bin seviyesine geriledi. Meta tarafında harcama azalmasına rağmen install hacmi %82 artıp CPI yaklaşık %50 iyileşirken, Google Ads tarafında conversion hacmi %72,5 geriledi ve CPA yaklaşık %94 yükseldi.
+            Ekim ayında Google Ads harcaması Eylül'e göre yalnızca %1,5 artarak ₺28.676,24 seviyesinde gerçekleşti. Conversion hacmi 101,9'dan 373,2'ye yükselirken Cost / Conv. ₺277,35'ten ₺76,83'e gerileyerek yaklaşık %72 iyileşti. Meta Ads tarafında Ekim verileri ayrıca güncellenecektir; mevcut KPI'lar Eylül baz alınarak gösterilmektedir.
           </p>
           <p className="text-sm text-slate-600 leading-relaxed mt-2">
-            Bu nedenle Eylül Paid Marketing performansında kanallar net şekilde ayrıştı: Meta acquisition efficiency belirgin şekilde güçlenirken Google Ads conversion efficiency zayıfladı.
+            Ekim'de kanal bazında en önemli pozitif sinyal Google Ads tarafından geldi. Impression hacmi %25,6 azalmasına rağmen click hacmi %4,7 arttı ve CTR %5,14'ten %7,23'e yükseldi.
           </p>
         </div>
       </section>
@@ -206,7 +197,8 @@ export default function PaidMarketingDashboard() {
                     <th className="text-right px-4 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Haziran</th>
                     <th className="text-right px-4 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Temmuz</th>
                     <th className="text-right px-4 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Ağustos</th>
-                    <th className="text-right px-4 py-3 text-xs font-semibold text-gray-700 uppercase tracking-wider">Eylül</th>
+                    <th className="text-right px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Eylül</th>
+                    <th className="text-right px-4 py-3 text-xs font-semibold text-blue-700 uppercase tracking-wider">Ekim</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -224,20 +216,20 @@ export default function PaidMarketingDashboard() {
                         <span className={`font-semibold ${row.eylul === '—' ? 'text-gray-300' : 'text-gray-900'}`}>{row.eylul}</span>
                         {row.eylulRaw > 0 && row.agustosRaw > 0 && <ChangeBadge curr={row.eylulRaw} prev={row.agustosRaw} lowerBetter={row.lowerBetter} />}
                       </td>
+                      <td className="px-4 py-3 text-right tabular-nums whitespace-nowrap">
+                        <span className="font-semibold text-gray-900">{row.ekim}</span>
+                        {row.ekimRaw > 0 && row.eylulRaw > 0 && <ChangeBadge curr={row.ekimRaw} prev={row.eylulRaw} lowerBetter={row.lowerBetter} />}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
           </div>
-          <InsightNote text="Eylül ayında Google Ads bütçesi Ağustos'a göre %46,6 azaltılarak ₺34 bin seviyesine çekildi. Click hacmi %19,2 ve impression %30,2 gerilerken Avg CPC %34,1 düşerek ₺1,53'e indi. CTR ise %4,34'ten %5,03'e yükseldi." />
+          <InsightNote text="Ekim ayında Google Ads harcaması Eylül'e göre yalnızca %1,5 artarken conversion hacmi 101,9'dan 373,2'ye yükseldi. Cost / Conv. ₺277,35'ten ₺76,83'e gerileyerek yaklaşık %72 iyileşti." />
           <div className="mt-2 flex gap-2 items-start">
-            <div className="w-1 rounded-full bg-rose-200 self-stretch mt-0.5 shrink-0" style={{ minHeight: 16 }} />
-            <p className="text-xs text-gray-400 leading-relaxed">Buna karşılık conversion hacmi %72,5 azaldı ve CPA ₺160,69'dan ₺311,99'a yükseldi. Bu nedenle Eylül'de trafik maliyeti iyileşmiş olsa da conversion efficiency belirgin şekilde zayıfladı.</p>
-          </div>
-          <div className="mt-2 flex gap-2 items-start">
-            <div className="w-1 rounded-full bg-slate-200 self-stretch mt-0.5 shrink-0" style={{ minHeight: 16 }} />
-            <p className="text-xs text-gray-400 leading-relaxed">Eylül Google Ads performansında ana sorun trafik maliyeti değil, conversion kaybı. Medya daha düşük CPC ile trafik üretirken Check-Up, Anında Doktor ve iOS App kampanyalarında conversion hacmi belirgin şekilde geriledi.</p>
+            <div className="w-1 rounded-full bg-emerald-200 self-stretch mt-0.5 shrink-0" style={{ minHeight: 16 }} />
+            <p className="text-xs text-gray-500 leading-relaxed">Impression hacmi %25,6 azalmasına rağmen click hacmi %4,7 arttı ve CTR %5,14'ten %7,23'e yükseldi. Bu durum Ekim'de daha düşük gösterim hacminden daha yüksek trafik ve conversion verimliliği elde edildiğini gösteriyor.</p>
           </div>
         </section>
 
@@ -316,7 +308,7 @@ export default function PaidMarketingDashboard() {
           <div className="mt-3 flex gap-2.5 items-start bg-amber-50 border border-amber-200 rounded-xl px-4 py-3">
             <AlertCircle size={14} className="text-amber-500 mt-0.5 shrink-0" />
             <p className="text-xs text-amber-700 leading-relaxed">
-              Eylül'de kanal bazında en önemli pozitif sinyal Meta tarafından geldi. ios_app_26.08 ₺21,48 CPI ile güçlü acquisition performansını sürdürürken, Google Ads tarafında conversion hacmi %72,5 geriledi ve CPA ₺311,99'a yükseldi.
+              Ekim'de kanal bazında en önemli pozitif sinyal Google Ads tarafından geldi. Conversion hacmi 101,9'dan 373,2'ye yükselirken CPA ₺277,35'ten ₺76,83'e gerileyerek yaklaşık %72 iyileşti. Meta Ads tarafında Eylül verileri baz alınmıştır; Ekim Meta verileri ayrıca güncellenecektir.
             </p>
           </div>
         </section>
@@ -324,7 +316,7 @@ export default function PaidMarketingDashboard() {
 
       {/* Section 4 — Google Highlights */}
       <section>
-        <SectionHeader title="Google Ads" subtitle="Öne Çıkan Kampanyalar · Eylül 2026" />
+        <SectionHeader title="Google Ads" subtitle="Öne Çıkan Kampanyalar · Ekim 2026" />
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
           {GOOGLE_CAMPAIGN_HIGHLIGHTS.map(c => (
             <MetaCampaignCard key={c.title} {...c} />
@@ -333,24 +325,24 @@ export default function PaidMarketingDashboard() {
         <div className="mt-3 flex gap-2 items-start bg-amber-50 border border-amber-200 rounded-xl px-4 py-3.5">
           <AlertCircle size={14} className="text-amber-500 mt-0.5 shrink-0" />
           <p className="text-xs text-amber-700 leading-relaxed">
-            Eylül'de trafik maliyeti iyileşmesine rağmen conversion efficiency ana sorun alanı oldu. Check-Up ve Anında Doktor en belirkin efficiency kayıplarını gösterirken, GLP Search ₺474,43 CPA ile hâlâ yüksek seviyede.
+            Google Ads Ekim performansında üç farklı hikâye öne çıktı: Nöbetçi Eczane tarafında conversion efficiency belirgin şekilde güçlendi ve SEO kayıplarını desteklemek için yeni lokasyon kampanyaları devreye alındı. Check-Up tarafında trafik hacmi güçlü büyürken conversion efficiency zayıfladı. Anında Doktor ise Google Ads policy rejection nedeniyle yayına çıkamadı.
           </p>
         </div>
         <div className="mt-3 flex gap-2 items-start bg-blue-50 border border-blue-100 rounded-xl px-4 py-3.5">
           <TrendingUp size={14} className="text-blue-500 mt-0.5 shrink-0" />
           <p className="text-xs text-blue-700 leading-relaxed">
-            Eylül ayında Google Ads bütçesi Ağustos'a göre %46,6 azaltılarak ₺34 bin seviyesine çekildi. Click hacmi %19,2 ve impression %30,2 gerilerken Avg CPC %34,1 düşerek ₺1,53'e indi. CTR ise %4,34'ten %5,03'e yükseldi. Buna karşın conversion hacmi %72,5 azaldı ve CPA ₺160,69'dan ₺311,99'a yükseldi.
+            Ekim’de SEO tarafında Nöbetçi Eczane lokasyonlarında yaşanan görünürlük kayıplarını desteklemek amacıyla paid search genişletildi. En fazla düşüş yaşayan lokasyonlara özel reklam yapısı devreye alındı. Yeni lokasyon kampanyası %20,81 CTR, 93 conversion ve ₺19,36 CPA ile güçlü bir erken performans üretti.
           </p>
         </div>
 
         {/* Campaign Priority */}
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-3">
           {[
-            { label: 'Best Conv. Rate',   campaign: 'Check-Up',         value: '36,51 conv · ₺201,15 CPA',  color: 'bg-emerald-50 border-emerald-200 text-emerald-700' },
-            { label: 'Conv. Decline',     campaign: 'Anında Doktor',    value: '18,19 conv · ₺183,54 CPA',  color: 'bg-amber-50 border-amber-200 text-amber-700' },
-            { label: 'App Acquisition',   campaign: 'iOS App Install',  value: '39 conv · ₺202,44 CPA',     color: 'bg-blue-50 border-blue-200 text-blue-700' },
-            { label: 'Efficiency Watch',  campaign: 'GLP',              value: '14,23 conv · ₺474,43 CPA',  color: 'bg-rose-50 border-rose-200 text-rose-700' },
-            { label: 'Traffic Driver',    campaign: 'Nöbetçi Eczane',   value: '19.487 clicks · %11,98 CTR', color: 'bg-slate-100 border-slate-200 text-slate-700' },
+            { label: 'Nöbetçi Eczane', campaign: 'Conversion efficiency', value: '222,33 conv · ₺41,02 CPA', color: 'bg-emerald-50 border-emerald-200 text-emerald-700' },
+            { label: 'Location Recovery', campaign: 'Nöbetçi Eczane', value: '93 conv · ₺19,36 CPA', color: 'bg-blue-50 border-blue-200 text-blue-700' },
+            { label: 'Traffic Growth', campaign: 'Check-Up', value: '1.496 clicks · %1,73 CVR', color: 'bg-amber-50 border-amber-200 text-amber-700' },
+            { label: 'Policy Rejected', campaign: 'Anında Doktor', value: 'Not serving · review required', color: 'bg-rose-50 border-rose-200 text-rose-700' },
+            { label: 'App Acquisition', campaign: 'iOS App Install', value: '32 conv · ₺190,03 CPA', color: 'bg-slate-100 border-slate-200 text-slate-700' },
           ].map(item => (
             <div key={item.label} className={`rounded-xl border px-4 py-3 ${item.color}`}>
               <p className="text-[10px] font-bold uppercase tracking-wider opacity-70 mb-1">{item.label}</p>
@@ -360,17 +352,17 @@ export default function PaidMarketingDashboard() {
           ))}
         </div>
 
-        {/* September Channel Comparison */}
+        {/* Ekim Kanal Karşılaştırması */}
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div className="bg-rose-50 border border-rose-100 rounded-xl px-4 py-3.5">
-            <p className="text-xs font-bold text-rose-700 mb-1">Meta Ads</p>
-            <p className="text-xs text-rose-600 leading-relaxed">Spend: ₺38.732 · Install: 1.803 · CPI: ₺21,48</p>
-            <p className="text-[11px] text-rose-500 leading-relaxed mt-1">Primary signal: Acquisition efficiency improved</p>
+          <div className="bg-blue-50 border border-blue-100 rounded-xl px-4 py-3.5">
+            <p className="text-xs font-bold text-blue-700 mb-1">Google Ads · Ekim 2026</p>
+            <p className="text-xs text-blue-600 leading-relaxed">Spend: ₺28.676,24 · Conversions: 373,24 · CPA: ₺76,83</p>
+            <p className="text-[11px] text-blue-500 leading-relaxed mt-1">Primary signal: Conversion efficiency improved ~72% vs Eylül</p>
           </div>
-          <div className="bg-slate-100 border border-slate-200 rounded-xl px-4 py-3.5">
-            <p className="text-xs font-bold text-slate-700 mb-1">Google Ads</p>
-            <p className="text-xs text-slate-600 leading-relaxed">Spend: ₺33.984,63 · Conversions: 108,93 · CPA: ₺311,99</p>
-            <p className="text-[11px] text-slate-500 leading-relaxed mt-1">Primary signal: Conversion efficiency deteriorated</p>
+          <div className="bg-rose-50 border border-rose-100 rounded-xl px-4 py-3.5">
+            <p className="text-xs font-bold text-rose-700 mb-1">Meta Ads · Eylül 2026</p>
+            <p className="text-xs text-rose-600 leading-relaxed">Spend: ₺38.732 · Install: 1.803 · CPI: ₺21,48</p>
+            <p className="text-[11px] text-rose-500 leading-relaxed mt-1">Primary signal: Acquisition efficiency improved (Ekim verileri bekleniyor)</p>
           </div>
         </div>
       </section>
@@ -457,16 +449,15 @@ export default function PaidMarketingDashboard() {
 
       {/* Section 6 — Next Actions */}
       <section>
-        <SectionHeader title="Sonraki Aksiyonlar" subtitle="Eylül 2026" />
+        <SectionHeader title="Sonraki Aksiyonlar" subtitle="Ekim 2026" />
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
           <ol className="flex flex-col gap-2.5">
             {[
-              'Google Check-Up kampanyasında conversion rate düşüşünü incele.',
-              'Anında Doktor\'da Ağustos → Eylül conversion kaybının landing page, search term ve bidding tarafındaki nedenlerini analiz et.',
-              'Google iOS App campaign CPA artışını attribution ve campaign optimization açısından incele.',
-              'GLP Search\'te CPA iyileşmesine rağmen yüksek maliyet seviyesini düşürmek için keyword / landing page optimizasyonuna devam et.',
-              'Meta ios_app_26.08 kampanyasının güçlü CPI performansını kontrollü şekilde ölçekle.',
-              'Paid budget dağılımını kanal bazlı acquisition efficiency\'ye göre yeniden değerlendir.',
+              'Nöbetçi Eczane lokasyon kampanyalarının SEO kaybı yaşayan ilçelerdeki incremental katkısını takip et.',
+              'Ana Nöbetçi Eczane kampanyasında Eylül → Ekim conversion artışının tracking / conversion definition değişiminden etkilenip etkilenmediğini doğrula.',
+              'Check-Up kampanyasında artan trafik hacmine rağmen düşen CVR’nin nedenini search term, landing page ve conversion funnel bazında incele.',
+              'Anında Doktor landing page’deki e-reçete ifadesini Google Ads politika uyumluluğuna göre revize et ve reklamı yeniden review’a gönder.',
+              'iOS App campaign’de hacim düşüşüne karşı CPA’nın büyük ölçüde korunup korunmadığını Kasım’da takip et.',
             ].map((action, i) => (
               <li key={i} className="flex items-start gap-3">
                 <span className="w-5 h-5 rounded-full bg-slate-700 text-white text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
@@ -535,12 +526,13 @@ function InsightNote({ text }: { text: string }) {
 }
 
 
-function MetaCampaignCard({ color, title, campaign, metrics, comment }: {
+function MetaCampaignCard({ color, title, campaign, metrics, comment, badge }: {
   color: string;
   title: string;
   campaign: string;
   metrics: { label: string; value: string }[];
   comment: string;
+  badge?: string;
 }) {
   const c = colorMap[color] ?? colorMap.slate;
   return (
@@ -548,6 +540,7 @@ function MetaCampaignCard({ color, title, campaign, metrics, comment }: {
       <div>
         <p className={`text-[10px] font-semibold uppercase tracking-wider ${c.text} mb-1`}>{title}</p>
         <p className="text-xs font-mono text-gray-500 truncate">{campaign}</p>
+        {badge && <span className={`inline-flex mt-2 text-[9px] font-bold px-1.5 py-0.5 rounded-md ${c.bg} ${c.text}`}>{badge}</span>}
       </div>
       <div className="grid grid-cols-3 gap-2">
         {metrics.map(m => (
