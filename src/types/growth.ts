@@ -7,7 +7,7 @@ export interface DailyMetric {
 
 export interface SourceBreakdown {
   platform: 'ios' | 'android' | 'web';
-  channel: 'paid' | 'organic' | 'search' | 'browse' | 'direct';
+  channel: 'paid' | 'organic' | 'search' | 'browse' | 'direct' | 'not_attributed';
   count: number;
 }
 

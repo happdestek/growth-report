@@ -194,7 +194,7 @@ export function useGrowthData(filters: GrowthFilters) {
     };
 
     const buildBreakdown = (platform: 'ios' | 'android'): MonthlySourceBreakdown => {
-      const channels = platform === 'ios' ? ['paid', 'search', 'browse'] : ['paid', 'search', 'browse'];
+      const channels = platform === 'ios' ? ['paid', 'search', 'browse'] : ['paid', 'search', 'browse', 'not_attributed'];
       const rows = channels.map(channel => ({
         channel,
         months: monthlySourceMonths.map(m => ({

@@ -204,13 +204,13 @@ export default function FunnelChart({ data, prevData, signupAvailable }: FunnelC
             PPV → Download dönüşüm oranı %26,25’ten %40,42’ye yükselerek +14,17 puan iyileşti. Ekim Android büyümesindeki ana kazanım trafik hacminden değil, store conversion efficiency’den geldi.
           </p>
           <p className="text-[11px] text-blue-600 leading-relaxed">
-            Downloadların %95,1’i Ads & Referrals kaynaklı gerçekleşirken Browse / Explore payı %4,9’a geriledi. Bu nedenle büyümenin ağırlıklı olarak paid/referral acquisition tarafından taşındığı görülüyor.
+            Ancak source mix büyümenin ağırlıklı olarak Ads &amp; Referrals kaynaklı olduğunu gösteriyor. Paid &amp; Direct payı %81,9’a yükselirken Google Play Explore payı yalnızca %4,9 seviyesinde kaldı.
+          </p>
+          <p className="text-[11px] text-blue-600 leading-relaxed">
+            Not attributed hacmi 359 download ile toplamın %13,2’sini oluşturduğu için bu trafik paid acquisition içine dahil edilmemeli ve ayrı izlenmeli.
           </p>
           <p className="text-[11px] text-blue-600 leading-relaxed">
             Android acquisition büyümesi sign-up tarafına da yansıdı. Ekim’de Android sign-up 141’den 307’ye çıkarak Eylül’e göre yaklaşık %118 arttı.
-          </p>
-          <p className="text-[11px] text-blue-600 leading-relaxed">
-            Android Ekim performansı güçlü kapandı: PPV %5 azalmasına rağmen download %46 büyüdü ve store conversion %40,42’ye ulaştı. Android sign-up da 141’den 307’ye yükseldi. Ancak acquisition mix’in %95’inin Ads & Referrals kaynaklı olması organik store keşfinin zayıfladığını gösteriyor.
           </p>
           <p className="text-[11px] text-blue-600 leading-relaxed">
             Ağustos iOS downloadlarının %78,4'ü App Referrer ve Web Referrer kaynaklarından geldi. App Referrer %19,3 gerilerken Web Referrer %15,7 ve App Store Search %12,3 büyüdü. Search kaynaklı download hacmi artmasına rağmen toplam acquisition hâlâ ağırlıklı olarak referral trafiği tarafından taşınıyor.

@@ -51,7 +51,7 @@ function fmt(n: number): string {
 
 function pct(curr: number, prev: number) {
   if (prev === 0) return null;
-  return Math.round(((curr - prev) / prev) * 100);
+  return Math.round(((curr - prev) / prev) * 1000) / 10;
 }
 
 interface TooltipData {
@@ -261,7 +261,7 @@ function MiniStat({ label, value, mom, color, partialLabel }: { label: string; v
       <span className="text-base font-bold text-gray-800">{value}</span>
       {mom !== null ? (
         <span className={`text-xs font-semibold ${mom >= 0 ? 'text-emerald-600' : 'text-red-500'}`}>
-          {mom >= 0 ? '+' : ''}{mom}% MoM
+          {mom >= 0 ? '+' : ''}{mom.toLocaleString('tr-TR')}% MoM
         </span>
       ) : partialLabel ? (
         <span className="text-[10px] font-semibold text-gray-400">Final</span>

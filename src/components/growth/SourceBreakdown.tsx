@@ -25,6 +25,12 @@ const CHANNEL_META: Record<string, {
     color: '#a5a5a5',
     icon: <Compass size={12} />,
   },
+  not_attributed: {
+    label: 'Not attributed',
+    description: 'Belirli bir traffic source’a atanamayan indirmeler',
+    color: '#94a3b8',
+    icon: <AlertCircle size={12} />,
+  },
 };
 
 const PLATFORM_META: Record<string, { label: string; icon: React.ReactNode }> = {
@@ -36,16 +42,17 @@ const CHANNEL_LABELS: Record<string, string> = {
   paid: 'Ads & Referrals',
   search: 'Search',
   browse: 'Browse / Explore',
+  not_attributed: 'Not attributed',
 };
 
 const PLATFORM_INSIGHTS: Record<string, { september: string[]; augustContext: string }> = {
   android: {
     september: [
-      'Eylül ayı Android tarafında 7.073 Product Page View ve 1.857 download ile tamamlandı; PPV → Download dönüşümü %26,25 oldu. Ads & Referrals 1.590 download ile toplam hacmin %85,6\'sını oluştururken Browse / Explore %14,4 ve Search %0,0 pay aldı.',
-      'Ekim ayında Android tarafında 2.710 download gerçekleşti. Ads & Referrals 2.578 download ile toplam hacmin %95,1\'ini oluştururken Browse / Explore 132 download ile %4,9, Search ise %0,0 pay aldı.',
-      'Ekim’de Android acquisition mix daha da paid/referral ağırlıklı hale geldi. Ads & Referrals payı %85,6\'dan %95,1\'e yükselirken Browse / Explore payı %14,4\'ten %4,9\'a geriledi. Search %0,0 ile stabil kaldı.',
+      'Eylül Android verisi 7.073 Product Page View ve 1.857 download ile tamamlandı; PPV → Download dönüşümü %26,25 oldu. Ads & Referrals 1.320 download ile %71,1, Browse / Explore 267 download ile %14,4, Not attributed 270 download ile %14,5 pay aldı; Search %0,0 seviyesinde kaldı.',
+      'Ekim’de Android tarafında 6.705 Product Page View’den 2.710 download elde edildi. Ads & Referrals 2.219 download ile %81,9, Browse / Explore 132 download ile %4,9, Not attributed 359 download ile %13,2 pay aldı; Search %0,0 oldu.',
+      'Ekim’de Android acquisition belirgin biçimde Paid & Direct ağırlıklı hale geldi. Ads & Referrals payı %71,1’den %81,9’a yükselirken Browse / Explore payı %14,4’ten %4,9’a geriledi. Not attributed payı ise %13,2 seviyesinde kaldı.',
     ],
-    augustContext: 'Android Ekim performansı güçlü kapandı: 6.705 Product Page View’den 2.710 download elde edildi. PPV → Download dönüşümü %26,25’ten %40,42’ye yükselerek +14,17 puan iyileşti. Downloadların %95,1’i Ads & Referrals kaynaklı gerçekleşirken Browse / Explore payı %4,9’a geriledi.',
+    augustContext: 'Mayıs–Ağustos döneminde Browse / Explore payı %10,6’dan %27,6’ya kadar yükselirken, Eylül ve özellikle Ekim’de bu eğilim tersine döndü. Ekim’de Browse / Explore %4,9’a gerilerken Ads & Referrals %81,9’a çıktı. Bu nedenle Ekim download büyümesi güçlü olmakla birlikte büyümenin ana sürücüsü organik Play Store discovery değil, paid/direct acquisition oldu.',
   },
   ios: {
     september: [
@@ -194,6 +201,13 @@ export default function SourceBreakdownChart({ data }: SourceBreakdownProps) {
                   </tbody>
                 </table>
               </div>
+
+              {platform.platform === 'android' && (
+                <p className="mt-2 flex items-start gap-1.5 text-[10px] text-slate-500 leading-relaxed">
+                  <AlertCircle size={11} className="text-slate-400 mt-0.5 shrink-0" />
+                  <span>‘Not attributed’, Google Play Console tarafından belirli bir traffic source’a atanamayan acquisitionları gösterir. Bu kullanıcılar Ads &amp; Referrals içine dahil edilmez.</span>
+                </p>
+              )}
 
               {/* August context + September insight */}
               {insights && (
