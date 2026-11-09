@@ -52,7 +52,7 @@ export default function AppGrowthDashboard({ embedded = false }: { embedded?: bo
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-1">
         <h2 className="text-xl font-bold text-gray-900 tracking-tight">App Download Performansı</h2>
-        <p className="text-sm text-gray-400">Aylık indirme, kaynak ve üye kazanım analizi</p>
+        <p className="text-sm text-gray-400">Aylık indirme, kaynak ve üye kazanım analizi<br />TR Nöbetçi Eczane hariç sitenin geri kalanı %18 büyüdü</p>
       </div>
       <div className="flex flex-col gap-5">
 
