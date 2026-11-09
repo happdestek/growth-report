@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { Eye, Play, Users, Clock, ThumbsUp, MessageCircle, Share2, TrendingUp, TrendingDown, Lightbulb, Instagram, Youtube, Linkedin, Bookmark, Send } from 'lucide-react';
 
-type MonthKey = 'june' | 'july' | 'august';
+type MonthKey = 'june' | 'july' | 'august' | 'september' | 'october';
 
 const MONTHS: { key: MonthKey; label: string }[] = [
   { key: 'june', label: 'Haziran 2026' },
   { key: 'july', label: 'Temmuz 2026' },
   { key: 'august', label: 'Ağustos 2026' },
+  { key: 'september', label: 'Eylül 2026' },
+  { key: 'october', label: 'Ekim 2026' },
 ];
 
 interface KPICardProps {
@@ -109,7 +111,7 @@ function PlatformBlock({ title, platformIcon, headerBg, headerText, badgeBg, bad
   );
 }
 
-function FollowerSummaryCard({ rows, summary }: { rows: { platform: string; icon: React.ReactNode; iconBg: string; iconColor: string; july: string; august: string; change: string; changeType: 'up' | 'down' | 'neutral' }[]; summary: string }) {
+function FollowerSummaryCard({ rows, summary, previousLabel = 'Tem', currentLabel = 'Ağustos' }: { rows: { platform: string; icon: React.ReactNode; iconBg: string; iconColor: string; previous: string; current: string; change: string; changeType: 'up' | 'down' | 'neutral' }[]; summary: string; previousLabel?: string; currentLabel?: string }) {
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
       <div className="px-5 py-4 flex items-center gap-3 bg-slate-50 border-b border-slate-100">
@@ -117,7 +119,7 @@ function FollowerSummaryCard({ rows, summary }: { rows: { platform: string; icon
           <span className="text-slate-700"><Users size={17} /></span>
         </div>
         <h3 className="font-bold text-base text-slate-800">Takipçi Özeti</h3>
-        <span className="ml-auto text-[10px] font-semibold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full">Ağustos 2026</span>
+        <span className="ml-auto text-[10px] font-semibold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full">{currentLabel} 2026</span>
       </div>
       <div className="divide-y divide-gray-50">
         {rows.map(r => (
@@ -129,8 +131,8 @@ function FollowerSummaryCard({ rows, summary }: { rows: { platform: string; icon
               <span className="text-sm font-medium text-gray-700">{r.platform}</span>
             </div>
             <div className="flex items-center gap-3 shrink-0">
-              <span className="text-xs text-gray-400 tabular-nums">Tem: {r.july}</span>
-              <span className="text-sm font-bold text-gray-900 tabular-nums">{r.august}</span>
+              <span className="text-xs text-gray-400 tabular-nums">{previousLabel}: {r.previous}</span>
+              <span className="text-sm font-bold text-gray-900 tabular-nums">{r.current}</span>
               <span className={`inline-flex items-center gap-0.5 text-[10px] font-semibold px-2 py-0.5 rounded-full ${
                 r.changeType === 'up' ? 'bg-emerald-50 text-emerald-600' : r.changeType === 'down' ? 'bg-red-50 text-red-500' : 'bg-gray-100 text-gray-500'
               }`}>
@@ -245,11 +247,11 @@ function MonthTabs({ active, onSelect }: { active: MonthKey; onSelect: (m: Month
 // ============ AUGUST 2026 DATA ============
 
 const AUGUST_FOLLOWERS = [
-  { platform: 'Instagram',  icon: <Instagram size={14} />, iconBg: 'bg-rose-100', iconColor: 'text-rose-600', july: '18.156', august: '18.935', change: '+504 / +%4,3',  changeType: 'up' as const },
-  { platform: 'YouTube',    icon: <Youtube size={14} />,   iconBg: 'bg-red-100',   iconColor: 'text-red-600',   july: '33.344', august: '33.260', change: '-84 / -%0,3',   changeType: 'down' as const },
-  { platform: 'LinkedIn',   icon: <Linkedin size={14} />,  iconBg: 'bg-blue-100',  iconColor: 'text-blue-700',  july: '1.700',  august: '1.704',  change: '+4 / +%0,2',    changeType: 'up' as const },
-  { platform: 'TikTok',     icon: <Play size={14} />,      iconBg: 'bg-gray-200',  iconColor: 'text-gray-700',  july: '1.731',  august: '1.815',  change: '+84 / +%4,9',   changeType: 'up' as const },
-  { platform: 'X / Twitter',icon: <Send size={14} />,      iconBg: 'bg-gray-200',  iconColor: 'text-gray-700',  july: '22',     august: '22',     change: '0',             changeType: 'neutral' as const },
+  { platform: 'Instagram',  icon: <Instagram size={14} />, iconBg: 'bg-rose-100', iconColor: 'text-rose-600', previous: '18.156', current: '18.935', change: '+504 / +%4,3',  changeType: 'up' as const },
+  { platform: 'YouTube',    icon: <Youtube size={14} />,   iconBg: 'bg-red-100',   iconColor: 'text-red-600',   previous: '33.344', current: '33.260', change: '-84 / -%0,3',   changeType: 'down' as const },
+  { platform: 'LinkedIn',   icon: <Linkedin size={14} />,  iconBg: 'bg-blue-100',  iconColor: 'text-blue-700',  previous: '1.700',  current: '1.704',  change: '+4 / +%0,2',    changeType: 'up' as const },
+  { platform: 'TikTok',     icon: <Play size={14} />,      iconBg: 'bg-gray-200',  iconColor: 'text-gray-700',  previous: '1.731',  current: '1.815',  change: '+84 / +%4,9',   changeType: 'up' as const },
+  { platform: 'X / Twitter',icon: <Send size={14} />,      iconBg: 'bg-gray-200',  iconColor: 'text-gray-700',  previous: '22',     current: '22',     change: '0',             changeType: 'neutral' as const },
 ];
 
 const AUGUST_IG_TOP_VIEWS = [
@@ -864,8 +866,216 @@ function AugustContent() {
   );
 }
 
+
+const SEPTEMBER_FOLLOWERS = [
+  { platform: 'Instagram', icon: <Instagram size={14} />, iconBg: 'bg-rose-100', iconColor: 'text-rose-600', previous: '18.935', current: '19.653', change: '+718 / +%3,8', changeType: 'up' as const },
+  { platform: 'YouTube', icon: <Youtube size={14} />, iconBg: 'bg-red-100', iconColor: 'text-red-600', previous: '33.260', current: '33.225', change: '-35 / -%0,1', changeType: 'down' as const },
+  { platform: 'LinkedIn', icon: <Linkedin size={14} />, iconBg: 'bg-blue-100', iconColor: 'text-blue-700', previous: '1.704', current: '1.715', change: '+11 / +%0,6', changeType: 'up' as const },
+  { platform: 'TikTok', icon: <Play size={14} />, iconBg: 'bg-gray-200', iconColor: 'text-gray-700', previous: '1.815', current: '1.852', change: '+37 / +%2,0', changeType: 'up' as const },
+  { platform: 'X / Twitter', icon: <Send size={14} />, iconBg: 'bg-gray-200', iconColor: 'text-gray-700', previous: '—', current: '—', change: '—', changeType: 'neutral' as const },
+];
+
+const OCTOBER_FOLLOWERS = [
+  { platform: 'Instagram', icon: <Instagram size={14} />, iconBg: 'bg-rose-100', iconColor: 'text-rose-600', previous: '19.653', current: '21.056', change: '+1.403 / +%7,1', changeType: 'up' as const },
+  { platform: 'YouTube', icon: <Youtube size={14} />, iconBg: 'bg-red-100', iconColor: 'text-red-600', previous: '33.225', current: '33.198', change: '-27 / -%0,1', changeType: 'down' as const },
+  { platform: 'LinkedIn', icon: <Linkedin size={14} />, iconBg: 'bg-blue-100', iconColor: 'text-blue-700', previous: '1.715', current: '1.732', change: '+17 / +%1,0', changeType: 'up' as const },
+  { platform: 'TikTok', icon: <Play size={14} />, iconBg: 'bg-gray-200', iconColor: 'text-gray-700', previous: '1.852', current: '1.906', change: '+54 / +%2,9', changeType: 'up' as const },
+  { platform: 'X / Twitter', icon: <Send size={14} />, iconBg: 'bg-gray-200', iconColor: 'text-gray-700', previous: '—', current: '—', change: '—', changeType: 'neutral' as const },
+];
+
+function SeptemberContent() {
+  return (
+    <div className="flex flex-col gap-6">
+      <div>
+        <h2 className="text-base font-bold text-gray-900 mb-0.5">Social Media Performance</h2>
+        <p className="text-xs text-gray-400">Eylül 2026 — Ekim karşılaştırma baz dönemi</p>
+      </div>
+      <FollowerSummaryCard
+        rows={SEPTEMBER_FOLLOWERS}
+        previousLabel="Ağu"
+        currentLabel="Eyl"
+        summary="Eylül takipçi tabanı Ekim karşılaştırmasının bazını oluşturuyor: Instagram 19.653, YouTube 33.225, LinkedIn 1.715 ve TikTok 1.852. Ekim performansı bu ay sonu değerleriyle karşılaştırılır."
+      />
+    </div>
+  );
+}
+
+function OctoberInstagramBlock() {
+  return (
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
+      <div className="px-5 py-4 flex items-center gap-3 bg-rose-50/60">
+        <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-rose-100"><span className="text-rose-600"><Instagram size={17} /></span></div>
+        <h3 className="font-bold text-base text-rose-700">Instagram</h3>
+        <span className="ml-auto text-[10px] font-semibold text-rose-500 bg-rose-100 px-2.5 py-0.5 rounded-full">1–31 Ekim</span>
+      </div>
+      <div className="px-5 pt-1 pb-2">
+        <StatRow label="Total Meta Views" value="987.914" icon={<Eye size={13} />} />
+        <StatRow label="Instagram Views" value="891.982" icon={<Instagram size={13} />} />
+        <StatRow label="Facebook Views" value="95.933" icon={<Eye size={13} />} />
+        <StatRow label="Reach" value="476,2K" change="+%34,5" changeType="up" icon={<Users size={13} />} />
+        <StatRow label="Content Interactions" value="4,3K" change="+%42,4" changeType="up" icon={<ThumbsUp size={13} />} />
+        <StatRow label="Insights Net Followers" value="+1.272" changeType="up" icon={<TrendingUp size={13} />} />
+        <StatRow label="Profile Visits" value="5.762" icon={<Users size={13} />} />
+        <StatRow label="Bio Link Taps" value="81" icon={<TrendingUp size={13} />} />
+        <StatRow label="Content" value="5 Posts / 108 Stories / 11 Reels" icon={<Eye size={13} />} />
+      </div>
+      <div className="mx-5 mb-3 rounded-xl border border-rose-100 overflow-hidden">
+        <div className="bg-rose-50 px-3 py-2"><p className="text-[10px] font-bold text-rose-600 uppercase tracking-wider">Views · Organic / Paid</p></div>
+        <div className="px-3 py-2.5 flex flex-col gap-1.5">
+          <StatRow label="Toplam Instagram Views" value="891.982" />
+          <StatRow label="Organik" value="343.982" change="+%292,4" changeType="up" />
+          <StatRow label="From Ads" value="548.000" change="-%31,4" changeType="down" />
+        </div>
+      </div>
+      <TopContentTable title="October Top Content · Hero + High Reach" items={[
+        { title: 'October Hero Content · Böbrek sağlığını korumak için belirtileri doğru yorumlamak...', value: 'Reach 70.196 · Views 245.715 · Likes 843 · Saves 225' },
+        { title: 'Meme kanseri yalnızca kadınları etkilemiyor...', value: 'Reach 22.026 · Views 24.376' },
+        { title: '@drburakhazine ile Meme Sağlığı üzerine...', value: 'Reach 21.062 · Views 22.911' },
+        { title: 'Gebelikte Meme Kanseri görülür mü?', value: 'Reach 20.176 · Views 22.678' },
+        { title: 'Tansiyon ölçümünüzde çıkan tek bir değer...', value: 'Views 9.494 · Likes 240 · Saves 24' },
+      ]} />
+      <InsightBox>
+        <p className="text-[11px] text-blue-700 leading-relaxed">Ekim’de Instagram görünürlüğünün yapısı belirgin biçimde değişti. Reklam kaynaklı görüntülemeler azalırken organik görüntülemeler güçlü şekilde arttı. Organic views +292,4% büyürken paid views -31,4% geriledi; bu değişim paid media’nın organik büyümeye neden olduğunu kanıtlamaz.</p>
+        <p className="text-[11px] text-blue-600 leading-relaxed">Reels açık ara en güçlü interaction formatı olmaya devam ediyor. Reels 2,3K, Stories 190, Posts 109, Live 0 interaction üretti. Format sıralaması: 1. Reels · 2. Stories · 3. Posts.</p>
+        <p className="text-[11px] text-blue-600 leading-relaxed">Böbrek sağlığı içeriği reach, views, likes and saves metriklerinin tamamında ayın açık ara en güçlü içeriği oldu. Medikal bilgi içeren kısa video içerikleri açık şekilde öne çıktı; içerik tek başına 245,7K görüntüleme, 843 reaksiyon ve 225 kaydetme üretti.</p>
+        <p className="text-[11px] text-blue-600 leading-relaxed">Meme sağlığı içeriklerinin birden fazla formatta 20K+ reach üretmesi, konu serisi yaklaşımının çalıştığını gösteriyor. Tansiyon içeriğinin 240 reaksiyon ve 24 save üretmesi, pratik sağlık bilgisinin kaydetme davranışı da ürettiğini gösteriyor.</p>
+        <p className="text-[11px] text-blue-600 leading-relaxed">Content production detail: 1 Motion Video · 3 AI Videos · 7 Production Videos. Follower base change: +1.403. Instagram Insights net followers: +1.272.</p>
+      </InsightBox>
+    </div>
+  );
+}
+
+function OctoberContent() {
+  return (
+    <div className="flex flex-col gap-6">
+      <div>
+        <h2 className="text-base font-bold text-gray-900 mb-0.5">Social Media Performance</h2>
+        <p className="text-xs text-gray-400">Ekim 2026 — Platform bazlı görünürlük, etkileşim ve büyüme · Raporlama dönemleri platforma göre farklıdır</p>
+      </div>
+
+      <FollowerSummaryCard
+        rows={OCTOBER_FOLLOWERS}
+        previousLabel="Eyl"
+        currentLabel="Eki"
+        summary="Ekim ayında takipçi büyümesinin ana sürücüsü Instagram oldu. Instagram takipçi tabanı 19.653’ten 21.056’ya yükselerek yaklaşık %7,1 büyüdü. TikTok %2,9, LinkedIn yaklaşık %1 büyürken YouTube takipçi sayısı yatay seyretti. Follower base change: +1.403. Instagram Insights net followers: +1.272."
+      />
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-4">
+        <KPICard label="Instagram Reach" value="476,2K" change="+%34,5" changeType="up" icon={<Instagram size={17} />} iconBg="bg-rose-50" iconColor="text-rose-500" />
+        <KPICard label="Instagram Interactions" value="4,3K" change="+%42,4" changeType="up" icon={<ThumbsUp size={17} />} iconBg="bg-rose-50" iconColor="text-rose-500" />
+        <KPICard label="TikTok Views" value="112,8K" change="+%17,7" changeType="up" icon={<Play size={17} />} iconBg="bg-gray-100" iconColor="text-gray-700" />
+        <KPICard label="YouTube Views" value="125.543" icon={<Youtube size={17} />} iconBg="bg-red-50" iconColor="text-red-500" />
+        <KPICard label="LinkedIn Impressions" value="8.335" change="+%624,8" changeType="up" icon={<Linkedin size={17} />} iconBg="bg-blue-50" iconColor="text-blue-700" />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <OctoberInstagramBlock />
+        <PlatformBlock
+          title="TikTok"
+          platformIcon={<Play size={17} />}
+          headerBg="bg-gray-50"
+          headerText="text-gray-700"
+          badgeBg="bg-gray-200"
+          badgeText="text-gray-700"
+          stats={[
+            { label: 'Video Views', value: '112,8K', change: '+%17,7', changeType: 'up', icon: <Play size={13} /> },
+            { label: 'Profile Views', value: '172', change: '-%3,9', changeType: 'down', icon: <Eye size={13} /> },
+            { label: 'Likes', value: '446', change: '+%4,2', changeType: 'up', icon: <ThumbsUp size={13} /> },
+            { label: 'Comments', value: '4', change: '-%66,7', changeType: 'down', icon: <MessageCircle size={13} /> },
+            { label: 'Shares', value: '83', change: '+%40,7', changeType: 'up', icon: <Share2 size={13} /> },
+            { label: 'Total Followers', value: '1.906', icon: <Users size={13} /> },
+            { label: 'Net Followers', value: '+55', change: '+18 / +%48,6', changeType: 'up', icon: <TrendingUp size={13} /> },
+          ]}
+          insight={<> <p className="text-[11px] text-blue-700 leading-relaxed">Platform reporting period: 7 Oct – 3 Nov. TikTok’ta da Instagram ile aynı Böbrek Sağlığı içeriği açık ara en güçlü sonuçları üretti; yaklaşık 64K view, 311 like ve 66 yeni follower elde etti.</p><p className="text-[11px] text-blue-600 leading-relaxed">İkinci güçlü içerik “Tansiyon ölçümünüzde çıkan tek bir değer...” oldu: 6.142 view, 46 like ve 6 yeni follower. Aktiflik: Pzt 00:00–01:00 · Sal 00:00–01:00 · Çar 21:00–22:00 · Per 00:00–01:00 · Cum 00:00–01:00 · Cmt 22:00–23:00 · Paz 20:00–21:00.</p></>}
+        />
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
+          <div className="px-5 py-4 flex items-center gap-3 bg-red-50/60">
+            <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-red-100"><span className="text-red-600"><Youtube size={17} /></span></div>
+            <h3 className="font-bold text-base text-red-700">YouTube</h3>
+            <span className="ml-auto text-[10px] font-semibold text-red-500 bg-red-100 px-2.5 py-0.5 rounded-full">Ekim 2026</span>
+          </div>
+          <div className="px-5 pt-1 pb-2">
+            <StatRow label="Views" value="125.543" icon={<Eye size={13} />} />
+            <StatRow label="Watch Time" value="823,4 saat" icon={<Clock size={13} />} />
+            <StatRow label="YouTube Analytics Subscriber Change" value="-32" changeType="down" icon={<TrendingDown size={13} />} />
+            <StatRow label="Total Subscribers" value="33.198" icon={<Users size={13} />} />
+            <StatRow label="Month-end difference" value="-27" changeType="down" icon={<TrendingDown size={13} />} />
+          </div>
+          <TopContentTable title="October Top Videos" items={[
+            { title: 'Şah Damarı Ultrasonu: İnme/Felç Riskini Gösterir...', value: '34.401 · 0:48 · 66,0 sa' },
+            { title: 'Doğum Korkusunu Azaltan Yöntem: Suda Doğum', value: '33.391 · 0:52 · 71,2 sa' },
+            { title: 'MS ve Bağırsak İlişkisi: Yeni Bulgular ve Araştırmalar...', value: '8.797 · 1:00 · 28,8 sa' },
+            { title: 'İdrarınız Size Ne Anlatıyor?', value: '3.375 · 0:48 · 25,4 sa' },
+            { title: 'Ayşe Tolga ile Sağlıklı Yaşam hakkında konuştuk', value: '2.749 · 0:19 · 7,0 sa' },
+          ]} />
+          <InsightBox><p className="text-[11px] text-blue-700 leading-relaxed">YouTube’da Ekim trafiğinin büyük bölümü sağlık eğitimi / uzman bilgi içeriklerinden geldi. Şah Damarı Ultrasonu ve Suda Doğum videoları birlikte ayın en yüksek view hacmini oluşturdu. YouTube Analytics -32 subscriber ile ay sonu toplam farkı -27 birbirinden ayrı raporlama sinyalleridir.</p></InsightBox>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+        <div className="px-5 py-4 flex items-center gap-3 bg-blue-50/60 border-b border-blue-100">
+          <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-blue-100"><span className="text-blue-700"><Linkedin size={17} /></span></div>
+          <h3 className="font-bold text-base text-blue-700">LinkedIn</h3>
+          <span className="ml-auto text-[10px] font-semibold text-blue-500 bg-blue-100 px-2.5 py-0.5 rounded-full">Son 30 gün</span>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-50">
+          {[
+            { label: 'Total Followers', value: '1.732', icon: <Users size={13} /> },
+            { label: 'New Followers', value: '+18', change: '+%20', icon: <TrendingUp size={13} /> },
+            { label: 'Impressions', value: '8.335', change: '+%624,8', icon: <Eye size={13} /> },
+            { label: 'Reactions', value: '95', change: '+%313', icon: <ThumbsUp size={13} /> },
+          ].map(stat => <div key={stat.label} className="flex flex-col items-center justify-center gap-1.5 px-4 py-4"><span className="text-blue-400">{stat.icon}</span><p className="text-lg font-bold text-gray-800 tabular-nums">{stat.value}</p><p className="text-[10px] text-gray-400 font-medium">{stat.label}</p>{stat.change && <span className="text-[9px] font-semibold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-full">{stat.change}</span>}</div>)}
+        </div>
+        <InsightBox><p className="text-[11px] text-blue-700 leading-relaxed">LinkedIn takipçi büyümesi sınırlı kalmasına rağmen Ekim’de içerik görünürlüğü ve reaksiyon hacmi güçlü arttı. MLPCARE çalışanlarına özel Meme Sağlığı Farkındalık Semineri, Liv Talks / kadın sağlığı etkinlikleri ve sağlıklı yaşam içerikleri ana içerik kümelerini oluşturdu.</p></InsightBox>
+      </div>
+
+      <PlatformBlock title="X / Twitter" platformIcon={<Send size={17} />} headerBg="bg-gray-50" headerText="text-gray-700" badgeBg="bg-gray-200" badgeText="text-gray-700" stats={[{ label: 'Followers', value: '—', icon: <Users size={13} /> }, { label: 'Change', value: '—', icon: <TrendingUp size={13} /> }]} insight="Twitter / X için Ekim verisi sağlanmadı; değerler uydurulmadı." />
+
+      <div className="flex gap-3 items-start bg-slate-800 rounded-2xl px-5 py-4">
+        <div className="w-8 h-8 bg-white/10 rounded-xl flex items-center justify-center shrink-0 mt-0.5"><Lightbulb size={15} className="text-white" /></div>
+        <div>
+          <p className="text-[10px] font-bold text-white/50 uppercase tracking-wider mb-1">Yönetim Özeti</p>
+          <p className="text-sm text-white/90 leading-relaxed">Ekim’de sosyal medya performansının ana büyüme motoru Instagram oldu. Takipçi tabanı yaklaşık %7 büyürken reach +%34,5 ve content interactions +%42,4 arttı. Organik Instagram görüntülemelerindeki +%292 artış, ayın en güçlü pozitif sinyallerinden biri oldu.</p>
+          <p className="text-xs text-white/60 leading-relaxed mt-1.5">TikTok view hacmi +%17,7 ve share hacmi +%40,7 büyürken Böbrek Sağlığı içeriği hem Instagram hem TikTok’ta ayın açık ara en güçlü içerik formatı oldu. YouTube 125,5K view ve 823 saat watch time üretirken subscriber tarafında sınırlı kayıp devam etti. LinkedIn’de follower büyümesi düşük olmasına rağmen görünürlük ve reaksiyonlar güçlü arttı.</p>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+        <div className="flex items-center gap-2 mb-4"><Lightbulb size={15} className="text-amber-500" /><h3 className="text-sm font-bold text-gray-800">Ekimde Ne Çalıştı?</h3></div>
+        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-3">
+          {[
+            ['1. HEALTH EDUCATION REELS', 'Böbrek Sağlığı ve Tansiyon içerikleri güçlü view + save + follower acquisition üretti.'],
+            ['2. BREAST HEALTH CONTENT SERIES', 'Meme sağlığı içerikleri birden fazla story / video formatında 20K+ reach seviyesine çıktı.'],
+            ['3. ORGANIC INSTAGRAM', 'Organic views +292,4%.'],
+            ['4. TIKTOK SHAREABILITY', 'Shares +40,7%.'],
+            ['5. LINKEDIN CORPORATE HEALTH CONTENT', 'Visibility and reactions strongly increased.'],
+          ].map(([title, desc]) => <div key={title} className="rounded-xl border border-gray-100 p-3"><p className="text-[10px] font-bold text-gray-700 leading-tight">{title}</p><p className="text-[11px] text-gray-500 leading-relaxed mt-1.5">{desc}</p></div>)}
+        </div>
+      </div>
+
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+        <div className="flex items-center gap-2 mb-4"><TrendingUp size={15} className="text-blue-500" /><h3 className="text-sm font-bold text-gray-800">Sonraki Aksiyonlar</h3></div>
+        <ol className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+          {[
+            'Böbrek Sağlığı formatını böbrek, tansiyon, idrar, kalp ve diyabet gibi yüksek merak alanlarında seri haline getir.',
+            'Pratik sağlık bilgisini save-oriented Reels formatında artır.',
+            'Meme Sağlığı içerik serisinin story + Reels + expert video kombinasyonunu diğer farkındalık konularına uygula.',
+            'Instagram organic growth momentumunu korumak için yüksek performanslı Reels formatını ölçekle.',
+            'TikTok’ta follower acquisition üreten sağlık bilgi videolarına öncelik ver.',
+            'YouTube’da yüksek view alan sağlık eğitimi videolarından Shorts ve sosyal medya cut-down’ları üret.',
+            'YouTube subscriber kaybını azaltmak için stronger subscribe CTA, series structure, end screen ve related-video chaining test et.',
+            'LinkedIn’de çalışan sağlığı, kurumsal wellbeing, etkinlik ve uzman içeriklerini artır.',
+          ].map((action, i) => <li key={i} className="text-[11px] text-gray-600 leading-relaxed flex items-start gap-2"><span className="w-5 h-5 rounded-full bg-slate-700 text-white text-[10px] font-bold flex items-center justify-center shrink-0">{i + 1}</span><span>{action}</span></li>)}
+        </ol>
+      </div>
+
+      <div className="flex gap-2.5 items-start bg-gray-50 border border-gray-100 rounded-xl px-4 py-3"><span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider shrink-0 mt-0.5">Yöntem</span><p className="text-[10px] text-gray-400 leading-relaxed">Instagram: 1–31 Ekim. TikTok: 7 Ekim–3 Kasım. LinkedIn: raporda sunulan son 30 gün. YouTube: Ekim dashboard verisi. Platform dönemleri birebir aynı olmadığı için karşılaştırmalar yön göstericidir.</p></div>
+    </div>
+  );
+}
+
 export default function SocialMediaDashboard() {
-  const [activeMonth, setActiveMonth] = useState<MonthKey>('august');
+  const [activeMonth, setActiveMonth] = useState<MonthKey>('october');
 
   return (
     <div className="flex flex-col gap-6">
@@ -873,6 +1083,8 @@ export default function SocialMediaDashboard() {
       {activeMonth === 'june' && <JuneContent />}
       {activeMonth === 'july' && <JulyContent />}
       {activeMonth === 'august' && <AugustContent />}
+      {activeMonth === 'september' && <SeptemberContent />}
+      {activeMonth === 'october' && <OctoberContent />}
     </div>
   );
 }
