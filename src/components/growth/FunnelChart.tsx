@@ -165,7 +165,7 @@ export default function FunnelChart({ data, prevData, signupAvailable }: FunnelC
         </div>
         <div>
           <p className="text-sm font-semibold text-gray-800">Product Page View → App Download → Sign-up Funnel</p>
-          <p className="text-xs text-gray-400">Ağustos 2026 · Platform bazlı dönüşüm analizi · Temmuz ile karşılaştırmalı</p>
+          <p className="text-xs text-gray-400">Ekim 2026 · Final · Platform bazlı dönüşüm analizi · Eylül ile karşılaştırmalı</p>
         </div>
       </div>
 
@@ -198,16 +198,19 @@ export default function FunnelChart({ data, prevData, signupAvailable }: FunnelC
         <Lightbulb size={13} className="text-blue-500 mt-0.5 shrink-0" />
         <div className="flex flex-col gap-1.5">
           <p className="text-[11px] text-blue-700 leading-relaxed">
-            Ağustos ayında App Store Product Page View hacmi Temmuz'a göre %48,6 gerilerken download hacmi yalnızca %6,2 azaldı. Buna bağlı olarak Product Page View → Download dönüşümü %5,2'den %9,42'ye yükseldi. Store sayfasına gelen trafik daha düşük olsa da indirme verimliliği belirgin şekilde güçlendi.
+            Ekim ayında Android tarafında 6.705 Product Page View’den 2.710 download elde edildi. Product Page View hacmi Eylül’e göre %5,2 azalmasına rağmen download hacmi %45,9 arttı.
           </p>
           <p className="text-[11px] text-blue-700 leading-relaxed">
-            Buna karşılık Download → Sign-up dönüşümü %35,4'ten %23,79'a geriledi ve iOS sign-up hacmi %36,9 düştü. Bu nedenle Ağustos'ta iOS tarafındaki temel optimizasyon alanı store conversion'dan çok indirme sonrası kayıt adımıdır.
+            PPV → Download dönüşüm oranı %26,25’ten %40,42’ye yükselerek +14,17 puan iyileşti. Ekim Android büyümesindeki ana kazanım trafik hacminden değil, store conversion efficiency’den geldi.
           </p>
           <p className="text-[11px] text-blue-600 leading-relaxed">
-            Ağustos ayında Android tarafında 11.433 Product Page View ve 2.038 download elde edildi (PPV→Download %17,83, Download→Sign-up %7,95, PPV→Sign-up %1,42). Source breakdown: Ads & Referrals 1.219 (%59,8), Google Play Explore 778 (%38,2), Search 41 (%2,0). Android sign-up 162 olarak gerçekleşti.
+            Downloadların %95,1’i Ads & Referrals kaynaklı gerçekleşirken Browse / Explore payı %4,9’a geriledi. Bu nedenle büyümenin ağırlıklı olarak paid/referral acquisition tarafından taşındığı görülüyor.
           </p>
           <p className="text-[11px] text-blue-600 leading-relaxed">
-            Google Play tarafında store conversion güçlü görünürken, indirme sonrası kayıt dönüşümü %7,95 seviyesinde gerçekleşti. Ağustos'ta temel optimizasyon alanı artık yalnızca store download conversion değil, Download → Sign-up adımıdır.
+            Android acquisition büyümesi sign-up tarafına da yansıdı. Ekim’de Android sign-up 141’den 307’ye çıkarak Eylül’e göre yaklaşık %118 arttı.
+          </p>
+          <p className="text-[11px] text-blue-600 leading-relaxed">
+            Android Ekim performansı güçlü kapandı: PPV %5 azalmasına rağmen download %46 büyüdü ve store conversion %40,42’ye ulaştı. Android sign-up da 141’den 307’ye yükseldi. Ancak acquisition mix’in %95’inin Ads & Referrals kaynaklı olması organik store keşfinin zayıfladığını gösteriyor.
           </p>
           <p className="text-[11px] text-blue-600 leading-relaxed">
             Ağustos iOS downloadlarının %78,4'ü App Referrer ve Web Referrer kaynaklarından geldi. App Referrer %19,3 gerilerken Web Referrer %15,7 ve App Store Search %12,3 büyüdü. Search kaynaklı download hacmi artmasına rağmen toplam acquisition hâlâ ağırlıklı olarak referral trafiği tarafından taşınıyor.

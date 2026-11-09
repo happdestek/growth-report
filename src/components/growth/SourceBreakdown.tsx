@@ -42,10 +42,10 @@ const PLATFORM_INSIGHTS: Record<string, { september: string[]; augustContext: st
   android: {
     september: [
       'Eylül ayı Android tarafında 7.073 Product Page View ve 1.857 download ile tamamlandı; PPV → Download dönüşümü %26,25 oldu. Ads & Referrals 1.590 download ile toplam hacmin %85,6\'sını oluştururken Browse / Explore %14,4 ve Search %0,0 pay aldı.',
-      'Ekim ayında Android tarafında 2.570 download gerçekleşti. Ortak kanal sınıflandırmasına göre Ads & Referrals 2.384 download ile toplam hacmin %92,8\'ini oluştururken Browse / Explore %6,4, Search ise %0,9 pay aldı.',
-      'Eylül\'e kıyasla Ads & Referrals payı %85,6\'dan %92,8\'e yükselirken Browse / Explore payı %14,4\'ten %6,4\'e geriledi. Bu nedenle Ekim\'deki güçlü download büyümesinin ağırlıklı olarak paid/referral acquisition tarafından taşındığı görülüyor.',
+      'Ekim ayında Android tarafında 2.710 download gerçekleşti. Ads & Referrals 2.578 download ile toplam hacmin %95,1\'ini oluştururken Browse / Explore 132 download ile %4,9, Search ise %0,0 pay aldı.',
+      'Ekim’de Android acquisition mix daha da paid/referral ağırlıklı hale geldi. Ads & Referrals payı %85,6\'dan %95,1\'e yükselirken Browse / Explore payı %14,4\'ten %4,9\'a geriledi. Search %0,0 ile stabil kaldı.',
     ],
-    augustContext: 'Android Ekim performansı hem hacim hem conversion efficiency açısından güçlü kapandı. Product Page View %8,2 azalmasına rağmen download %38,4 arttı ve PPV → Download oranı %26,25\'ten %39,60\'a yükseldi. Ancak acquisition mix\'in %92,8\'inin Ads & Referrals kaynaklı olması, organik Browse / Explore katkısının Eylül\'e göre zayıfladığını gösteriyor.',
+    augustContext: 'Android Ekim performansı güçlü kapandı: 6.705 Product Page View’den 2.710 download elde edildi. PPV → Download dönüşümü %26,25’ten %40,42’ye yükselerek +14,17 puan iyileşti. Downloadların %95,1’i Ads & Referrals kaynaklı gerçekleşirken Browse / Explore payı %4,9’a geriledi.',
   },
   ios: {
     september: [

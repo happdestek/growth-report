@@ -84,12 +84,12 @@ export default function AppGrowthDashboard({ embedded = false }: { embedded?: bo
                 <Bot size={13} /> Android
               </div>
               <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-bold text-gray-900 tabular-nums">2.570</span>
+                <span className="text-2xl font-bold text-gray-900 tabular-nums">2.710</span>
                 <span className="text-xs text-gray-400">downloads</span>
               </div>
               <span className="text-[10px] font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded-full w-fit">Ekim 2026 · Final</span>
               <p className="text-[11px] text-gray-500 leading-relaxed">
-                Eylül finali: 1.857 downloads · 7.073 PPV · %26,25 conversion. Ekim finalinde 2.570 downloads ve 6.490 PPV ile PPV → Download %39,60 oldu; download hacmi %38,4 arttı.
+                Eylül finali: 1.857 downloads · 7.073 PPV · %26,25 conversion. Ekim finalinde 2.710 downloads ve 6.705 PPV ile PPV → Download %40,42 oldu; PPV %5,2 azalırken download hacmi %45,9 arttı.
               </p>
             </div>
             <div className="rounded-xl border border-orange-100 bg-orange-50/50 p-4 flex flex-col gap-2">

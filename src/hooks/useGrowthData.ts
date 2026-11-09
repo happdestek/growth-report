@@ -209,52 +209,49 @@ export function useGrowthData(filters: GrowthFilters) {
     const newMembersRows = newMembersData ?? [];
     setNewMembers(newMembersRows);
 
-    if (currRows.length > 0) {
-      const iosDownloads = currRows.reduce((s, d) => s + d.ios_downloads, 0);
-      const androidDownloads = currRows.reduce((s, d) => s + d.android_downloads, 0);
+    if (octRows.length > 0) {
+      const iosDownloads = octRows.reduce((s, d) => s + d.ios_downloads, 0);
+      const androidDownloads = octRows.reduce((s, d) => s + d.android_downloads, 0);
       const totalAppDL = iosDownloads + androidDownloads;
-      const currMonth = curr.start;
-      const currMemberRow = newMembersRows.find(r => r.month_start === currMonth);
-      const iosSignups = currMemberRow ? currMemberRow.ios : 0;
-      const androidSignups = currMemberRow ? currMemberRow.android : 0;
+      const octMemberRow = newMembersRows.find(r => r.month_start === '2026-10-01');
+      const iosSignups = octMemberRow ? octMemberRow.ios : 0;
+      const androidSignups = octMemberRow ? octMemberRow.android : 0;
       const totalSignups = iosSignups + androidSignups;
       const appSignups = totalSignups;
       const activations = Math.round(appSignups * 0.64);
-      const currSignupAvailable = !!currMemberRow;
+      const currSignupAvailable = !!octMemberRow;
 
-      // August 2026 product page views (store listing data)
-      const iosPPV = 6780;
-      const androidPPV = 11433;
+      const iosPPV = 10003;
+      const androidPPV = 6705;
 
       setFunnelData({
         downloads: totalAppDL,
         registrations: appSignups,
         activations,
-        total: { productPageViews: iosPPV + androidPPV, downloads: totalAppDL,   signups: totalSignups   },
-        ios:   { productPageViews: iosPPV,              downloads: iosDownloads,  signups: iosSignups     },
-        android: { productPageViews: androidPPV,        downloads: androidDownloads, signups: androidSignups },
+        total: { productPageViews: iosPPV + androidPPV, downloads: totalAppDL, signups: totalSignups },
+        ios: { productPageViews: iosPPV, downloads: iosDownloads, signups: iosSignups },
+        android: { productPageViews: androidPPV, downloads: androidDownloads, signups: androidSignups },
       });
       setSignupAvailable(currSignupAvailable);
     }
 
-    if (prevRows.length > 0) {
-      const prevIosDownloads     = prevRows.reduce((s, d) => s + d.ios_downloads,     0);
-      const prevAndroidDownloads = prevRows.reduce((s, d) => s + d.android_downloads, 0);
-      const prevTotalDL          = prevIosDownloads + prevAndroidDownloads;
-      const prevMemberRow        = newMembersRows.find(r => r.month_start === prev.start);
-      const prevIosSignups       = prevMemberRow ? prevMemberRow.ios     : 0;
-      const prevAndroidSignups   = prevMemberRow ? prevMemberRow.android : 0;
-      const prevTotalSignups     = prevIosSignups + prevAndroidSignups;
-      // July 2026 product page views (store listing data) — full month
-      const prevIosPPV     = 13190;
-      const prevAndroidPPV = 15654;
+    if (sepRows.length > 0) {
+      const prevIosDownloads = sepRows.reduce((s, d) => s + d.ios_downloads, 0);
+      const prevAndroidDownloads = sepRows.reduce((s, d) => s + d.android_downloads, 0);
+      const prevTotalDL = prevIosDownloads + prevAndroidDownloads;
+      const sepMemberRow = newMembersRows.find(r => r.month_start === '2026-09-01');
+      const prevIosSignups = sepMemberRow ? sepMemberRow.ios : 0;
+      const prevAndroidSignups = sepMemberRow ? sepMemberRow.android : 0;
+      const prevTotalSignups = prevIosSignups + prevAndroidSignups;
+      const prevIosPPV = 5333;
+      const prevAndroidPPV = 7073;
       setPrevFunnelData({
         downloads: prevTotalDL,
         registrations: prevTotalSignups,
         activations: Math.round(prevTotalSignups * 0.64),
-        total:   { productPageViews: prevIosPPV + prevAndroidPPV, downloads: prevTotalDL,          signups: prevTotalSignups   },
-        ios:     { productPageViews: prevIosPPV,                  downloads: prevIosDownloads,     signups: prevIosSignups     },
-        android: { productPageViews: prevAndroidPPV,              downloads: prevAndroidDownloads, signups: prevAndroidSignups },
+        total: { productPageViews: prevIosPPV + prevAndroidPPV, downloads: prevTotalDL, signups: prevTotalSignups },
+        ios: { productPageViews: prevIosPPV, downloads: prevIosDownloads, signups: prevIosSignups },
+        android: { productPageViews: prevAndroidPPV, downloads: prevAndroidDownloads, signups: prevAndroidSignups },
       });
     }
 
