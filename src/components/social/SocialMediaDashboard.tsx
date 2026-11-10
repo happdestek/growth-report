@@ -1124,7 +1124,7 @@ function OctoberContent() {
         <KPICard label="Instagram Reach" value="476,2K" change="+%34,5" changeType="up" icon={<Instagram size={17} />} iconBg="bg-rose-50" iconColor="text-rose-500" />
         <KPICard label="Instagram Interactions" value="4,3K" change="+%42,4" changeType="up" icon={<ThumbsUp size={17} />} iconBg="bg-rose-50" iconColor="text-rose-500" />
         <KPICard label="TikTok Views" value="112,8K" change="+%17,7" changeType="up" icon={<Play size={17} />} iconBg="bg-gray-100" iconColor="text-gray-700" />
-        <KPICard label="YouTube Views" value="125.543" icon={<Youtube size={17} />} iconBg="bg-red-50" iconColor="text-red-500" />
+        <KPICard label="YouTube Views" value="125.543" change="-%35,2" changeType="down" icon={<Youtube size={17} />} iconBg="bg-red-50" iconColor="text-red-500" />
         <KPICard label="LinkedIn Impressions" value="8.335" change="+%624,8" changeType="up" icon={<Linkedin size={17} />} iconBg="bg-blue-50" iconColor="text-blue-700" />
       </div>
 
