@@ -2,6 +2,7 @@ import { TrendingUp, TrendingDown, Star, AlertTriangle, Apple, Bot, Minus } from
 
 interface KeywordRankRow {
   keyword: string;
+  volume?: number;
   prev: number;
   current: number;
   change: number;
@@ -34,7 +35,7 @@ function InsightNote({ text, color = 'blue' }: { text: string; color?: 'blue' | 
   );
 }
 
-function TopKeywordsTable({ title, rows, insight }: { title: string; rows: KeywordRankRow[]; insight: string }) {
+function TopKeywordsTable({ title, rows, insight, showVolume = false }: { title: string; rows: KeywordRankRow[]; insight: string; showVolume?: boolean }) {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
@@ -46,6 +47,7 @@ function TopKeywordsTable({ title, rows, insight }: { title: string; rows: Keywo
           <thead>
             <tr className="bg-gray-50 border-b border-gray-100">
               <th className="text-left px-3 py-2.5 font-semibold text-gray-400 uppercase tracking-wider">Keyword</th>
+              {showVolume && <th className="text-right px-3 py-2.5 font-semibold text-gray-400 uppercase tracking-wider">Volume</th>}
               <th className="text-right px-3 py-2.5 font-semibold text-gray-400 uppercase tracking-wider">Önceki</th>
               <th className="text-right px-3 py-2.5 font-semibold text-gray-400 uppercase tracking-wider">Güncel</th>
               <th className="text-right px-3 py-2.5 font-semibold text-gray-400 uppercase tracking-wider">Değişim</th>
@@ -55,6 +57,7 @@ function TopKeywordsTable({ title, rows, insight }: { title: string; rows: Keywo
             {rows.map(r => (
               <tr key={r.keyword} className="hover:bg-gray-50/60 transition-colors">
                 <td className="px-3 py-2.5 font-medium text-gray-700">{r.keyword}</td>
+                {showVolume && <td className="px-3 py-2.5 text-right text-gray-400 tabular-nums">{r.volume ?? '—'}</td>}
                 <td className="px-3 py-2.5 text-right text-gray-400 tabular-nums">{r.prev}</td>
                 <td className="px-3 py-2.5 text-right tabular-nums">
                   <span className={`inline-flex items-center justify-center w-8 h-6 rounded-md font-bold text-xs ${r.current <= 3 ? 'bg-emerald-100 text-emerald-700' : r.current <= 10 ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-600'}`}>
@@ -77,7 +80,7 @@ function TopKeywordsTable({ title, rows, insight }: { title: string; rows: Keywo
   );
 }
 
-function RisingKeywordsTable({ title, rows, insight, isWatchlist = false, isStable = false }: { title: string; rows: KeywordRankRow[]; insight: string; isWatchlist?: boolean; isStable?: boolean }) {
+function RisingKeywordsTable({ title, rows, insight, isWatchlist = false, isStable = false, showVolume = false }: { title: string; rows: KeywordRankRow[]; insight: string; isWatchlist?: boolean; isStable?: boolean; showVolume?: boolean }) {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
@@ -95,6 +98,7 @@ function RisingKeywordsTable({ title, rows, insight, isWatchlist = false, isStab
           <thead>
             <tr className="bg-gray-50 border-b border-gray-100">
               <th className="text-left px-3 py-2.5 font-semibold text-gray-400 uppercase tracking-wider">Keyword</th>
+              {showVolume && <th className="text-right px-3 py-2.5 font-semibold text-gray-400 uppercase tracking-wider">Volume</th>}
               <th className="text-right px-3 py-2.5 font-semibold text-gray-400 uppercase tracking-wider">Önceki</th>
               <th className="text-right px-3 py-2.5 font-semibold text-gray-400 uppercase tracking-wider">Güncel</th>
               <th className="text-right px-3 py-2.5 font-semibold text-gray-400 uppercase tracking-wider">Değişim</th>
@@ -104,6 +108,7 @@ function RisingKeywordsTable({ title, rows, insight, isWatchlist = false, isStab
             {rows.map(r => (
               <tr key={r.keyword} className="hover:bg-gray-50/60 transition-colors">
                 <td className="px-3 py-2.5 font-medium text-gray-700">{r.keyword}</td>
+                {showVolume && <td className="px-3 py-2.5 text-right text-gray-400 tabular-nums">{r.volume ?? '—'}</td>}
                 <td className="px-3 py-2.5 text-right text-gray-400 tabular-nums">{r.prev === -1 ? <span className="text-gray-300">—</span> : r.prev}</td>
                 <td className="px-3 py-2.5 text-right font-semibold tabular-nums">
                   {r.current === -1
@@ -133,57 +138,51 @@ function RisingKeywordsTable({ title, rows, insight, isWatchlist = false, isStab
   );
 }
 
-// 02/11/2026 snapshot
+// App Store keyword snapshot: 03/11/2026 → 09/11/2026
 const APP_STORE_KPIS: ASOKpiCard[] = [
-  { label: 'Top 1 Rankings', value: 0 },
+  { label: 'Top 1 Rankings', value: 1 },
   { label: 'Top 10 Rankings', value: 6 },
-  { label: 'Top 30 Rankings', value: 11 },
-  { label: 'Top 100 Rankings', value: 20 },
+  { label: 'Top 30 Rankings', value: 10 },
+  { label: 'Top 100 Rankings', value: 16 },
   { label: 'Ortalama Puan', value: '4.64' },
 ];
 
-// Çekirdek / Top keyword'ler (02/11/2026)
 const APP_STORE_TOP: KeywordRankRow[] = [
-  { keyword: 'checkup',            prev: 2,  current: 2,  change: 0  },
-  { keyword: 'evde doktor',        prev: 2,  current: 2,  change: 0  },
-  { keyword: 'check up',           prev: 3,  current: 3,  change: 0  },
-  { keyword: 'online muayene',     prev: 5,  current: 5,  change: 0  },
-  { keyword: 'medical park',       prev: 7,  current: 6,  change: 1  },
-  { keyword: 'check-up',           prev: 10, current: 11, change: -1 },
-  { keyword: 'happ',               prev: 14, current: 13, change: 1  },
-  { keyword: 'sağlık hizmeti',     prev: 20, current: 13, change: 7  },
-  { keyword: 'sağlık hizmetleri',  prev: 23, current: 14, change: 9  },
-  { keyword: 'online diyetisyen',  prev: 27, current: 15, change: 12 },
-  { keyword: 'online terapi',      prev: 65, current: 16, change: 49 },
+  { keyword: 'check up',          volume: 5,  prev: 2,   current: 1,   change: 1 },
+  { keyword: 'checkup',           volume: 5,  prev: 2,   current: 2,   change: 0 },
+  { keyword: 'evde doktor',       volume: 9,  prev: 2,   current: 2,   change: 0 },
+  { keyword: 'medical park',      volume: 52, prev: 6,   current: 6,   change: 0 },
+  { keyword: 'online muayene',    volume: 9,  prev: 5,   current: 6,   change: -1 },
+  { keyword: 'check-up',          volume: 5,  prev: 10,  current: 9,   change: 1 },
+  { keyword: 'sağlık hizmeti',    volume: 5,  prev: 24,  current: 15,  change: 9 },
+  { keyword: 'happ',              volume: 39, prev: 11,  current: 20,  change: -9 },
 ];
 
-// Yükselen keyword'ler (27/10 → 02/11/2026)
 const APP_STORE_RISING: KeywordRankRow[] = [
-  { keyword: 'park',              prev: 204, current: 84,  change: 120 },
-  { keyword: 'online doktor',     prev: 203, current: 119, change: 84  },
-  { keyword: 'terapi',            prev: 110, current: 45,  change: 65  },
-  { keyword: 'hemşire',           prev: 135, current: 78,  change: 57  },
-  { keyword: 'eczaneler',         prev: 248, current: 194, change: 54  },
-  { keyword: 'online terapi',     prev: 65,  current: 16,  change: 49  },
-  { keyword: 'diyetisyen',        prev: 98,  current: 65,  change: 33  },
-  { keyword: 'sağlık uygulaması', prev: 116, current: 83,  change: 33  },
-  { keyword: 'hizmetleri',        prev: 218, current: 192, change: 26  },
-  { keyword: 'neyim var',         prev: 94,  current: 69,  change: 25  },
-  { keyword: 'doktor',            prev: 122, current: 97,  change: 25  },
-  { keyword: 'hizmet',            prev: 223, current: 207, change: 16  },
-  { keyword: 'online psikolog',   prev: 55,  current: 40,  change: 15  },
-  { keyword: 'online diyetisyen', prev: 27,  current: 15,  change: 12  },
-  { keyword: 'kan alma',          prev: 57,  current: 46,  change: 11  },
+  { keyword: 'diyetisyen',        volume: 15, prev: 91,  current: 66,  change: 25 },
+  { keyword: 'neyim var',         volume: 11, prev: 115, current: 91,  change: 24 },
+  { keyword: 'sağlık uygulaması', volume: 5,  prev: 83,  current: 60,  change: 23 },
+  { keyword: 'nöbetçi eczane',    volume: 5,  prev: 213, current: 197, change: 16 },
+  { keyword: 'sağlık hizmeti',    volume: 5,  prev: 24,  current: 15,  change: 9 },
+  { keyword: 'check up',          volume: 5,  prev: 2,   current: 1,   change: 1 },
+  { keyword: 'check-up',          volume: 5,  prev: 10,  current: 9,   change: 1 },
 ];
 
-// Yeni görünürlük kazanan keyword'ler (02/11/2026) — bu snapshot'ta yeni giriş yok
-const APP_STORE_NEW: KeywordRankRow[] = [];
+const APP_STORE_NEW: KeywordRankRow[] = [
+  { keyword: 'doktor',            volume: 23, prev: -1,  current: 129, change: 0 },
+  { keyword: 'check',             volume: 5,  prev: -1,  current: 234, change: 0 },
+];
 
-// Zayıflayan / takip edilecek keyword'ler (27/10 → 02/11/2026)
 const APP_STORE_WATCHLIST: KeywordRankRow[] = [
-  { keyword: 'nöbetçi',        prev: 165, current: 204, change: -39 },
-  { keyword: 'nöbetçi eczane', prev: 186, current: 211, change: -25 },
-  { keyword: 'check-up',       prev: 10,  current: 11,  change: -1  },
+  { keyword: 'park',              volume: 30, prev: 84,  current: 238, change: -154 },
+  { keyword: 'terapi',            volume: 19, prev: 45,  current: 116, change: -71 },
+  { keyword: 'online doktor',     volume: 5,  prev: 152, current: 221, change: -69 },
+  { keyword: 'online terapi',     volume: 15, prev: 18,  current: 63,  change: -45 },
+  { keyword: 'hizmetleri',        volume: 11, prev: 192, current: 225, change: -33 },
+  { keyword: 'kan alma',          volume: 8,  prev: 46,  current: 70,  change: -24 },
+  { keyword: 'eczaneler',         volume: 47, prev: 232, current: 247, change: -15 },
+  { keyword: 'online psikolog',   volume: 5,  prev: 46,  current: 58,  change: -12 },
+  { keyword: 'happ',               volume: 39, prev: 11,  current: 20,  change: -9 },
 ];
 
 // 02/11/2026 snapshot
@@ -305,12 +304,14 @@ function StoreSection({
           title="En Güçlü Keyword'ler"
           rows={topRows}
           insight={topInsight}
+          showVolume={isApp}
         />
         <div className="flex flex-col gap-5">
           <RisingKeywordsTable
             title={risingTitle}
             rows={risingRows}
             insight={risingInsight}
+            showVolume={isApp}
           />
           {stableRows && stableRows.length > 0 && (
             <RisingKeywordsTable
@@ -318,6 +319,7 @@ function StoreSection({
               rows={stableRows}
               insight={stableInsight ?? ''}
               isStable
+              showVolume={isApp}
             />
           )}
           {newRows && newRows.length > 0 && (
@@ -325,6 +327,7 @@ function StoreSection({
               title="Yeni Görünürlük Kazanımları"
               rows={newRows}
               insight={newInsight ?? ''}
+              showVolume={isApp}
             />
           )}
           <RisingKeywordsTable
@@ -332,6 +335,7 @@ function StoreSection({
             rows={watchlistRows}
             insight={watchlistInsight}
             isWatchlist
+            showVolume={isApp}
           />
         </div>
       </div>
@@ -355,17 +359,17 @@ export default function ASOSection() {
       <StoreSection
         store="appstore"
         kpis={APP_STORE_KPIS}
-        note="2 Kasım itibarıyla App Store keyword performansında geniş tabanlı bir iyileşme görülüyor. Core keyword'ler güçlü konumlarını korurken generic sağlık ve hizmet sorgularında belirgin yükselişler yaşandı. Haftanın en güçlü hareketleri 'park' +120, 'online doktor' +84, 'terapi' +65, 'hemşire' +57, 'eczaneler' +54 ve 'online terapi' +49 oldu. Buna karşılık 'nöbetçi' -39 ve 'nöbetçi eczane' -25 ile ana takip alanları olarak öne çıktı. App Store ASO tarafında Kasım başlangıcında olumlu bir momentum oluştu. Ana marka ve hizmet keyword'leri Top 20 görünürlüğünü korurken doktor, terapi, diyetisyen, sağlık uygulaması ve eczane ilişkili generic sorguların önemli bölümünde sıralama kazanımları görüldü. Bir sonraki takipte özellikle bu yükselişlerin kalıcı olup olmadığı ve Nöbetçi Eczane keyword setindeki gerilemenin devam edip etmediği izlenmeli."
+        note="9 Kasım itibarıyla App Store keyword performansında core görünürlük güçlü kaldı; 'check up' #1'e yükselirken 'checkup' #2 ve 'evde doktor' #2 seviyesini korudu. Haftanın en belirgin kazanımları 'diyetisyen' +25, 'neyim var' +24, 'sağlık uygulaması' +23, 'nöbetçi eczane' +16 ve 'sağlık hizmeti' +9 oldu. Buna karşılık 'park' -154, 'terapi' -71, 'online doktor' -69 ve 'online terapi' -45 ile önceki haftanın yükselen keyword'leri bu snapshot'ta belirgin gerileme yaşadı. İki yeni keyword sıralamaya girdi: 'doktor' (#129) ve 'check' (#234). Core görünürlük korunurken generic sorgulardaki volatilite izlenmeli; 'park', 'terapi' ve 'online doktor' kayıplarının kalıcı olup olmadığı bir sonraki takipte öncelikli izleme alanı."
         topRows={APP_STORE_TOP}
-        topInsight="App Store'da ana hizmet ve marka keyword'leri güçlü görünürlüğünü koruyor. Check-Up varyasyonları Top 3–11 bandında kalırken 'medical park' #6, 'happ' #13 seviyesinde yer alıyor."
+        topInsight="App Store'da core görünürlük güçlü: 'check up' #1, 'checkup' #2, 'evde doktor' #2, 'medical park' #6, 'online muayene' #6, 'check-up' #9, 'sağlık hizmeti' #15 ve 'happ' #20 seviyesinde. Top 10'da 6 keyword yer alıyor."
         risingRows={APP_STORE_RISING}
-        risingInsight="Haftanın en güçlü hareketleri 'park' +120, 'online doktor' +84, 'terapi' +65, 'hemşire' +57, 'eczaneler' +54 ve 'online terapi' +49 oldu. 'diyetisyen' +33, 'sağlık uygulaması' +33, 'hizmetleri' +26, 'neyim var' +25 ve 'doktor' +25 ile geniş tabanlı yükseliş görüldü."
+        risingInsight="Haftanın en güçlü yükselişleri: 'diyetisyen' +25, 'neyim var' +24, 'sağlık uygulaması' +23, 'nöbetçi eczane' +16 ve 'sağlık hizmeti' +9. İki yeni keyword sıralamaya girdi: 'doktor' (#129) ve 'check' (#234)."
         newRows={APP_STORE_NEW}
         newInsight=""
         watchlistRows={APP_STORE_WATCHLIST}
-        watchlistInsight="Bu snapshot'ta yalnızca üç keyword gerileme gösterdi: 'nöbetçi' -39, 'nöbetçi eczane' -25 ve 'check-up' -1. Nöbetçi Eczane keyword seti bir sonraki takipte öncelikli izleme alanı."
-        risingTitle="Yükselen Keyword'ler (27/10 → 02/11/2026)"
-        dateLabel="02/11/2026"
+        watchlistInsight="Önceki haftanın yükselen keyword'leri bu snapshot'ta geriledi: 'park' -154, 'terapi' -71, 'online doktor' -69, 'online terapi' -45, 'hizmetleri' -33 ve 'kan alma' -24. Bu kayıpların kalıcı olup olmadığı bir sonraki takipte öncelikli izleme alanı."
+        risingTitle="Yükselen Keyword'ler (03/11 → 09/11/2026)"
+        dateLabel="09/11/2026"
       />
 
       <StoreSection
