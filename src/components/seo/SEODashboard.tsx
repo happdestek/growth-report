@@ -1110,34 +1110,113 @@ export default function SEODashboard() {
             </div>
           </div>
 
-          {/* 5 — Priority Summary */}
+          {/* 5 — Alınan Aksiyonlar & Sıradaki Adımlar */}
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-            <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">5 — Priority Summary</p>
-            <div className="overflow-x-auto rounded-xl border border-gray-100">
-              <table className="w-full text-xs border-collapse">
-                <thead>
-                  <tr className="bg-gray-50">
-                    <th className="text-left px-3 py-2.5 font-semibold text-gray-500 uppercase tracking-wider">Priority</th>
-                    <th className="text-left px-3 py-2.5 font-semibold text-gray-500 uppercase tracking-wider">Action</th>
-                    <th className="text-right px-3 py-2.5 font-semibold text-gray-500 uppercase tracking-wider">Expected Impact</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { pri: 'Bu hafta', priColor: 'bg-red-100 text-red-700', action: 'Canonical / cannibalization temizliği', impact: 'Çok yüksek', impactColor: 'text-red-600 font-semibold' },
-                    { pri: 'Bu ay', priColor: 'bg-amber-100 text-amber-700', action: 'Nöbetçi Eczane şehir içeriklerinin güçlendirilmesi', impact: 'Yüksek', impactColor: 'text-amber-600 font-semibold' },
-                    { pri: 'Bu ay', priColor: 'bg-amber-100 text-amber-700', action: 'Kaybedilen blog keyword\'lerinin güncellenmesi', impact: 'Orta–Yüksek', impactColor: 'text-amber-600 font-semibold' },
-                    { pri: 'Sonraki adım', priColor: 'bg-emerald-100 text-emerald-700', action: 'Cloudflare bot / cache / CWV kontrolleri', impact: 'Teknik risk azaltma', impactColor: 'text-gray-600' },
-                    { pri: 'Sonraki adım', priColor: 'bg-emerald-100 text-emerald-700', action: 'Şehir landing page structured-data iyileştirmeleri', impact: 'SEO görünürlüğü desteği', impactColor: 'text-gray-600' },
-                  ].map((row, i) => (
-                    <tr key={i} className="border-t border-gray-100 hover:bg-gray-50/60 transition-colors">
-                      <td className="px-3 py-2.5"><span className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${row.priColor}`}>{row.pri}</span></td>
-                      <td className="px-3 py-2.5 text-gray-700 font-medium">{row.action}</td>
-                      <td className={`px-3 py-2.5 text-right tabular-nums ${row.impactColor}`}>{row.impact}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">5 — Aksiyon Takibi</p>
+
+            {/* Group 1: Alınan Aksiyonlar */}
+            <div className="mb-5">
+              <p className="text-xs font-bold text-gray-700 mb-3">Alınan Aksiyonlar</p>
+              <div className="flex flex-col gap-2.5">
+                {/* Blog içerik üretimi */}
+                <div className="rounded-xl border border-gray-100 bg-gray-50/60 px-4 py-3">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <p className="text-xs font-bold text-gray-800">Blog İçerik Üretimi</p>
+                    <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">ACTIVE</span>
+                  </div>
+                  <p className="text-[11px] text-gray-600 leading-relaxed">Mustafa Bey ile blog içerikleri için agent yapısı kuruldu.</p>
+                  <p className="text-[10px] text-gray-400 leading-relaxed mt-1">SEO içerik üretimini ve optimizasyon sürecini ölçeklemek.</p>
+                  <p className="text-[10px] text-gray-400 leading-relaxed mt-1">Blog içeriklerine kaynak / referans alanları eklendi.</p>
+                </div>
+
+                {/* Nöbetçi Eczane — App Conversion */}
+                <div className="rounded-xl border border-gray-100 bg-gray-50/60 px-4 py-3">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <p className="text-xs font-bold text-gray-800">Nöbetçi Eczane — App Conversion</p>
+                    <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">LIVE</span>
+                  </div>
+                  <p className="text-[11px] text-gray-600 leading-relaxed">Nöbetçi Eczane sayfalarına Happ uygulamasına yönlendiren popup eklendi.</p>
+                  <p className="text-[10px] text-emerald-600 font-medium leading-relaxed mt-1">Yaklaşık 1,1K request alındı.</p>
+                  <p className="text-[10px] text-gray-400 leading-relaxed mt-1">Organik Nöbetçi Eczane trafiğini App Download / acquisition kanalına dönüştürmek.</p>
+                </div>
+
+                {/* Nöbetçi Eczane — Paid SEO Support */}
+                <div className="rounded-xl border border-gray-100 bg-gray-50/60 px-4 py-3">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <p className="text-xs font-bold text-gray-800">Nöbetçi Eczane — Paid SEO Support</p>
+                    <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">ACTIVE</span>
+                  </div>
+                  <p className="text-[11px] text-gray-600 leading-relaxed">Organik görünürlükte en fazla düşüş yaşayan bölgelerde Google Ads desteği başlatıldı.</p>
+                  <div className="flex flex-wrap gap-1 mt-1.5">
+                    {['Esenyurt', 'Pendik', 'Sultanbeyli', 'Kartal'].map(loc => (
+                      <span key={loc} className="text-[9px] bg-amber-50 text-amber-600 font-medium px-1.5 py-0.5 rounded-full border border-amber-100">{loc}</span>
+                    ))}
+                  </div>
+                  <p className="text-[10px] text-gray-400 leading-relaxed mt-1.5">SEO toparlanana kadar kritik lokasyonlardaki trafik ve görünürlük kaybını paid search ile desteklemek.</p>
+                </div>
+
+                {/* Happ Health Brand Search */}
+                <div className="rounded-xl border border-gray-100 bg-gray-50/60 px-4 py-3">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <p className="text-xs font-bold text-gray-800">Happ Health Brand Search</p>
+                    <div className="flex gap-1">
+                      <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700">NEW</span>
+                      <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">ACTIVE</span>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-gray-600 leading-relaxed">Happ Health marka aramalarına yönelik yeni Google Ads kampanyaları başlatıldı.</p>
+                  <p className="text-[10px] text-gray-400 leading-relaxed mt-1">Marka aramalarında görünürlüğü korumak ve kullanıcıyı Happ Health site / app ekosistemine yönlendirmek.</p>
+                </div>
+
+                {/* Measurement */}
+                <div className="rounded-xl border border-gray-100 bg-gray-50/60 px-4 py-3">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <p className="text-xs font-bold text-gray-800">Measurement</p>
+                    <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">ACTIVE</span>
+                  </div>
+                  <p className="text-[11px] text-gray-600 leading-relaxed">Nöbetçi Eczane trafik aksiyonlarının conversion ölçümü güçlendirildi.</p>
+                  <p className="text-[10px] text-gray-400 leading-relaxed mt-1">SEO / paid trafik hacminin yalnızca click değil, kullanıcı aksiyonu ve app acquisition etkisini ölçmek.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Group 2: Etkisi / İlk Sinyal */}
+            <div className="mb-5">
+              <p className="text-xs font-bold text-gray-700 mb-3">Etkisi / İlk Sinyal</p>
+              <div className="rounded-xl bg-slate-800 px-4 py-3.5">
+                <div className="flex flex-col gap-2.5">
+                  <p className="text-[11px] text-slate-200 leading-relaxed">
+                    SEO düşüşüne yalnızca organik sıralama aksiyonlarıyla değil, trafik koruma ve conversion odaklı hibrit bir yaklaşımla müdahale edildi.
+                  </p>
+                  <p className="text-[11px] text-slate-400 leading-relaxed">
+                    İçerik üretimi agent yapısıyla ölçeklenirken, Nöbetçi Eczane tarafında organik görünürlük kaybedilen lokasyonlar Google Ads ile desteklendi. Mevcut organik trafik ise popup üzerinden Happ uygulamasına yönlendirilmeye başlandı.
+                  </p>
+                  <p className="text-[11px] text-slate-400 leading-relaxed">
+                    Popup'ın yaklaşık 1,1K request üretmesi, SEO trafiğinin app acquisition için de kullanılabileceğine dair ilk güçlü sinyali verdi.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Group 3: Sıradaki Aksiyonlar */}
+            <div>
+              <p className="text-xs font-bold text-gray-700 mb-3">Sıradaki Aksiyonlar</p>
+              <div className="flex flex-col gap-2">
+                {[
+                  'TR Nöbetçi Eczane sayfalarında canonical, noindex, template ve internal linking kontrollerini tamamla.',
+                  'Organik görünürlük kaybeden şehir / ilçe sayfalarını önceliklendirerek içerik ve teknik iyileştirme yap.',
+                  'Blog agent üzerinden yüksek impression / yüksek potansiyelli konularda içerik üretimini ölçekle.',
+                  'Yüksek impression ancak düşük CTR alan bloglarda title ve meta optimizasyonu yap.',
+                  'Nöbetçi Eczane popup funnelını: request → store → download → signup bazında ölç.',
+                  'Paid ile desteklenen Nöbetçi Eczane bölgelerinde organik sıralama toparlanmasını takip et ve SEO iyileştikçe paid ihtiyacını yeniden değerlendir.',
+                ].map((action, i) => (
+                  <div key={i} className="flex items-start gap-2.5 rounded-lg border border-gray-100 bg-gray-50/60 px-3 py-2.5">
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-gray-200 text-gray-600 shrink-0 mt-0.5">{i + 1}</span>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-blue-50 text-blue-500 shrink-0 mt-0.5">NEXT</span>
+                    <p className="text-[11px] text-gray-700 leading-relaxed">{action}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
