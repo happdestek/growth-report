@@ -145,16 +145,16 @@ function ConversionSummary({ platform, prev, signupAvailable }: { platform: Funn
 
 const PLATFORM_INSIGHTS: Record<Tab, string[]> = {
   total: [
-    'Ekim’de store acquisition funnelı hem hacim hem üyeliğe dönüşüm açısından güçlendi. Toplam Product Page View %35, download %58 ve app sign-up %118 arttı.',
-    'Platformlar farklı büyüme dinamikleri gösterdi: iOS büyümesi ağırlıklı olarak artan store trafiğinden gelirken Android’de daha düşük PPV hacmine rağmen conversion rate belirgin şekilde yükseldi.',
-    'Uçtan uca PPV → Sign-up dönüşümü %3,7’den %6,0’a çıkarak +2,3 puan iyileşti.',
+    'Ekim’de app acquisition funnelı hem hacim hem üyeliğe dönüşüm açısından güçlendi. Product Page View %35, download %58 ve app sign-up %118 arttı.',
+    'Android büyümesi ağırlıklı olarak conversion improvement kaynaklıyken iOS büyümesi store traffic artışıyla gerçekleşti.',
+    'Toplam PPV → Sign-up dönüşümü %3,7’den %6,0’a yükseldi.',
   ],
   android: [
-    'Android’de Product Page View %5 azalmasına rağmen download %46, sign-up %118 büyüdü. Ana kazanım store conversion efficiency tarafında gerçekleşti.',
+    'Android’de Product Page View %5,2 azalmasına rağmen download %45,9 ve sign-up %117,7 arttı. Ekim performansındaki ana iyileşme trafik hacminden değil, store conversion efficiency artışından geldi.',
     'PPV → Download dönüşümü %26,25’ten %40,42’ye yükselerek +14,17 puan iyileşti. Download → Sign-up dönüşümü de %7,59’dan %11,33’e çıktı.',
   ],
   ios: [
-    'iOS’ta Ekim büyümesi ağırlıklı olarak hacim kaynaklı gerçekleşti. PPV %88 ve download %75 büyürken store conversion hafif geriledi; buna karşılık Download → Sign-up dönüşümü güçlendi.',
+    'iOS’ta Ekim büyümesi ağırlıklı olarak artan store trafiğinden geldi. Product Page View %87,6 ve download %74,6 büyürken PPV → Download dönüşümü hafif geriledi. Buna karşılık Download → Sign-up dönüşümü %21,99’dan %27,54’e yükseldi.',
     'PPV → Download %27,11’den %25,23’e -1,88 puan gerilerken Download → Sign-up %21,99’dan %27,54’e +5,55 puan yükseldi.',
   ],
 };
@@ -187,7 +187,10 @@ export default function FunnelChart({ data, prevData, signupAvailable }: FunnelC
       </div>
 
       <p className="text-xs text-gray-400 mb-4 ml-10 leading-relaxed">
-        Sağdaki rozetler aylık hacim büyümesini (vs Eylül), altteki dönüşüm oranları funnel conversion-rate değişimini gösterir.
+        Funnel yalnızca App Store ve Google Play acquisition verilerini kapsar. Web ve Check-up Link üyelikleri dahil değildir.
+      </p>
+      <p className="text-[11px] text-gray-400 mb-4 ml-10 leading-relaxed">
+        Sağdaki rozetler aylık hacim büyümesini (vs Eylül), alttaki dönüşüm oranları funnel conversion-rate değişimini gösterir.
       </p>
 
       {/* Platform tabs */}
