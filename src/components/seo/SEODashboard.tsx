@@ -1110,6 +1110,26 @@ export default function SEODashboard() {
             </div>
           </div>
 
+          {/* 6 — Final Management Summary */}
+          <div className="rounded-2xl bg-slate-800 p-5">
+            <p className="text-[10px] font-semibold text-slate-300 uppercase tracking-wider mb-2">Final Management Summary — Ekim 2026</p>
+            <p className="text-xs text-slate-300 leading-relaxed mb-3">
+              Ekim verileri, site-wide -28%'lik click kaybının büyük bölümünün TR Nöbetçi Eczane kümesinden geldiğini gösteriyor. Average position 9,5 → 10,0 bandına sınırlı gerilemiş olsa da, TR Nöbetçi Eczane sayfalarındaki -61%'lik sert düşüş tüm site ortalamasını aşağı çekiyor. Nöbetçi Eczane hariç tutulduğunda site geneli click'ler +18% ile büyümede: Evde Sağlık, Check-Up, Blog, Online Doktor ve yabancı dil Nöbetçi Eczane sayfaları canlı sonrası ilk tam ayda güçlenmeye devam ediyor.
+            </p>
+            <div className="pt-3 border-t border-slate-700">
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Bu tablo, düşüşün site geneli bir kalite problemi olmaktan çok, yeni şablonla yayına alınan TR Nöbetçi Eczane kümesine özgü güçlü bir teknik / template sinyali olduğuna işaret ediyor. Öncelik: TR Nöbetçi Eczane teknik incelemesi (canonical, URL迁移 doğrulaması, JS rendering), paralel olarak büyüyen bölümlerin desteklenmesi ve EN/RU cleanup.
+              </p>
+            </div>
+          </div>
+
+        </div>
+        )}
+      </section>
+
+      {/* 7 Eylül Sonrası SEO Durumu */}
+      <SeptemberAnalysis />
+
           {/* 5 — Alınan Aksiyonlar & Sıradaki Adımlar */}
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
             <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">5 — Aksiyon Takibi</p>
@@ -1220,25 +1240,6 @@ export default function SEODashboard() {
             </div>
           </div>
 
-          {/* 6 — Final Management Summary */}
-          <div className="rounded-2xl bg-slate-800 p-5">
-            <p className="text-[10px] font-semibold text-slate-300 uppercase tracking-wider mb-2">Final Management Summary — Ekim 2026</p>
-            <p className="text-xs text-slate-300 leading-relaxed mb-3">
-              Ekim verileri, site-wide -28%'lik click kaybının büyük bölümünün TR Nöbetçi Eczane kümesinden geldiğini gösteriyor. Average position 9,5 → 10,0 bandına sınırlı gerilemiş olsa da, TR Nöbetçi Eczane sayfalarındaki -61%'lik sert düşüş tüm site ortalamasını aşağı çekiyor. Nöbetçi Eczane hariç tutulduğunda site geneli click'ler +18% ile büyümede: Evde Sağlık, Check-Up, Blog, Online Doktor ve yabancı dil Nöbetçi Eczane sayfaları canlı sonrası ilk tam ayda güçlenmeye devam ediyor.
-            </p>
-            <div className="pt-3 border-t border-slate-700">
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Bu tablo, düşüşün site geneli bir kalite problemi olmaktan çok, yeni şablonla yayına alınan TR Nöbetçi Eczane kümesine özgü güçlü bir teknik / template sinyali olduğuna işaret ediyor. Öncelik: TR Nöbetçi Eczane teknik incelemesi (canonical, URL迁移 doğrulaması, JS rendering), paralel olarak büyüyen bölümlerin desteklenmesi ve EN/RU cleanup.
-              </p>
-            </div>
-          </div>
-
-        </div>
-        )}
-      </section>
-
-      {/* 7 Eylül Sonrası SEO Durumu */}
-      <SeptemberAnalysis />
 
     </div>
   );
