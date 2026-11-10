@@ -3,7 +3,8 @@ import { Lightbulb, Apple, Bot, Smartphone, TrendingUp, TrendingDown, Minus } fr
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-const MONTHS = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos'];
+const MONTHS = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim'];
+const MONTH_ABBR = ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki'];
 
 type FunnelRow = { ppv: number; dl: number; su: number | null };
 type PlatformKey = 'total' | 'android' | 'ios';
@@ -20,6 +21,8 @@ const DATA: Record<PlatformKey, FunnelRow[]> = {
     { ppv: 38525, dl: 3691, su: 741  },
     { ppv: 28844, dl: 3124, su: 443  },
     { ppv: 18213, dl: 2861, su: 314  },
+    { ppv: 12406, dl: 3303, su: 459  },
+    { ppv: 16708, dl: 5234, su: 1002 },
   ],
   android: [
     { ppv: 15637, dl: 1338, su: 121  },
@@ -29,7 +32,9 @@ const DATA: Record<PlatformKey, FunnelRow[]> = {
     { ppv: 13420, dl: 2357, su: 207  },
     { ppv: 17934, dl: 2519, su: 234  },
     { ppv: 15654, dl: 2443, su: 202  },
-    { ppv: 11433, dl: 2222, su: 162  }
+    { ppv: 11433, dl: 2222, su: 162  },
+    { ppv: 7073,  dl: 1857, su: 141  },
+    { ppv: 6705,  dl: 2710, su: 307  },
   ],
   ios: [
     { ppv: 20461, dl: 226,  su: 226  },
@@ -40,6 +45,8 @@ const DATA: Record<PlatformKey, FunnelRow[]> = {
     { ppv: 20591, dl: 1172, su: 507  },
     { ppv: 13190, dl: 681,  su: 241  },
     { ppv: 6780,  dl: 639,  su: 152  },
+    { ppv: 5333,  dl: 1446, su: 318  },
+    { ppv: 10003, dl: 2524, su: 695  },
   ],
 };
 
@@ -51,6 +58,21 @@ const PLATFORMS = [
 
 const HEX = '#2563EB';
 
+const INSIGHTS: Record<PlatformKey, { p1: string; p2: string }> = {
+  total: {
+    p1: "Ekim ayında mobil store funnelında 16.708 Product Page View'den 5.234 download ve 1.002 sign-up elde edildi. Eylül'e göre Product Page View %35, download %58 ve app sign-up %118 arttı. Uçtan uca PPV → Sign-up dönüşümü %3,7'den %6,0'a yükseldi.",
+    p2: "Platform bazında Android'de büyümenin ana kaynağı conversion efficiency olurken, iOS'ta artan store trafiği büyümeyi taşıdı.",
+  },
+  android: {
+    p1: "Android'de Product Page View %5 azalmasına rağmen download %46 ve sign-up %118 büyüdü. Ekim'deki ana iyileşme store conversion efficiency'den geldi.",
+    p2: '',
+  },
+  ios: {
+    p1: "iOS'ta Ekim büyümesi ağırlıklı olarak store traffic artışından geldi. PPV %88 ve download %75 büyürken Download → Sign-up dönüşümü de güçlendi.",
+    p2: '',
+  },
+};
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 const fmt = (n: number | null) => n === null ? 'Veri bekleniyor' : n.toLocaleString('tr-TR');
@@ -61,7 +83,7 @@ const momPct = (curr: number, prev: number | undefined): number | null => {
   return Math.round(((curr - prev) / prev) * 100);
 };
 
-function DeltaBadge({ val, small = false }: { val: number | null; small?: boolean }) {
+function DeltaBadge({ val, small = false, vsLabel }: { val: number | null; small?: boolean; vsLabel?: string }) {
   if (val === null) return <span className={`text-gray-300 ${small ? 'text-[9px]' : 'text-[10px]'}`}>—</span>;
   const pos = val > 0, zero = val === 0;
   return (
@@ -69,7 +91,7 @@ function DeltaBadge({ val, small = false }: { val: number | null; small?: boolea
       pos ? 'bg-emerald-50 text-emerald-600' : zero ? 'bg-gray-50 text-gray-400' : 'bg-red-50 text-red-500'
     }`}>
       {pos ? <TrendingUp size={8} /> : zero ? <Minus size={8} /> : <TrendingDown size={8} />}
-      {val > 0 ? '+' : ''}{val}%
+      %{Math.abs(val)}{vsLabel ? ` vs ${vsLabel}` : ''}
     </span>
   );
 }
@@ -79,9 +101,11 @@ function DeltaBadge({ val, small = false }: { val: number | null; small?: boolea
 function Funnel({
   ppv, dl, su,
   prevPpv, prevDl, prevSu,
+  prevMonthAbbr,
 }: {
   ppv: number; dl: number; su: number | null;
   prevPpv?: number; prevDl?: number; prevSu?: number | null;
+  prevMonthAbbr?: string;
 }) {
   const suWidth = su !== null ? Math.max(18, Math.sqrt(su / ppv) * 100) : 25;
   const steps = [
@@ -124,7 +148,7 @@ function Funnel({
           >
             <span className="text-white text-xs font-medium">{step.label}</span>
             <div className="flex items-center gap-2">
-              <DeltaBadge val={step.delta} />
+              <DeltaBadge val={step.delta} vsLabel={prevMonthAbbr} />
               <span className="text-white text-sm font-bold tabular-nums">{fmt(step.value)}</span>
             </div>
           </div>
@@ -143,7 +167,7 @@ function Funnel({
                   r.delta > 0 ? 'bg-emerald-50 text-emerald-600' : r.delta === 0 ? 'bg-gray-50 text-gray-400' : 'bg-red-50 text-red-500'
                 }`}>
                   {r.delta > 0 ? <TrendingUp size={8} /> : r.delta === 0 ? <Minus size={8} /> : <TrendingDown size={8} />}
-                  {r.delta > 0 ? '+' : ''}{r.delta} pp
+                  {r.delta > 0 ? '+' : ''}{r.delta.toLocaleString('tr-TR')} pp
                 </span>
               ) : (
                 <span className="text-[9px] text-gray-300">—</span>
@@ -187,7 +211,7 @@ export default function ProductPageFunnelDashboard() {
         </div>
         <div>
           <h2 className="text-base font-bold text-gray-900">Happ Health — App İçi Hizmet Funnel</h2>
-          <p className="text-xs text-gray-400">Ocak–Ağustos 2026</p>
+          <p className="text-xs text-gray-400">Ocak–Ekim 2026</p>
         </div>
       </div>
 
@@ -196,11 +220,13 @@ export default function ProductPageFunnelDashboard() {
         <Lightbulb size={14} className="text-white/60 mt-0.5 shrink-0" />
         <div className="flex flex-col gap-2">
           <p className="text-xs text-white/80 leading-relaxed">
-            Ağustos ayında mobil store funnel'ında toplam 18.213 Product Page View'den 2.677 indirme ve 314 sign-up elde edildi. Android %17,83 ile daha güçlü View → Download performansı üretirken, iOS indirme sonrası %23,79 Sign-up dönüşümüyle Android'in üzerinde performans gösterdi.
+            {INSIGHTS[platform].p1}
           </p>
-          <p className="text-xs text-white/60 leading-relaxed">
-            Android tarafında ana kayıp Download → Sign-up (%7,95) adımında görülürken, iOS tarafında daha düşük store trafiğine rağmen Download → Sign-up dönüşümü %23,79 seviyesinde gerçekleşti.
-          </p>
+          {INSIGHTS[platform].p2 && (
+            <p className="text-xs text-white/60 leading-relaxed">
+              {INSIGHTS[platform].p2}
+            </p>
+          )}
         </div>
       </div>
 
@@ -264,6 +290,7 @@ export default function ProductPageFunnelDashboard() {
         <Funnel
           ppv={d.ppv} dl={d.dl} su={d.su}
           prevPpv={prev?.ppv} prevDl={prev?.dl} prevSu={prev?.su}
+          prevMonthAbbr={monthIdx > 0 ? MONTH_ABBR[monthIdx - 1] : undefined}
         />
       </div>
     </div>
