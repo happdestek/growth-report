@@ -254,47 +254,6 @@ export default function SeptemberAnalysis() {
         <p className="text-[10px] text-gray-400 mt-2">Bu görünürlük doğrudan trafik veya dönüşüm olarak yorumlanmamalıdır.</p>
       </div>
 
-      {/* 3 — Before / After KPI Comparison */}
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-        <div className="flex items-center justify-between mb-4">
-          <p className="text-xs font-bold text-gray-500 uppercase tracking-wider">Before / After KPI Karşılaştırması</p>
-          <div className="flex items-center gap-2 text-[10px] font-semibold">
-            <span className="text-gray-400 bg-gray-50 px-2 py-1 rounded-full">Pre-live: 7 Ağu – 6 Eyl</span>
-            <span className="text-blue-600 bg-blue-50 px-2 py-1 rounded-full">Ekim: 1 – 31 Eki</span>
-          </div>
-        </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {KPI_COMPARISON.map((k) => (
-            <div key={k.label} className="rounded-xl border border-gray-100 p-4 flex flex-col gap-2">
-              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">{k.label}</span>
-              <div className="flex items-center gap-2">
-                <div className="flex flex-col">
-                  <span className="text-[9px] text-gray-300 font-medium">7 Ağu – 6 Eyl</span>
-                  <span className="text-sm font-semibold text-gray-400 line-through">{k.before}</span>
-                </div>
-                <ArrowRight size={12} className="text-gray-300" />
-                <div className="flex flex-col">
-                  <span className="text-[9px] text-blue-400 font-medium">Ekim 2026</span>
-                  <span className="text-lg font-bold text-gray-900 tabular-nums">{k.after}</span>
-                </div>
-              </div>
-              {k.raw && (
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-gray-400">Raw:</span>
-                  <span className="text-xs font-bold text-red-500">{k.raw}</span>
-                  <span className="text-[10px] text-gray-400">·</span>
-                  <span className="text-[10px] text-gray-400">Adj:</span>
-                  <span className="text-xs font-bold text-amber-600">{k.adjusted}</span>
-                </div>
-              )}
-              {k.status === 'stable' && <span className="text-[10px] font-semibold text-gray-500 bg-gray-50 px-2 py-0.5 rounded-full w-fit">Stabil</span>}
-              {k.status === 'slight' && <span className="text-[10px] font-semibold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full w-fit">Hafif gerileme</span>}
-            </div>
-          ))}
-        </div>
-        <p className="text-[10px] text-gray-400 mt-3">Ekim tam-ay verisi, canlı öncesi eşit 31 günlük dönemle karşılaştırılmıştır. Average position’da yüksek sayı daha kötü performans anlamına gelir.</p>
-      </div>
-
       {/* 4 — Weekly Trend + 5 — Seasonality */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         {/* Weekly Trend */}
