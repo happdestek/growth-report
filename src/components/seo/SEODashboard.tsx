@@ -755,7 +755,7 @@ export default function SEODashboard() {
         </div>
 
         {/* Nobetci Eczane Note */}
-        <div className="mt-4 bg-orange-900 rounded-2xl px-5 py-4 flex gap-3 items-start">
+        <div className="mt-4 bg-orange-50 border border-orange-200 rounded-2xl px-5 py-4 flex gap-3 items-start text-orange-950 shadow-sm">
           <div className="w-7 h-7 rounded-lg bg-slate-700 flex items-center justify-center shrink-0 mt-0.5">
             <Search size={13} className="text-slate-300" />
           </div>
