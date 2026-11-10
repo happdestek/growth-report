@@ -12,12 +12,11 @@ type Tab = 'total' | 'android' | 'ios';
 
 function pct(n: number, total: number): string {
   if (total === 0) return '—';
-  return ((n / total) * 100).toFixed(1) + '%';
+  return `%${((n / total) * 100).toFixed(1).replace('.', ',')}`;
 }
 
 function fmt(n: number): string {
   if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + 'M';
-  if (n >= 1_000) return n.toLocaleString('tr-TR');
   return n.toLocaleString('tr-TR');
 }
 
@@ -31,8 +30,9 @@ const TAB_LABELS: Record<Tab, string> = { total: 'Toplam', android: 'Android', i
 
 function MomBadge({ curr, prev }: { curr: number; prev: number | undefined }) {
   if (prev === undefined || prev === 0) return null;
-  const delta = Math.round(((curr - prev) / prev) * 100);
+  const delta = Math.round(((curr - prev) / prev) * 1000) / 10;
   const pos = delta > 0, zero = delta === 0;
+  const deltaStr = delta.toLocaleString('tr-TR', { minimumFractionDigits: 0, maximumFractionDigits: 1 });
   return (
     <span className={`inline-flex items-center gap-0.5 text-[10px] font-bold px-1.5 py-0.5 rounded-md ml-2 shrink-0 ${
       pos  ? 'bg-emerald-100 text-emerald-700' :
@@ -40,7 +40,7 @@ function MomBadge({ curr, prev }: { curr: number; prev: number | undefined }) {
              'bg-red-100 text-red-600'
     }`}>
       {pos ? <TrendingUp size={9} /> : zero ? <Minus size={9} /> : <TrendingDown size={9} />}
-      {delta > 0 ? '+' : ''}{delta}%
+      {pos ? '↑' : zero ? '' : '↓'} %{deltaStr} vs Eyl
     </span>
   );
 }
@@ -76,7 +76,7 @@ function FunnelBar({ platform, prev, signupAvailable }: { platform: FunnelPlatfo
                   {!(s.key === 'signups' && signupAvailable === false) && <MomBadge curr={value} prev={prevVals[i]} />}
                 </div>
                 <p className="text-xs text-gray-400">
-                  {s.key === 'signups' && signupAvailable === false ? '—' : `${globalPct}% of top`}
+                  {s.key === 'signups' && signupAvailable === false ? '—' : `%${globalPct} of top`}
                 </p>
               </div>
             </div>
@@ -120,19 +120,20 @@ function ConversionSummary({ platform, prev, signupAvailable }: { platform: Funn
     <div className="grid grid-cols-3 gap-3 mt-5 pt-4 border-t border-gray-100">
       {steps.map(s => {
         const ppDelta = s.prevRate !== null && s.prevRate !== undefined
-          ? Math.round((s.curr - s.prevRate) * 10) / 10
+          ? Math.round((s.curr - s.prevRate) * 100) / 100
           : null;
         const pos  = ppDelta !== null && ppDelta > 0;
         const neg  = ppDelta !== null && ppDelta < 0;
+        const ppStr = ppDelta !== null ? ppDelta.toLocaleString('tr-TR', { minimumFractionDigits: 1, maximumFractionDigits: 2 }) : '';
         return (
           <div key={s.label} className="text-center">
             <p className="text-[10px] text-gray-400 leading-snug mb-1">{s.label}</p>
-            <p className={`text-sm font-bold tabular-nums ${s.color}`}>{s.available ? `%${s.curr.toFixed(1)}` : '—'}</p>
+            <p className={`text-sm font-bold tabular-nums ${s.color}`}>{s.available ? `%${s.curr.toFixed(1).replace('.', ',')}` : '—'}</p>
             {s.available && ppDelta !== null && (
               <p className={`text-[9px] font-semibold mt-0.5 ${
                 pos ? 'text-emerald-600' : neg ? 'text-red-500' : 'text-gray-400'
               }`}>
-                {pos ? '+' : ''}{ppDelta} pp
+                {pos ? '+' : ''}{ppStr} pp
               </p>
             )}
           </div>
@@ -141,6 +142,22 @@ function ConversionSummary({ platform, prev, signupAvailable }: { platform: Funn
     </div>
   );
 }
+
+const PLATFORM_INSIGHTS: Record<Tab, string[]> = {
+  total: [
+    'Ekim’de store acquisition funnelı hem hacim hem üyeliğe dönüşüm açısından güçlendi. Toplam Product Page View %35, download %58 ve app sign-up %118 arttı.',
+    'Platformlar farklı büyüme dinamikleri gösterdi: iOS büyümesi ağırlıklı olarak artan store trafiğinden gelirken Android’de daha düşük PPV hacmine rağmen conversion rate belirgin şekilde yükseldi.',
+    'Uçtan uca PPV → Sign-up dönüşümü %3,7’den %6,0’a çıkarak +2,3 puan iyileşti.',
+  ],
+  android: [
+    'Android’de Product Page View %5 azalmasına rağmen download %46, sign-up %118 büyüdü. Ana kazanım store conversion efficiency tarafında gerçekleşti.',
+    'PPV → Download dönüşümü %26,25’ten %40,42’ye yükselerek +14,17 puan iyileşti. Download → Sign-up dönüşümü de %7,59’dan %11,33’e çıktı.',
+  ],
+  ios: [
+    'iOS’ta Ekim büyümesi ağırlıklı olarak hacim kaynaklı gerçekleşti. PPV %88 ve download %75 büyürken store conversion hafif geriledi; buna karşılık Download → Sign-up dönüşümü güçlendi.',
+    'PPV → Download %27,11’den %25,23’e -1,88 puan gerilerken Download → Sign-up %21,99’dan %27,54’e +5,55 puan yükseldi.',
+  ],
+};
 
 export default function FunnelChart({ data, prevData, signupAvailable }: FunnelChartProps) {
   const [activeTab, setActiveTab] = useState<Tab>('total');
@@ -155,7 +172,7 @@ export default function FunnelChart({ data, prevData, signupAvailable }: FunnelC
 
   const platformData = data[activeTab];
   const prevPlatformData = prevData ? prevData[activeTab] : undefined;
-  const showSignupPending = signupAvailable === false;
+  const insights = PLATFORM_INSIGHTS[activeTab];
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
@@ -170,7 +187,7 @@ export default function FunnelChart({ data, prevData, signupAvailable }: FunnelC
       </div>
 
       <p className="text-xs text-gray-400 mb-4 ml-10 leading-relaxed">
-        Funnel yapısı mağaza ürün sayfası görüntülemeden başlayacak şekilde genişletildi. Böylece store listing trafiği, indirme ve üyelik dönüşümü birlikte izlenebilir hale geldi.
+        Sağdaki rozetler aylık hacim büyümesini (vs Eylül), altteki dönüşüm oranları funnel conversion-rate değişimini gösterir.
       </p>
 
       {/* Platform tabs */}
@@ -197,29 +214,9 @@ export default function FunnelChart({ data, prevData, signupAvailable }: FunnelC
       <div className="mt-5 flex gap-2.5 items-start bg-blue-50 border border-blue-100 rounded-xl px-4 py-3">
         <Lightbulb size={13} className="text-blue-500 mt-0.5 shrink-0" />
         <div className="flex flex-col gap-1.5">
-          <p className="text-[11px] text-blue-700 leading-relaxed">
-            Ekim ayında Android tarafında 6.705 Product Page View’den 2.710 download elde edildi. Product Page View hacmi Eylül’e göre %5,2 azalmasına rağmen download hacmi %45,9 arttı.
-          </p>
-          <p className="text-[11px] text-blue-700 leading-relaxed">
-            PPV → Download dönüşüm oranı %26,25’ten %40,42’ye yükselerek +14,17 puan iyileşti. Ekim Android büyümesindeki ana kazanım trafik hacminden değil, store conversion efficiency’den geldi.
-          </p>
-          <p className="text-[11px] text-blue-600 leading-relaxed">
-            Ancak source mix büyümenin ağırlıklı olarak Ads &amp; Referrals kaynaklı olduğunu gösteriyor. Paid &amp; Direct payı %81,9’a yükselirken Google Play Explore payı yalnızca %4,9 seviyesinde kaldı.
-          </p>
-          <p className="text-[11px] text-blue-600 leading-relaxed">
-            Not attributed hacmi 359 download ile toplamın %13,2’sini oluşturduğu için bu trafik paid acquisition içine dahil edilmemeli ve ayrı izlenmeli.
-          </p>
-          <p className="text-[11px] text-blue-600 leading-relaxed">
-            Android acquisition büyümesi sign-up tarafına da yansıdı. Ekim’de Android sign-up 141’den 307’ye çıkarak Eylül’e göre yaklaşık %118 arttı.
-          </p>
-          <p className="text-[11px] text-blue-600 leading-relaxed">
-            Ağustos iOS downloadlarının %78,4'ü App Referrer ve Web Referrer kaynaklarından geldi. App Referrer %19,3 gerilerken Web Referrer %15,7 ve App Store Search %12,3 büyüdü. Search kaynaklı download hacmi artmasına rağmen toplam acquisition hâlâ ağırlıklı olarak referral trafiği tarafından taşınıyor.
-          </p>
-          {showSignupPending && (
-            <p className="text-[10px] text-amber-600 leading-relaxed border-t border-blue-100 pt-1.5">
-              Temmuz sign-up verisi bekleniyor — Download → Sign-up ve Page View → Sign-up oranları veri geldikten hesaplanacaktır.
-            </p>
-          )}
+          {insights.map((text, i) => (
+            <p key={i} className="text-[11px] text-blue-700 leading-relaxed">{text}</p>
+          ))}
         </div>
       </div>
     </div>
