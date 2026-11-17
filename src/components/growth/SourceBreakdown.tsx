@@ -115,7 +115,6 @@ export default function SourceBreakdownChart({ data }: SourceBreakdownProps) {
         {data.map(platform => {
           const meta = PLATFORM_META[platform.platform];
           const insights = PLATFORM_INSIGHTS[platform.platform];
-          const platPartialLabels = platform.partialLabels ?? {};
           return (
             <div key={platform.platform}>
               <div className="flex items-center gap-2 mb-3">
@@ -136,11 +135,6 @@ export default function SourceBreakdownChart({ data }: SourceBreakdownProps) {
                         <th key={m} className="text-right px-4 py-2.5 text-xs font-bold text-gray-600 uppercase tracking-wider">
                           <div className="flex flex-col items-end gap-0.5">
                             <span>{m}</span>
-                            {platPartialLabels[m] && (
-                              <span className="text-[9px] font-medium text-amber-600 normal-case tracking-normal bg-amber-50 px-1.5 py-0.5 rounded-full">
-                                {platPartialLabels[m]}
-                              </span>
-                            )}
                           </div>
                         </th>
                       ))}
