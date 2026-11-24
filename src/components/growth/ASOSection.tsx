@@ -186,48 +186,48 @@ const APP_STORE_WATCHLIST: KeywordRankRow[] = [
   { keyword: 'sağlık hizmeti',    volume: 5,  prev: 23,  current: 26,  change: -3 },
 ];
 
-// Google Play keyword snapshot: 03/11/2026 → 09/11/2026
+// Google Play keyword snapshot: 17/11/2026 → 23/11/2026
 const PLAY_STORE_KPIS: ASOKpiCard[] = [
   { label: 'Top 1 Rankings',      value: 1    },
-  { label: 'Top 10 Rankings',     value: 2    },
-  { label: 'Top 30 Rankings',     value: 3    },
-  { label: 'Top 100 Rankings',    value: 3    },
+  { label: 'Top 10 Rankings',     value: 1    },
+  { label: 'Top 30 Rankings',     value: 1    },
+  { label: 'Top 100 Rankings',    value: 2    },
   { label: 'Ortalama Puan',       value: '4.80' },
   { label: 'Yeni Değerlendirme',  value: 11   },
 ];
 
 const PLAY_STORE_TOP: KeywordRankRow[] = [
   { keyword: 'evde doktor',     volume: 9,  prev: 1,   current: 1,   change: 0  },
-  { keyword: 'evde sağlık',     volume: 5,  prev: 25,  current: 3,   change: 22 },
-  { keyword: 'happ',            volume: 39, prev: 12,  current: 14,  change: -2 },
-  { keyword: 'nöbetçi eczane',  volume: 5,  prev: 104, current: 104, change: 0  },
-  { keyword: 'online muayene',  volume: 9,  prev: 120, current: 115, change: 5  },
+  { keyword: 'evde sağlık',     volume: 5,  prev: 29,  current: 18,  change: 11 },
+  { keyword: 'happ',            volume: 39, prev: 20,  current: 19,  change: 1  },
+  { keyword: 'nöbetçi eczane',  volume: 5,  prev: 109, current: 107, change: 2  },
+  { keyword: 'görüntülü doktor görüşmesi', volume: 8, prev: 138, current: 129, change: 9 },
+  { keyword: 'online muayene',  volume: 9,  prev: 136, current: 132, change: 4  },
 ];
 
 const PLAY_STORE_RISING: KeywordRankRow[] = [
-  { keyword: 'randevu',         volume: 24, prev: 198, current: 175, change: 23 },
-  { keyword: 'evde sağlık',     volume: 5,  prev: 25,  current: 3,   change: 22 },
-  { keyword: 'online muayene',  volume: 9,  prev: 120, current: 115, change: 5  },
-  { keyword: 'hastane',         volume: 22, prev: 131, current: 126, change: 5  },
+  { keyword: 'doktor randevusu al', volume: 8,  prev: 199, current: 170, change: 29 },
+  { keyword: 'online doktor',       volume: 5,  prev: 168, current: 155, change: 13 },
+  { keyword: 'randevu',             volume: 24, prev: 193, current: 180, change: 13 },
+  { keyword: 'evde sağlık',         volume: 5,  prev: 29,  current: 18,  change: 11 },
+  { keyword: 'görüntülü doktor görüşmesi', volume: 8, prev: 138, current: 129, change: 9 },
+  { keyword: 'online muayene',      volume: 9,  prev: 136, current: 132, change: 4  },
+  { keyword: 'nöbetçi eczane',      volume: 5,  prev: 109, current: 107, change: 2  },
+  { keyword: 'happ',                volume: 39, prev: 20,  current: 19,  change: 1  },
+  { keyword: 'hastane',             volume: 22, prev: 140, current: 139, change: 1  },
 ];
 
 const PLAY_STORE_NEW: KeywordRankRow[] = [
-  { keyword: 'hangi diyet',     volume: 5,  prev: -1,  current: 117, change: 0  },
+  { keyword: 'online psikolog', volume: 5,  prev: -1,  current: 160, change: 0  },
 ];
 
 const PLAY_STORE_STABLE: KeywordRankRow[] = [
   { keyword: 'evde doktor',     volume: 9,  prev: 1,   current: 1,   change: 0 },
-  { keyword: 'nöbetçi eczane',  volume: 5,  prev: 104, current: 104, change: 0 },
 ];
 
 const PLAY_STORE_WATCHLIST: KeywordRankRow[] = [
-  { keyword: 'görüntülü doktor görüşmesi', volume: 8,  prev: 46,  current: 150, change: -104 },
-  { keyword: 'dijital sağlık',              volume: 9,  prev: 56,  current: 137, change: -81  },
-  { keyword: 'hastane randevu',             volume: 32, prev: 162, current: 175, change: -13  },
-  { keyword: 'online doktor',               volume: 5,  prev: 148, current: 160, change: -12  },
-  { keyword: 'doktor randevusu al',         volume: 8,  prev: 191, current: 200, change: -9   },
-  { keyword: 'happ',                        volume: 39, prev: 12,  current: 14,  change: -2   },
-  { keyword: 'online psikolog',             volume: 5,  prev: 177, current: 179, change: -2   },
+  { keyword: 'dijital sağlık',  volume: 9,  prev: 96,  current: 139, change: -43 },
+  { keyword: 'hastane randevu', volume: 32, prev: 179, current: 184, change: -5  },
 ];
 
 function StoreSection({
@@ -372,19 +372,19 @@ export default function ASOSection() {
       <StoreSection
         store="playstore"
         kpis={PLAY_STORE_KPIS}
-        note="9 Kasım itibarıyla Android ASO performansında güçlü ve zayıf keyword kümeleri ayrıştı. 'evde doktor' #1 pozisyonunu korurken 'evde sağlık' #25'ten #3'e yükseldi. 'randevu' +23 ve 'online muayene' +5 sıra kazanırken 'hangi diyet' yeniden sıralamaya girerek #117 seviyesine ulaştı. En büyük kayıplar 'görüntülü doktor görüşmesi' -104 ve 'dijital sağlık' -81 keyword'lerinde görüldü. 'online doktor' ve 'hastane randevu' sorguları da gerilemeye devam ediyor. Android tarafında core hizmet görünürlüğü özellikle Evde Sağlık kümesinde güçlenirken generic doktor / randevu sorgularında performans dalgalı. 'evde sağlık' #3 seviyesine yükselerek güçlü pozitif sinyal verirken 'görüntülü doktor görüşmesi' ve 'dijital sağlık' keyword'lerindeki sert düşüşler bir sonraki snapshot'ta mutlaka takip edilmeli."
+        note="23 Kasım itibarıyla Android ASO tarafında genel görünüm pozitif. 'evde doktor' #1 pozisyonunu korurken randevu ve online doktor odaklı generic sorgularda belirgin iyileşme görüldü. Haftanın en güçlü yükselişleri 'doktor randevusu al' +29, 'online doktor' +13, 'randevu' +13 ve 'evde sağlık' +11 oldu. 'online psikolog' yeniden sıralamaya girerek #160 seviyesine ulaştı. En belirgin negatif hareket 'dijital sağlık' keyword'ünde görüldü; #96'dan #139'a gerileyerek 43 sıra kaybetti. Google Play keyword görünürlüğünde bu hafta doktor, randevu ve Evde Sağlık kümelerinde iyileşme var. 'evde doktor' #1 seviyesini korurken 'doktor randevusu al', 'online doktor' ve 'randevu' sorgularında güçlü sıra kazanımları görüldü. Risk tarafında 'dijital sağlık' -43 sıra ile ana watchlist keyword'ü. 'hastane randevu' ise sınırlı şekilde geriledi."
         topRows={PLAY_STORE_TOP}
-        topInsight="Android ASO tarafında 'evde doktor' #1 pozisyonunu korurken 'evde sağlık' #25'ten #3'e yükselerek haftanın en güçlü core keyword kazanımını üretti. 'happ' #14, 'nöbetçi eczane' #104 ve 'online muayene' #115 seviyesinde."
+        topInsight="Google Play tarafında 'evde doktor' #1 pozisyonunu koruyor. 'evde sağlık' #29'dan #18'e yükselirken Happ marka keyword'ü #20'den #19'a çıktı. 'nöbetçi eczane' #107, 'görüntülü doktor görüşmesi' #129 ve 'online muayene' #132 seviyesinde."
         risingRows={PLAY_STORE_RISING}
-        risingInsight="Haftanın en güçlü yükselişleri: 'randevu' +23, 'evde sağlık' +22, 'online muayene' +5 ve 'hastane' +5 sıra. 'hangi diyet' yeniden sıralamaya girerek #117 seviyesine ulaştı."
+        risingInsight="Haftanın en güçlü yükselişleri: 'doktor randevusu al' +29, 'online doktor' +13, 'randevu' +13 ve 'evde sağlık' +11 oldu."
         stableRows={PLAY_STORE_STABLE}
-        stableInsight="Stabil kalan keyword'ler: 'evde doktor' #1 ve 'nöbetçi eczane' #104 seviyesini korudu."
+        stableInsight="Stabil kalan keyword: 'evde doktor' #1 seviyesini korudu."
         newRows={PLAY_STORE_NEW}
-        newInsight="'hangi diyet' Unranked'ten #117'ye yükselerek yeniden sıralamaya girdi."
+        newInsight="'online psikolog' Unranked'ten #160'a yükselerek yeniden sıralamaya girdi."
         watchlistRows={PLAY_STORE_WATCHLIST}
-        watchlistInsight="En büyük kayıplar 'görüntülü doktor görüşmesi' -104 ve 'dijital sağlık' -81 keyword'lerinde görüldü. 'hastane randevu' -13, 'online doktor' -12 ve 'doktor randevusu al' -9 sıra gerilerken 'happ' ve 'online psikolog' -2'şer sıra küçük kayıp verdi."
-        risingTitle="Yükselen Keyword'ler (03/11 → 09/11/2026)"
-        dateLabel="09/11/2026"
+        watchlistInsight="En belirgin negatif hareket 'dijital sağlık' keyword'ünde görüldü; #96'dan #139'a gerileyerek 43 sıra kaybetti. 'hastane randevu' #179'dan #184'e sınırlı şekilde geriledi."
+        risingTitle="Yükselen Keyword'ler (17/11 → 23/11/2026)"
+        dateLabel="23/11/2026"
       />
 
       <ASOInsightBox />
