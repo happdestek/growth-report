@@ -35,7 +35,7 @@ function InsightNote({ text, color = 'blue' }: { text: string; color?: 'blue' | 
   );
 }
 
-function TopKeywordsTable({ title, rows, insight, showVolume = false }: { title: string; rows: KeywordRankRow[]; insight: string; showVolume?: boolean }) {
+function TopKeywordsTable({ title, rows, insight }: { title: string; rows: KeywordRankRow[]; insight: string; showVolume?: boolean }) {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
@@ -47,23 +47,22 @@ function TopKeywordsTable({ title, rows, insight, showVolume = false }: { title:
           <thead>
             <tr className="bg-gray-50 border-b border-gray-100">
               <th className="text-left px-3 py-2.5 font-semibold text-gray-400 uppercase tracking-wider">Keyword</th>
-              {showVolume && <th className="text-right px-3 py-2.5 font-semibold text-gray-400 uppercase tracking-wider">Volume</th>}
               <th className="text-right px-3 py-2.5 font-semibold text-gray-400 uppercase tracking-wider">Önceki</th>
-              <th className="text-right px-3 py-2.5 font-semibold text-gray-400 uppercase tracking-wider">Güncel</th>
               <th className="text-right px-3 py-2.5 font-semibold text-gray-400 uppercase tracking-wider">Değişim</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-50">
             {rows.map(r => (
               <tr key={r.keyword} className="hover:bg-gray-50/60 transition-colors">
-                <td className="px-3 py-2.5 font-medium text-gray-700">{r.keyword}</td>
-                {showVolume && <td className="px-3 py-2.5 text-right text-gray-400 tabular-nums">{r.volume ?? '—'}</td>}
-                <td className="px-3 py-2.5 text-right text-gray-400 tabular-nums">{r.prev}</td>
-                <td className="px-3 py-2.5 text-right tabular-nums">
-                  <span className={`inline-flex items-center justify-center w-8 h-6 rounded-md font-bold text-xs ${r.current <= 3 ? 'bg-emerald-100 text-emerald-700' : r.current <= 10 ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-600'}`}>
-                    {r.current}
-                  </span>
+                <td className="px-3 py-2.5">
+                  <div className="flex items-center gap-2">
+                    <span className={`inline-flex items-center justify-center min-w-[2rem] h-6 rounded-md font-bold text-xs tabular-nums ${r.current <= 3 ? 'bg-emerald-100 text-emerald-700' : r.current <= 10 ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-600'}`}>
+                      #{r.current}
+                    </span>
+                    <span className="font-medium text-gray-700">{r.keyword}</span>
+                  </div>
                 </td>
+                <td className="px-3 py-2.5 text-right text-gray-400 tabular-nums">{r.prev}</td>
                 <td className="px-3 py-2.5 text-right">
                   <span className={`inline-flex items-center gap-0.5 font-bold tabular-nums ${r.change > 0 ? 'text-emerald-600' : r.change < 0 ? 'text-red-500' : 'text-gray-400'}`}>
                     {r.change > 0 ? <TrendingUp size={10} /> : r.change < 0 ? <TrendingDown size={10} /> : null}
