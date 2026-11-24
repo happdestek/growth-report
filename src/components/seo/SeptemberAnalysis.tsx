@@ -175,10 +175,10 @@ export default function SeptemberAnalysis() {
             <BarChart2 size={18} className="text-white" />
           </div>
           <div className="flex-1">
-            <h2 className="text-lg font-bold text-gray-900">7 Eylül Sonrası SEO Durumu</h2>
-            <p className="text-sm text-gray-400 mt-0.5">Ekim 2026 — Canlı Sonrası İlk Tam Ay</p>
-            <p className="text-[11px] text-gray-400 mt-1.5">Yeni tam-ay verisi, önceki kısa dönem analizini daha net hale getiriyor. Site genelindeki negatif görünüm esas olarak TR Nöbetçi Eczane kaybından kaynaklanıyor; yeni /tr yapısı, Online Doktor, Blog, Check-Up ve yabancı dil Nöbetçi Eczane alanlarında büyüme görülüyor.</p>
-            <p className="text-[10px] text-gray-300 mt-1">Kaynak: Google Search Console</p>
+            <h2 className="text-lg font-bold text-gray-900">Kasım 2026 SEO Durumu</h2>
+            <p className="text-sm text-gray-400 mt-0.5">1–24 Kasım 2026 — Canlı Sonrası İkinci Ay</p>
+            <p className="text-[11px] text-gray-400 mt-1.5">Ekim'de görülen “TR Nöbetçi Eczane dışında büyüme” sinyali Kasım'da durdu. Site geneli organik tıklama Ekim'in aynı 24 gününe göre %27 geriledi; kaybın merkezi yine Türkçe Nöbetçi Eczane sayfaları (-%55), ancak bu kez AR/RU sayfaları, ana sayfa ve Online Doktor da geriledi. Geçen yıl aynı dönemde site %7 gerilemişti; düşüş mevsimsel değil.</p>
+            <p className="text-[10px] text-gray-300 mt-1">Kaynak: Google Search Console (1–24 Kasım vs 1–24 Ekim 2026; 24 Kasım verisi henüz işlenmedi) · Semrush Position Tracking</p>
           </div>
         </div>
       </div>
