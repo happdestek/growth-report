@@ -94,7 +94,7 @@ const ACTIONS = [
   {
     title: 'Nöbetçi Eczane — App Conversion',
     status: 'LIVE',
-    text: "Happ uygulamasına yönlendiren pop-up canlı. Ekim'de yaklaşık 1,1K request alındı.",
+    text: "Happ uygulamasına yönlendiren pop-up canlı. Ekim'de yaklaşık 2,47K request alındı.",
     detail: 'Kasım pop-up request sayısı güncellenecek. Organik TR nöbetçi eczane tıklaması %55 düştüğü için beslenen trafik de daraldı.',
   },
   {
