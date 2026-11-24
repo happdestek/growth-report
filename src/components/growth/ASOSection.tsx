@@ -138,51 +138,52 @@ function RisingKeywordsTable({ title, rows, insight, isWatchlist = false, isStab
   );
 }
 
-// App Store keyword snapshot: 03/11/2026 → 09/11/2026
+// App Store keyword snapshot: 17/11/2026 → 23/11/2026
 const APP_STORE_KPIS: ASOKpiCard[] = [
   { label: 'Top 1 Rankings', value: 1 },
-  { label: 'Top 10 Rankings', value: 6 },
+  { label: 'Top 10 Rankings', value: 7 },
   { label: 'Top 30 Rankings', value: 10 },
-  { label: 'Top 100 Rankings', value: 16 },
+  { label: 'Top 100 Rankings', value: 15 },
   { label: 'Ortalama Puan', value: '4.64' },
 ];
 
 const APP_STORE_TOP: KeywordRankRow[] = [
-  { keyword: 'check up',          volume: 5,  prev: 2,   current: 1,   change: 1 },
+  { keyword: 'check up',          volume: 5,  prev: 1,   current: 1,   change: 0 },
   { keyword: 'checkup',           volume: 5,  prev: 2,   current: 2,   change: 0 },
-  { keyword: 'evde doktor',       volume: 9,  prev: 2,   current: 2,   change: 0 },
-  { keyword: 'medical park',      volume: 52, prev: 6,   current: 6,   change: 0 },
-  { keyword: 'online muayene',    volume: 9,  prev: 5,   current: 6,   change: -1 },
+  { keyword: 'evde doktor',       volume: 9,  prev: 3,   current: 3,   change: 0 },
+  { keyword: 'online muayene',    volume: 9,  prev: 5,   current: 5,   change: 0 },
+  { keyword: 'medical',           volume: 5,  prev: 90,  current: 7,   change: 83 },
+  { keyword: 'medical park',      volume: 52, prev: 6,   current: 7,   change: -1 },
   { keyword: 'check-up',          volume: 5,  prev: 10,  current: 9,   change: 1 },
-  { keyword: 'sağlık hizmeti',    volume: 5,  prev: 24,  current: 15,  change: 9 },
-  { keyword: 'happ',              volume: 39, prev: 11,  current: 20,  change: -9 },
 ];
 
 const APP_STORE_RISING: KeywordRankRow[] = [
-  { keyword: 'diyetisyen',        volume: 15, prev: 91,  current: 66,  change: 25 },
-  { keyword: 'neyim var',         volume: 11, prev: 115, current: 91,  change: 24 },
-  { keyword: 'sağlık uygulaması', volume: 5,  prev: 83,  current: 60,  change: 23 },
-  { keyword: 'nöbetçi eczane',    volume: 5,  prev: 213, current: 197, change: 16 },
-  { keyword: 'sağlık hizmeti',    volume: 5,  prev: 24,  current: 15,  change: 9 },
-  { keyword: 'check up',          volume: 5,  prev: 2,   current: 1,   change: 1 },
+  { keyword: 'medical',           volume: 5,  prev: 90,  current: 7,   change: 83 },
+  { keyword: 'park',              volume: 30, prev: 183, current: 133, change: 50 },
+  { keyword: 'neyim var',         volume: 11, prev: 110, current: 92,  change: 18 },
+  { keyword: 'kan alma',          volume: 8,  prev: 74,  current: 62,  change: 12 },
+  { keyword: 'doktor',            volume: 23, prev: 127, current: 118, change: 9 },
+  { keyword: 'online psikolog',   volume: 5,  prev: 61,  current: 55,  change: 6 },
+  { keyword: 'sağlık hizmetleri', volume: 5,  prev: 27,  current: 23,  change: 4 },
   { keyword: 'check-up',          volume: 5,  prev: 10,  current: 9,   change: 1 },
 ];
 
 const APP_STORE_NEW: KeywordRankRow[] = [
-  { keyword: 'doktor',            volume: 23, prev: -1,  current: 129, change: 0 },
-  { keyword: 'check',             volume: 5,  prev: -1,  current: 234, change: 0 },
+  { keyword: 'check',             volume: 5,  prev: -1,  current: 231, change: 0 },
+  { keyword: 'hizmetleri',        volume: 11, prev: -1,  current: 236, change: 0 },
+  { keyword: 'sağlık',            volume: 5,  prev: -1,  current: 244, change: 0 },
 ];
 
 const APP_STORE_WATCHLIST: KeywordRankRow[] = [
-  { keyword: 'park',              volume: 30, prev: 84,  current: 238, change: -154 },
-  { keyword: 'terapi',            volume: 19, prev: 45,  current: 116, change: -71 },
-  { keyword: 'online doktor',     volume: 5,  prev: 152, current: 221, change: -69 },
-  { keyword: 'online terapi',     volume: 15, prev: 18,  current: 63,  change: -45 },
-  { keyword: 'hizmetleri',        volume: 11, prev: 192, current: 225, change: -33 },
-  { keyword: 'kan alma',          volume: 8,  prev: 46,  current: 70,  change: -24 },
-  { keyword: 'eczaneler',         volume: 47, prev: 232, current: 247, change: -15 },
-  { keyword: 'online psikolog',   volume: 5,  prev: 46,  current: 58,  change: -12 },
-  { keyword: 'happ',               volume: 39, prev: 11,  current: 20,  change: -9 },
+  { keyword: 'nöbetçi eczane',    volume: 5,  prev: 162, current: 243, change: -81 },
+  { keyword: 'hemşire',           volume: 12, prev: 146, current: 208, change: -62 },
+  { keyword: 'online terapi',     volume: 15, prev: 21,  current: 57,  change: -36 },
+  { keyword: 'nöbetçi',           volume: 5,  prev: 208, current: 236, change: -28 },
+  { keyword: 'diyetisyen',        volume: 15, prev: 132, current: 149, change: -17 },
+  { keyword: 'happ',              volume: 39, prev: 18,  current: 28,  change: -10 },
+  { keyword: 'online diyetisyen', volume: 5,  prev: 26,  current: 31,  change: -5 },
+  { keyword: 'sağlık uygulaması', volume: 5,  prev: 111, current: 116, change: -5 },
+  { keyword: 'sağlık hizmeti',    volume: 5,  prev: 23,  current: 26,  change: -3 },
 ];
 
 // Google Play keyword snapshot: 03/11/2026 → 09/11/2026
@@ -355,17 +356,17 @@ export default function ASOSection() {
       <StoreSection
         store="appstore"
         kpis={APP_STORE_KPIS}
-        note="9 Kasım itibarıyla App Store keyword performansında core görünürlük güçlü kaldı; 'check up' #1'e yükselirken 'checkup' #2 ve 'evde doktor' #2 seviyesini korudu. Haftanın en belirgin kazanımları 'diyetisyen' +25, 'neyim var' +24, 'sağlık uygulaması' +23, 'nöbetçi eczane' +16 ve 'sağlık hizmeti' +9 oldu. Buna karşılık 'park' -154, 'terapi' -71, 'online doktor' -69 ve 'online terapi' -45 ile önceki haftanın yükselen keyword'leri bu snapshot'ta belirgin gerileme yaşadı. İki yeni keyword sıralamaya girdi: 'doktor' (#129) ve 'check' (#234). Core görünürlük korunurken generic sorgulardaki volatilite izlenmeli; 'park', 'terapi' ve 'online doktor' kayıplarının kalıcı olup olmadığı bir sonraki takipte öncelikli izleme alanı."
+        note="23 Kasım itibarıyla iOS ASO tarafında core keyword görünürlüğü korunuyor. Check-Up varyasyonları Top 10 içerisinde kalırken 'medical' keyword'ü #90'dan #7'ye yükseldi. Haftanın en güçlü kazanımları medical +83, park +50, neyim var +18, kan alma +12 ve doktor +9 oldu. En büyük kayıplar nöbetçi eczane -81, hemşire -62, online terapi -36 ve nöbetçi -28 keyword'lerinde görüldü. App Store görünürlüğünde ana hizmet keyword'leri güçlü konumunu korurken generic sağlık sorgularında dalgalanma devam ediyor. Brand ilişkili 'medical' keyword'ünün #7'ye yükselmesi güçlü bir pozitif sinyal. Buna karşılık Nöbetçi Eczane ve online terapi kümelerindeki sert düşüşler bir sonraki ölçümde yakından takip edilmeli."
         topRows={APP_STORE_TOP}
-        topInsight="App Store'da core görünürlük güçlü: 'check up' #1, 'checkup' #2, 'evde doktor' #2, 'medical park' #6, 'online muayene' #6, 'check-up' #9, 'sağlık hizmeti' #15 ve 'happ' #20 seviyesinde. Top 10'da 6 keyword yer alıyor."
+        topInsight="App Store tarafında core hizmet ve marka görünürlüğü güçlü kalmaya devam ediyor. 'check up' #1, 'checkup' #2, 'evde doktor' #3 ve 'online muayene' #5 seviyesini korudu. 'medical' keyword'ü #90'dan #7'ye yükselerek haftanın en güçlü görünürlük kazanımını üretti."
         risingRows={APP_STORE_RISING}
-        risingInsight="Haftanın en güçlü yükselişleri: 'diyetisyen' +25, 'neyim var' +24, 'sağlık uygulaması' +23, 'nöbetçi eczane' +16 ve 'sağlık hizmeti' +9. İki yeni keyword sıralamaya girdi: 'doktor' (#129) ve 'check' (#234)."
+        risingInsight="Haftanın en güçlü kazanımları medical +83, park +50, neyim var +18, kan alma +12 ve doktor +9 oldu. Üç yeni keyword sıralamaya girdi: 'check' (#231), 'hizmetleri' (#236) ve 'sağlık' (#244)."
         newRows={APP_STORE_NEW}
-        newInsight=""
+        newInsight="'check' Unranked'ten #231'e, 'hizmetleri' Unranked'ten #236'ya ve 'sağlık' Unranked'ten #244'e yükselerek yeni sıralamaya girdi."
         watchlistRows={APP_STORE_WATCHLIST}
-        watchlistInsight="Önceki haftanın yükselen keyword'leri bu snapshot'ta geriledi: 'park' -154, 'terapi' -71, 'online doktor' -69, 'online terapi' -45, 'hizmetleri' -33 ve 'kan alma' -24. Bu kayıpların kalıcı olup olmadığı bir sonraki takipte öncelikli izleme alanı."
-        risingTitle="Yükselen Keyword'ler (03/11 → 09/11/2026)"
-        dateLabel="09/11/2026"
+        watchlistInsight="En büyük kayıplar nöbetçi eczane -81, hemşire -62, online terapi -36 ve nöbetçi -28 keyword'lerinde görüldü. Bu kayıpların kalıcı olup olmadığı bir sonraki takipte öncelikli izleme alanı."
+        risingTitle="Yükselen Keyword'ler (17/11 → 23/11/2026)"
+        dateLabel="23/11/2026"
       />
 
       <StoreSection
