@@ -301,7 +301,6 @@ function StoreSection({
           title="En Güçlü Keyword'ler"
           rows={topRows}
           insight={topInsight}
-          showVolume
         />
         <div className="flex flex-col gap-5">
           <RisingKeywordsTable
