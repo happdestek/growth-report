@@ -1157,7 +1157,7 @@ export default function SEODashboard() {
                     <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">LIVE</span>
                   </div>
                   <p className="text-[11px] text-gray-600 leading-relaxed">Nöbetçi Eczane sayfalarına Happ uygulamasına yönlendiren popup eklendi.</p>
-                  <p className="text-[10px] text-emerald-600 font-medium leading-relaxed mt-1">Yaklaşık 1,1K request alındı.</p>
+                  <p className="text-[10px] text-emerald-600 font-medium leading-relaxed mt-1">Yaklaşık 2,47K request alındı.</p>
                   <p className="text-[10px] text-gray-400 leading-relaxed mt-1">Organik Nöbetçi Eczane trafiğini App Download / acquisition kanalına dönüştürmek.</p>
                 </div>
 
