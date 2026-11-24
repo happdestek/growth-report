@@ -12,10 +12,10 @@ const TABS = [
   { id: 'growth',  label: 'App Growth & ASO',         icon: <Activity size={14} /> },
   { id: 'funnel',  label: 'Product Page View Funnel', icon: <GitCompareArrows size={14} /> },
   { id: 'seo',     label: 'SEO Performance',           icon: <Search size={14} /> },
+  { id: 'geo',     label: 'GEO & AI Visibility',       icon: <Sparkles size={14} /> },
   { id: 'crm',     label: 'CRM Performance',           icon: <Mail size={14} /> },
   { id: 'paid',    label: 'Paid Marketing',            icon: <Megaphone size={14} /> },
   { id: 'social',  label: 'Social Media Performance', icon: <Instagram size={14} /> },
-  { id: 'geo',     label: 'GEO & AI Visibility',        icon: <Sparkles size={14} /> },
 ] as const;
 
 type TabId = typeof TABS[number]['id'];
