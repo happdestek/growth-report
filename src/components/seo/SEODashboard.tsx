@@ -1215,6 +1215,7 @@ export default function SEODashboard() {
                     <p className="text-xs font-bold text-gray-800">AI Agent ile İçerik Üretimi</p>
                     <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">ACTIVE</span>
                   </div>
+                  <p className="text-[10px] text-gray-400 leading-relaxed mb-2">16 Ekim 2026 – 24 Kasım 2026 tarihleri arasında</p>
                   <div className="grid grid-cols-3 gap-2 mb-2.5 max-[480px]:grid-cols-1">
                     <div className="rounded-lg bg-white border border-gray-100 px-3 py-2 text-center">
                       <p className="text-lg font-bold text-gray-800 leading-tight">34</p>
