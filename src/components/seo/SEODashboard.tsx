@@ -1135,19 +1135,103 @@ export default function SEODashboard() {
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
             <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">5 — Aksiyon Takibi</p>
 
+            {/* Two-column summary: Yapılanlar / Yapılacaklar */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
+              {/* Left: Yapılanlar */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-emerald-500 text-sm font-bold">✓</span>
+                  <h4 className="text-xs font-bold text-gray-700">Yapılanlar (Ekim–Kasım)</h4>
+                </div>
+                <div className="rounded-xl border border-gray-100 overflow-hidden">
+                  <table className="w-full text-xs">
+                    <thead>
+                      <tr className="bg-gray-50 border-b border-gray-100">
+                        <th className="text-left px-3 py-2 font-semibold text-gray-400 uppercase tracking-wider">İş</th>
+                        <th className="text-right px-3 py-2 font-semibold text-gray-400 uppercase tracking-wider">Durum</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-50">
+                      {[
+                        { is: 'AI agent ile blog içerik üretimi — 34 Türkçe, 4 dilde toplam 136 içerik', durum: 'Aktif' },
+                        { is: 'Nöbetçi eczane sayfalarına uygulama pop-up\'ı', durum: 'Canlı' },
+                        { is: 'Düşen ilçelerde Google Ads desteği (Esenyurt, Pendik, Sultanbeyli, Kartal)', durum: 'Aktif' },
+                        { is: 'Organization + MedicalOrganization şeması tüm şablonlarda (tüzel kişi, grup bağı, sameAs)', durum: 'Tamamlandı' },
+                        { is: '/hakkimizda SEO/GEO uygulaması, 4 dil', durum: 'Tamamlandı' },
+                        { is: 'Psikolojik test sayfaları SEO uyumlu hale getirildi; her sayfaya soru-cevap + açıklama metni', durum: 'Yapıldı' },
+                        { is: 'Evde Sağlık il/ilçe sayfaları açıldı', durum: 'SEO gözden geçiriliyor' },
+                        { is: 'Blog ve nöbetçi eczane sayfalarında tarih altyapısı (datePublished/dateModified)', durum: 'Tamamlandı' },
+                        { is: 'Haftalık Semrush + Search Console kelime takibi ve Reklam & SEO raporu düzeni', durum: 'Aktif' },
+                      ].map((r, i) => {
+                        const isAmber = r.durum === 'SEO gözden geçiriliyor';
+                        return (
+                          <tr key={i} className="hover:bg-gray-50/60 transition-colors">
+                            <td className="px-3 py-2 text-[11px] text-gray-700 leading-snug">{r.is}</td>
+                            <td className="px-3 py-2 text-right whitespace-nowrap">
+                              <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${isAmber ? 'bg-amber-100 text-amber-700' : 'bg-emerald-100 text-emerald-700'}`}>{r.durum}</span>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Right: Yapılacaklar */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-blue-500 text-sm font-bold">→</span>
+                  <h4 className="text-xs font-bold text-gray-700">Yapılacaklar (Aralık)</h4>
+                </div>
+                <div className="rounded-xl border border-gray-100 bg-gray-50/40 px-4 py-3 flex flex-col gap-2">
+                  {[
+                    'TR ilçe sayfaları teknik inceleme (GSC dizin/tarama, canonical/hreflang/iç link, AR/RU ile karşılaştırma)',
+                    'İstanbul ilçe sayfalarını güçlendir (Beylikdüzü, Sultangazi, Esenyurt, Sarıyer, Pendik) + /nobetci-eczane/istanbul\'dan iç link',
+                    'Jenerik sorgular için tek hedef sayfa (/nobetci-eczane)',
+                    'Evde Sağlık il/ilçe SEO gözden geçirmesi: hub iç linki, evde-saglik-sitemap.xml, Service + areaServed şeması',
+                    'Psikolojik testler hub düzeltmeleri: title\'daki "yazıcam" artığı, test linklerinin gerçek URL\'lere gitmesi, ItemList\'e tüm testler',
+                    'Check-up yamyamlaşması: blogdan /tr/check-up\'a iç link, ürün sayfasında içerik derinliği',
+                    'Tık getirmeyen sorgularda başlık/meta yeniden yazımı (idrar yolu enfeksiyonu ilacı, sempatik ne demek, pendik)',
+                    'Hizmet sayfalarına tarih altyapısı',
+                    'İzleme: Semrush\'a İstanbul ilçe kelimeleri (mobil); pop-up Kasım request sayısı',
+                  ].map((action, i) => (
+                    <div key={i} className="flex items-start gap-2.5">
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-blue-50 text-blue-500 shrink-0 mt-0.5">{i + 1}</span>
+                      <p className="text-[11px] text-gray-700 leading-relaxed">{action}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
             {/* Group 1: Alınan Aksiyonlar */}
             <div className="mb-5">
               <p className="text-xs font-bold text-gray-700 mb-3">Alınan Aksiyonlar</p>
               <div className="flex flex-col gap-2.5">
-                {/* Blog içerik üretimi */}
+                {/* AI Agent ile İçerik Üretimi */}
                 <div className="rounded-xl border border-gray-100 bg-gray-50/60 px-4 py-3">
-                  <div className="flex items-center justify-between mb-1.5">
-                    <p className="text-xs font-bold text-gray-800">Blog İçerik Üretimi</p>
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-xs font-bold text-gray-800">AI Agent ile İçerik Üretimi</p>
                     <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">ACTIVE</span>
                   </div>
-                  <p className="text-[11px] text-gray-600 leading-relaxed">Mustafa Bey ile blog içerikleri için agent yapısı kuruldu.</p>
-                  <p className="text-[10px] text-gray-400 leading-relaxed mt-1">SEO içerik üretimini ve optimizasyon sürecini ölçeklemek.</p>
-                  <p className="text-[10px] text-gray-400 leading-relaxed mt-1">Blog içeriklerine kaynak / referans alanları eklendi.</p>
+                  <div className="grid grid-cols-3 gap-2 mb-2.5 max-[480px]:grid-cols-1">
+                    <div className="rounded-lg bg-white border border-gray-100 px-3 py-2 text-center">
+                      <p className="text-lg font-bold text-gray-800 leading-tight">34</p>
+                      <p className="text-[9px] text-gray-400 font-semibold uppercase tracking-wider">Türkçe Blog</p>
+                    </div>
+                    <div className="rounded-lg bg-white border border-gray-100 px-3 py-2 text-center">
+                      <p className="text-lg font-bold text-gray-800 leading-tight">136</p>
+                      <p className="text-[9px] text-gray-400 font-semibold uppercase tracking-wider">Toplam İçerik</p>
+                    </div>
+                    <div className="rounded-lg bg-white border border-gray-100 px-3 py-2 text-center">
+                      <p className="text-lg font-bold text-gray-800 leading-tight">4 Dil</p>
+                      <p className="text-[9px] text-gray-400 font-semibold uppercase tracking-wider">TR · EN · AR · RU</p>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-gray-600 leading-relaxed">Blog içerik üretimi AI agent yapısıyla ölçeklendi. 34 Türkçe içerik, İngilizce, Arapça ve Rusça dil versiyonlarıyla birlikte toplam 136 içeriğe ulaştı.</p>
+                  <p className="text-[10px] text-gray-400 leading-relaxed mt-1">SEO içerik hacmini ölçeklemek ve çok dilli organik görünürlüğü artırmak.</p>
+                  <p className="text-[10px] text-emerald-600 font-medium leading-relaxed mt-1">/tr Blog gösterimi 145K → 232K (+%60), tıklama 451 → 557 (+%24) — Kasım\'ın tek büyüyen Türkçe alanı.</p>
                 </div>
 
                 {/* Nöbetçi Eczane — App Conversion */}
@@ -1157,7 +1241,7 @@ export default function SEODashboard() {
                     <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">LIVE</span>
                   </div>
                   <p className="text-[11px] text-gray-600 leading-relaxed">Nöbetçi Eczane sayfalarına Happ uygulamasına yönlendiren popup eklendi.</p>
-                  <p className="text-[10px] text-emerald-600 font-medium leading-relaxed mt-1">Yaklaşık 2,47K request alındı.</p>
+                  <p className="text-[10px] text-emerald-600 font-medium leading-relaxed mt-1">Ekim\'de ~2,47K request. Kasım request sayısı güncellenecek.</p>
                   <p className="text-[10px] text-gray-400 leading-relaxed mt-1">Organik Nöbetçi Eczane trafiğini App Download / acquisition kanalına dönüştürmek.</p>
                 </div>
 
@@ -1168,6 +1252,7 @@ export default function SEODashboard() {
                     <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">ACTIVE</span>
                   </div>
                   <p className="text-[11px] text-gray-600 leading-relaxed">Organik görünürlükte en fazla düşüş yaşayan bölgelerde Google Ads desteği başlatıldı.</p>
+                  <p className="text-[10px] text-emerald-600 font-medium leading-relaxed mt-1.5">Pendik (887 → 6.296) ve Sultanbeyli (534 → 2.794) organik gösterimi arttı; Esenyurt Semrush\'ta 13. sıraya girdi. Organik tık hâlâ 1–2.</p>
                   <div className="flex flex-wrap gap-1 mt-1.5">
                     {['Esenyurt', 'Pendik', 'Sultanbeyli', 'Kartal'].map(loc => (
                       <span key={loc} className="text-[9px] bg-amber-50 text-amber-600 font-medium px-1.5 py-0.5 rounded-full border border-amber-100">{loc}</span>
@@ -1201,44 +1286,7 @@ export default function SEODashboard() {
               </div>
             </div>
 
-            {/* Group 2: Etkisi / İlk Sinyal */}
-            <div className="mb-5">
-              <p className="text-xs font-bold text-gray-700 mb-3">Etkisi / İlk Sinyal</p>
-              <div className="rounded-xl bg-slate-800 px-4 py-3.5">
-                <div className="flex flex-col gap-2.5">
-                  <p className="text-[11px] text-slate-200 leading-relaxed">
-                    SEO düşüşüne yalnızca organik sıralama aksiyonlarıyla değil, trafik koruma ve conversion odaklı hibrit bir yaklaşımla müdahale edildi.
-                  </p>
-                  <p className="text-[11px] text-slate-400 leading-relaxed">
-                    İçerik üretimi agent yapısıyla ölçeklenirken, Nöbetçi Eczane tarafında organik görünürlük kaybedilen lokasyonlar Google Ads ile desteklendi. Mevcut organik trafik ise popup üzerinden Happ uygulamasına yönlendirilmeye başlandı.
-                  </p>
-                  <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Popup'ın yaklaşık 1,1K request üretmesi, SEO trafiğinin app acquisition için de kullanılabileceğine dair ilk güçlü sinyali verdi.
-                  </p>
-                </div>
-              </div>
-            </div>
 
-            {/* Group 3: Sıradaki Aksiyonlar */}
-            <div>
-              <p className="text-xs font-bold text-gray-700 mb-3">Sıradaki Aksiyonlar</p>
-              <div className="flex flex-col gap-2">
-                {[
-                  'TR Nöbetçi Eczane sayfalarında canonical, noindex, template ve internal linking kontrollerini tamamla.',
-                  'Organik görünürlük kaybeden şehir / ilçe sayfalarını önceliklendirerek içerik ve teknik iyileştirme yap.',
-                  'Blog agent üzerinden yüksek impression / yüksek potansiyelli konularda içerik üretimini ölçekle.',
-                  'Yüksek impression ancak düşük CTR alan bloglarda title ve meta optimizasyonu yap.',
-                  'Nöbetçi Eczane popup funnelını: request → store → download → signup bazında ölç.',
-                  'Paid ile desteklenen Nöbetçi Eczane bölgelerinde organik sıralama toparlanmasını takip et ve SEO iyileştikçe paid ihtiyacını yeniden değerlendir.',
-                ].map((action, i) => (
-                  <div key={i} className="flex items-start gap-2.5 rounded-lg border border-gray-100 bg-gray-50/60 px-3 py-2.5">
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-gray-200 text-gray-600 shrink-0 mt-0.5">{i + 1}</span>
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-blue-50 text-blue-500 shrink-0 mt-0.5">NEXT</span>
-                    <p className="text-[11px] text-gray-700 leading-relaxed">{action}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
 
