@@ -46,14 +46,29 @@ const BLOCKERS = [
   ['Kurumsal sayfaların AI’da gerilemesi', 'YENİ · İzleme', '/tr ana sayfa AI gösterimi 1.091 → 637. Organization şeması ve marka tanımı ana şablona taşınmalı.'],
 ];
 
+const COMPLETED_ACTIONS = [
+  ['/hakkimizda GEO uygulaması — TR/EN/RU/AR, AboutPage + FAQ (8) + Breadcrumb, 6 Kas canlı', 'Doğrulandı'],
+  ['Organization + MedicalOrganization şeması tüm şablonlara (legalName, MLPCare bağı, 7 alternateName, 5 sameAs)', 'Tamamlandı'],
+  ['Kanonik marka / tüzel kişi kararı — şemada yayında', 'Uygulandı'],
+  ['Tarih altyapısı (datePublished/dateModified + görünür tarih) — blog ve nöbetçi eczane sayfaları', 'Tamamlandı'],
+  ['Psikolojik test sayfaları SEO/GEO uyumlu hale getirildi — her sayfaya soru-cevap + açıklama metni (canlı: MedicalWebPage + FAQPage 6 soru + Breadcrumb + ItemList)', 'Yapıldı'],
+  ['Evde Sağlık il/ilçe sayfaları açıldı; SEO uyumu gözden geçiriliyor', 'Gözden geçiriliyor'],
+  ['llms.txt yayında (şirket kimliği, MERSİS, 4 dil, hizmet özeti)', 'Ekim tarihli'],
+  ["Blog içerik agent'ı üretimde — Kasım'da AI'da görünen yeni yazılar (sempatik ne demek, ghosting, damaksız protez)", 'Devam ediyor'],
+  ['Search Console Generative AI raporu ve haftalık Semrush + GSC kelime takibi düzeni kuruldu', 'Aktif'],
+];
+
 const NEXT_ACTIONS = [
-  '11 Kasım anomalisini kapat: Güvenlik sorunları ve URL denetimi kontrollerini tamamla, sonucu rapora ekle.',
-  'Canonical Organization + alternateName + sameAs yapısını ana şablona taşı.',
-  'Ana sayfaya kısa marka tanımı ve /hakkimizda gövde linki ekle.',
-  'datePublished / dateModified altyapısını tüm hizmet ve blog şablonlarına yay.',
-  'llms.txt dosyasını güncelle.',
-  'AI görünürlüğü yüksek blog konularında içerik üretimini ölçekle; tanım cümlesi ve FAQ bloğu ekle.',
-  'Search Console Generative AI ayarını doğrula ve Aralık’tan itibaren haftalık takip başlat.',
+  '11 Kasım anomalisini kapat: Güvenlik sorunları + URL denetimi; sonucu rapora not düş',
+  'Hizmet sayfası şablonuna (check-up, evde sağlık, online doktor, psikolog, diyetisyen) datePublished / dateModified + görünür güncelleme tarihi',
+  'Ana sayfa gövdesine /hakkimizda linki + "Medical Park ve Liv Hospital grubunun dijital sağlık platformu" cümlesi; meta description\'a grup bağı',
+  "Psikolojik testler hub düzeltmeleri: title sonundaki 'yazıcam' artığını kaldır; test linklerinin /tr/psikolojik-testler/ yerine gerçek test URL'lerine gitmesi; ItemList'e tüm testleri ekle",
+  "Evde Sağlık il/ilçe sayfaları: /tr/evde-saglik hub'ından iç link, evde-saglik-sitemap.xml'e ekleme, Service + areaServed şeması (şu an hub'dan link ve sitemap kaydı yok)",
+  "llms.txt'i Kasım sürümüne güncelle (last-updated, /hakkimizda FAQ, psikolojik testler ve evde sağlık il/ilçe linkleri)",
+  ['GEO hazırlık skorunu ve teknik kalem listesini (4 kısmi / 21 başlamadı) canlı duruma göre yeniden hesapla'],
+  ['AI görünürlüğü yüksek blog konularından üretimi ölçekle; her yazıya tanım cümlesi + FAQ bloğu'],
+  ["Aralık'tan itibaren /hakkimizda, ana sayfa, hizmet ve psikolojik test sayfaları için haftalık AI gösterim takibi"],
+  ['Bekleyen dış bağımlılıklar: YouTube OAuth yetkisi · operasyonel bilgi doğrulaması (Açık Konular 3–4).'],
 ];
 
 const STATUS_ITEMS = [
@@ -115,7 +130,24 @@ export default function GEODashboard() {
 
       <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5"><SectionHeader icon={<AlertTriangle size={16} />} title="Açık Konular" subtitle="Öncelikli engeller" /><div className="grid grid-cols-1 md:grid-cols-2 gap-3">{BLOCKERS.map((item, index) => <div key={item[0]} className="rounded-xl border border-gray-100 p-4 flex flex-col gap-2"><div className="flex items-start gap-2"><span className="w-6 h-6 rounded-lg bg-gray-100 flex items-center justify-center text-[11px] font-bold text-gray-500 shrink-0">{index + 1}</span><div><p className="text-sm font-semibold text-gray-800">{item[0]}</p><span className="inline-flex text-[10px] font-semibold px-2 py-0.5 mt-1 rounded-full bg-amber-50 text-amber-700 border border-amber-100">{item[1]}</span></div></div><p className="text-xs text-gray-500 leading-relaxed">{item[2]}</p></div>)}</div></section>
 
-      <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5"><SectionHeader icon={<ArrowRight size={16} />} title="Sonraki Aksiyonlar" subtitle="Sıradaki adımlar · Aralık" /><div className="flex flex-col gap-2">{NEXT_ACTIONS.map((action, index) => <div key={action} className="flex items-center gap-3 rounded-xl border border-gray-100 bg-gray-50/50 px-4 py-3 hover:bg-gray-50 transition-colors"><span className="w-7 h-7 rounded-lg bg-blue-600 text-white flex items-center justify-center text-xs font-bold shrink-0">{index + 1}</span><span className="text-sm text-gray-700">{action}</span><ArrowRight size={14} className="text-gray-300 ml-auto shrink-0" /></div>)}</div></section>
+      <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+        <SectionHeader icon={<ClipboardList size={16} />} title="Aksiyon Listesi" subtitle="Yapılanlar · Yapılacaklar · Kasım 2026" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2"><span className="text-emerald-500 text-sm font-bold">✓</span><h4 className="text-xs font-bold text-gray-700">Yapılanlar (Ekim–Kasım)</h4></div>
+            <div className="rounded-xl border border-gray-100 overflow-hidden">
+              <table className="w-full text-xs">
+                <thead><tr className="bg-gray-50 border-b border-gray-100"><th className="text-left px-3 py-2 font-semibold text-gray-400 uppercase tracking-wider">İş</th><th className="text-right px-3 py-2 font-semibold text-gray-400 uppercase tracking-wider">Durum</th></tr></thead>
+                <tbody className="divide-y divide-gray-50">{COMPLETED_ACTIONS.map(([action, status]) => <tr key={action} className="hover:bg-gray-50/60 transition-colors"><td className="px-3 py-2 text-[11px] text-gray-700 leading-snug">{action}</td><td className="px-3 py-2 text-right whitespace-nowrap"><span className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${status === 'Gözden geçiriliyor' ? 'bg-amber-100 text-amber-700' : 'bg-emerald-100 text-emerald-700'}`}>{status}</span></td></tr>)}</tbody>
+              </table>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2"><span className="text-blue-500 text-sm font-bold">→</span><h4 className="text-xs font-bold text-gray-700">Yapılacaklar (Aralık)</h4></div>
+            <div className="rounded-xl border border-gray-100 bg-gray-50/40 px-4 py-3 flex flex-col gap-2">{NEXT_ACTIONS.map((action, index) => <div key={index} className="flex items-start gap-2.5"><span className="w-6 h-6 rounded-lg bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0">{index + 1}</span><p className="text-[11px] text-gray-700 leading-relaxed">{action}</p></div>)}</div>
+          </div>
+        </div>
+      </section>
 
       <section className="bg-slate-800 rounded-2xl p-5 flex flex-col gap-3"><div className="flex items-center gap-2.5"><div className="w-8 h-8 rounded-xl bg-slate-700 flex items-center justify-center"><ClipboardList size={16} className="text-slate-300" /></div><div><h3 className="text-sm font-bold text-slate-100 tracking-tight">Yönetim Özeti · Kasım 2026</h3><p className="text-xs text-slate-500">Genel değerlendirme</p></div></div><div className="flex flex-col gap-2.5"><p className="text-sm text-slate-300 leading-relaxed">Generative AI gösterimi 1–24 Kasım’da 58,8K; Ekim’in aynı dönemine göre +%24. Artışın tamamı 11 Kasım’daki tek günlük anomaliden geliyor; anomali hariç görünürlük %5 geride.</p><p className="text-sm text-slate-300 leading-relaxed">AI görünürlüğü Türkçe blog yazılarına kaydı (+%56); nöbetçi eczane, kurumsal ve ana sayfalar geriledi. Bu, organik tarafta görülen TR nöbetçi eczane kaybının AI özelliklerine yansıması.</p><p className="text-sm text-slate-300 leading-relaxed">/hakkimizda GEO uygulaması 6 Kasım’da canlıya alındı; ölçülebilir etki yok. Aralık önceliği Organization şeması ve marka tanımının ana şablona taşınması.</p></div></section>
 
