@@ -21,6 +21,7 @@ const MONTHLY_TREND = [
   { month: 'Haziran', clicks: 34500,  impressions: 6060000, ctr: 0.60, position: 8.8,  note: 'Mevsimsel düşüş' },
   { month: 'Temmuz',  clicks: 28400,  impressions: 4740000, ctr: 0.60, position: 9.0,  note: 'Görünürlük hacminde daralma' },
   { month: 'Ağustos', clicks: 27600,  impressions: 4550000, ctr: 0.60, position: 9.3,  note: 'Stabilizasyon sinyali' },
+  { month: 'Eylül 2026', clicks: 24458, impressions: 4142857, ctr: 0.60, position: 9.5, note: 'Canlı öncesi karşılaştırma' },
   { month: 'Ekim 2026', clicks: 20300, impressions: 2900000, ctr: 0.70, position: 10.0, note: 'İlk tam ay · canlı sonrası' },
 ];
 
