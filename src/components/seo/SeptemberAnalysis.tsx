@@ -1,179 +1,170 @@
-import {
-  TrendingUp, TrendingDown, Minus, AlertTriangle, CheckCircle, Clock,
-  Info, Target, Wrench, Search, BarChart2, ArrowRight, ArrowDown,
-} from 'lucide-react';
+import { AlertTriangle, BarChart2 } from 'lucide-react';
 
-// ─── Data ───
-
-const EXEC_CARDS = [
-  { title: 'Genel Tablo', main: '-%28', secondary: 'Ekim 2026 · ilk tam ay', text: 'Ekim, 7 Eylül’deki canlıya çıkış sonrası ilk tam ay oldu. Toplam organik click canlı öncesi eşit 31 günlük döneme göre %28 geriledi. Ancak kaybın neredeyse tamamı Türkçe Nöbetçi Eczane sayfalarından geliyor.', color: 'blue' },
-  { title: 'Site Geneli Hariç', main: '+%18', secondary: 'TR Nöbetçi Eczane hariç', status: 'Büyüme sinyali', text: 'TR Nöbetçi Eczane hariç tutulduğunda sitenin geri kalan organik trafiği canlı öncesine göre %18 büyüdü.', color: 'emerald' },
-  { title: 'Teknik Sinyal', main: 'TR template', secondary: 'Strong technical / template signal', districts: ['/nobetci-eczane/', '/tr', 'Blog', 'Check-Up'], text: 'Düşüş Türkçe yapı üzerinde yoğunlaşırken yeni /tr yapı, Online Doktor, Blog, Check-Up ve yabancı dil alanlarında büyüme görüldü.', color: 'red' },
-];
-
-const KPI_COMPARISON = [
-  { label: 'Tıklama', before: '25.100', after: '20.3K', raw: '-%17', adjusted: '-%28 vs pre-live', status: 'raw' },
-  { label: 'Gösterim', before: '4,14M', after: '2,9M', raw: '-%30', adjusted: '-%37 vs pre-live', status: 'raw' },
-  { label: 'CTR', before: '%0,6', after: '%0,7', raw: '+0,1 pp', adjusted: '+0,1 pp', status: 'stable' },
-  { label: 'Avg. Position', before: '9,5', after: '10,0', raw: '+0,5 worse', adjusted: '+0,7 worse vs pre-live', status: 'slight' },
-];
+const SUMMARY_CARDS = [
+  {
+    title: 'Genel Tablo',
+    value: '-%27',
+    subtitle: 'Kasım 2026 · 1–24 Kasım vs 1–24 Ekim',
+    detail: '11,4K tıklama (Ekim: 15,7K). Gösterim 2,39M → 1,32M (-%45), CTR %0,7 → %0,9, ortalama konum 9,9 → 10,3.',
+    color: 'blue',
+  },
+  {
+    title: 'Site Geneli Hariç',
+    value: '-%13',
+    subtitle: 'TR Nöbetçi Eczane hariç',
+    detail: "Ekim'de TR Nöbetçi Eczane hariç site +%18 büyümüştü. Kasım'da aynı kesim 10,4K → 9,0K'ya geriledi.",
+    color: 'emerald',
+  },
+  {
+    title: 'Teknik Sinyal',
+    value: 'TR ilçe sayfaları',
+    subtitle: 'Görünürlük kaybı + sıralama kararsızlığı',
+    detail: 'TR nöbetçi eczane gösterimi 1,76M → 820K. Jenerik sorgularda rastgele şehir sayfaları dönüyor.',
+    color: 'amber',
+  },
+] as const;
 
 const WEEKLY_TREND = [
-  { week: '24–30 Aug', clicks: 5625, highlight: false },
-  { week: '31 Aug–6 Sep', clicks: 6191, highlight: false },
-  { week: '7–13 Sep', clicks: 6332, highlight: true },
-  { week: '14–20 Sep', clicks: 5354, highlight: false },
-  { week: '21–26 Sep', clicks: 4261, highlight: false, partial: true },
+  { label: '27 Eki–2 Kas', value: 4779 },
+  { label: '3–9 Kas', value: 3935 },
+  { label: '10–16 Kas', value: 3476 },
+  { label: '17–23 Kas', value: 2621 },
 ];
 
-const SEASONALITY = [
-  { segment: 'Total Site Clicks', y2025: '-25,9%', y2026: '-10,8%', interp: 'Mevsimselden daha iyi', interpType: 'good' },
-  { segment: 'Total Site Impressions', y2025: '-14,7%', y2026: '-10,0%', interp: 'Mevsimselden daha iyi', interpType: 'good' },
-  { segment: 'TR Nöbetçi Eczane', y2025: '-29,6%', y2026: '-30,1%', interp: 'Büyük ölçüde mevsimsel', interpType: 'neutral' },
-  { segment: 'Arabic Duty Pharmacy', y2025: '-21,2%', y2026: '-6,1%', interp: 'Belirgin şekilde daha iyi', interpType: 'good' },
-  { segment: 'Dikili / Sarıyer / Tirebolu', y2025: '—', y2026: '—', interp: 'Mostly seasonal', interpType: 'neutral' },
-  { segment: 'Ümraniye / Kaş / Silivri / Eyüp', y2025: '—', y2026: '—', interp: 'Gerçek kayıp', interpType: 'bad' },
-  { segment: 'Beylikdüzü / Gürsu / Akçakale', y2025: '—', y2026: '—', interp: 'Gerçek kayıp', interpType: 'bad' },
+const CATEGORY_ROWS = [
+  ['TR Nöbetçi Eczane', '5.260', '2.360', '-%55', '820K (-%53)', '9,5 → 9,6'],
+  ['AR Nöbetçi Eczane', '5.860', '4.900', '-%16', '55,7K (-%14)', '5,3 → 5,2'],
+  ['Online Doctor', '2.250', '2.050', '-%9', '138K (+%28)', '9,8 → 9,4'],
+  ['RU Nöbetçi Eczane', '912', '657', '-%28', '9,8K (-%40)', '6,3 → 5,8'],
+  ['/tr Blog', '451', '557', '+%24', '232K (+%60)', '12,7 → 12,7'],
+  ['EN Duty Pharmacy', '255', '146', '-%43', '32,2K (-%58)', '7,8 → 7,8'],
+  ['/tr Homepage', '248', '157', '-%37', '2,3K (-%29)', '4,2 → 5,4'],
+  ['Check-Up', '128', '109', '-%15', '4,1K (+%7)', '8,5 → 8,8'],
+  ['Evde Sağlık', '91', '97', '+%7', '6,1K (+%36)', '10,4 → 13,2'],
 ];
 
-const POSITIVE_SIGNALS = [
-  { group: 'Online Doctor', change: '+77%' },
-  { group: '/tr Blog', change: 'NEW · 638' },
-  { group: 'Check-Up', change: '+76%' },
-  { group: '/tr Homepage', change: '+6000%' },
-  { group: 'AR / RU / EN Nöbetçi Eczane', change: '+3% click' },
+const CRITICAL_PAGES = [
+  ['Sarıyer', '72 → 18', '13,4K → 8,1K', '7,2 → 8,0'],
+  ['Elmalı', '78 → 20', '4,0K → 2,5K', '5,5 → 7,0'],
+  ['Kahta', '141 → 62', '4,2K → 3,8K', '5,5 → 5,1'],
+  ['Arabic Osmangazi', '138 → 72', '1,3K → 1,0K', '3,9 → 4,0'],
 ];
 
-const GROWING_SECTIONS = [
-  ['TR Nöbetçi Eczane', '16.100', '6.280', '-61%'], ['AR Nöbetçi Eczane', '7.960', '8.180', '+3%'], ['Online Doctor', '1.550', '2.740', '+77%'], ['RU Nöbetçi Eczane', '935', '1.310', '+40%'], ['/tr Blog', '0', '638', 'NEW'], ['/tr Homepage', '5', '305', '+6000%'], ['Check-Up', '92', '162', '+76%'],
+const DISTRICT_QUERIES = [
+  ['nöbetçi eczane istanbul', '16.841 → 1.391', '9 → 1'],
+  ['beylikdüzü nöbetçi eczane', '12.153 → 1.700', '33 → 0'],
+  ['sultangazi nöbetçi eczane', '10.399 → 1.811', '10 → 1'],
+  ['esenyurt nöbetçi eczane', '5.827 → 439', '6 → 0'],
+  ['sarıyer nöbetçi eczane', '4.722 → 1.510', '21 → 1'],
+  ['pendik nöbetçi eczane', '887 → 6.296', '1 → 2'],
+  ['sultanbeyli nöbetçi eczane', '534 → 2.794', '0 → 1'],
 ];
 
-const WINNING_PAGES = [
-  { page: '/tr', click: '5 → 305', imp: '—', pos: '4,9 → 4,2' },
-  { page: '/duty-pharmacy/ar', click: '64 → 187', imp: '—', pos: '—' },
-  { page: 'Arabic Şanlıurfa', click: '188 → 294', imp: '—', pos: '—' },
-  { page: 'Arabic Bursa', click: '173 → 271', imp: '—', pos: '—' },
-  { page: 'Nöbetçi Eczane İstanbul hub', click: '22 → 102', imp: '—', pos: '—' },
-  { page: '/tr/check-up/medicalpark', click: '0 → 92', imp: '—', pos: '6,9' },
+const SEMRUSH_ROWS = [
+  ['nöbetçi eczaneler', '86', '14', '+72'],
+  ['açık eczane', '65', '15', '+50'],
+  ['en yakın eczane', '30', '13', '+17'],
+  ['nöbetçi eczane (1,8M)', '—', '31', 'giriş'],
+  ['istanbul nöbetçi eczane', '10', '11', '-1'],
+  ['bursa nöbetçi eczane', '11', '26', '-15'],
+  ['ankara nöbetçi eczane', '18', '36', '-18'],
+  ['adana nöbetçi eczane', '13', '33', '-20'],
+  ['antalya nöbetçi eczane', '11', '43', '-32'],
 ];
 
-const LOSING_PAGES = [
-  { page: 'Sarıyer', click: '316 → 81', pos: '5,8 → 7,5' },
-  { page: 'Elmalı', click: '244 → 91', pos: '4,9 → 5,8' },
-  { page: 'Kahta', click: '286 → 160', pos: '5,2 → 5,5' },
-  { page: 'Arabic Osmangazi', click: '320 → 181', pos: '2,2 → 3,8' },
+const SERVICE_ROWS = [
+  ['check up (22K)', '79', '16', '+63'],
+  ['online psikolog (14,8K)', '79', '42', '+37'],
+  ['online doktor', '69', '28', '+41'],
+  ['evde kan tahlili', '91', '14', '+77'],
+  ['nöbetçi eczane esenyurt (22K)', '—', '13', 'giriş'],
+  ['online diyetisyen', '—', '24', 'giriş'],
+  ['evde hemşire', '17', '31', '-14'],
+  ['evde serum (3,6K)', '22', '—', 'çıktı'],
+  ['grip aşısı (8,1K)', '52', '—', 'çıktı'],
 ];
 
-const OPPORTUNITIES = [
-  { page: 'Istanbul hub', imp: '24,0K → 37,3K', clicks: '15 → 27', pos: '11,6 → 10,4', action: 'Title/meta + district internal linking' },
-  { page: 'Gaziantep hub', imp: '1,2K → 7,7K', clicks: '0 → 15', pos: '21,6 → 11,7', action: 'Content depth / first-page push' },
-  { page: 'Gaziantep Şahinbey', imp: '1,3K → 7,4K', clicks: '8 → 12', pos: '11,7 → 11,0', action: 'Hub internal linking' },
-  { page: 'Bursa Osmangazi', imp: '5,1K → 10,1K', clicks: '11 → 15', pos: '10,9 → 10,8', action: 'First-page optimization' },
-  { page: 'Idrar Yolu Enfeksiyonu blog', imp: '0 → 5,5K', clicks: '0 → 4', pos: '→ 4,8', action: 'CTR / title optimization' },
-];
-
-const TASKS = [
-  { title: 'PRIORITY 1 — TR NÖBETÇİ ECZANE TECHNICAL REVIEW', status: 'CRITICAL / IN PROGRESS', statusType: 'progress' as const, badges: ['noindex', 'canonical', 'internal linking', 'SSR'], detail: '/nobetci-eczane/izmir/urkmez noindex örnekleri arasında görünüyor. Eski ve yeni template farkları karşılaştırılmalı.' },
-  { title: 'PRIORITY 2 — URL MIGRATION / REDIRECT VALIDATION', status: 'CRITICAL / IN PROGRESS', statusType: 'progress' as const, badges: ['check-up-listesi → check-up', '301', '404'], detail: '301 redirect, final destination, 404 listesi ve eski migrate URL’ler doğrulanmalı.' },
-  { title: 'PRIORITY 3 — EN / RU CONTENT CLEANUP', status: 'IN PROGRESS', statusType: 'progress' as const, badges: ['/en/', '/ru/', 'hreflang'], detail: 'Türkçe içerik ve slug kalan sayfalar çevrilmeli veya noindex / hreflang ile yönetilmeli.' },
-  { title: 'PRIORITY 4 — BLOG CTR OPTIMIZATION', status: 'IN PROGRESS', statusType: 'progress' as const, badges: ['title', 'meta description', 'content depth'], detail: 'Yüksek impression alan “eczane kaçta kapanır” gibi sayfalarda snippet ve içerik optimizasyonu yapılmalı.' },
-  { title: 'PRIORITY 5 — SUPPORT GROWING AREAS', status: 'NEXT', statusType: 'review' as const, badges: ['doctor profile links', 'Blog', 'Check-Up'], detail: 'Doktor profil sayfalarından Blog, Check-Up ve ilgili hizmetlere internal link vererek Online Doctor, /tr homepage ve brand search büyümesi desteklenmeli.' },
+const ACTIONS = [
   {
-    title: 'Mobile Core Web Vitals',
-    status: 'TAMAMLANDI',
-    statusType: 'done' as const,
-    badges: ['818 → 47', '3.236 → 4.016 Good URLs', 'Desktop %100 Good'],
-    detail: 'Previously: 818 URLs "Needs Improvement". Now: 47 URLs "Needs Improvement", 4.016 URLs Good, 0 Poor. Desktop: 4.063 URLs, 100% Good.',
+    title: 'Blog İçerik Üretimi',
+    status: 'ACTIVE · ÇALIŞIYOR',
+    text: '/tr Blog gösterimi 145K → 232K (+%60), tıklama 451 → 557 (+%24). Kasım\'ın tek büyüyen Türkçe alanı.',
+    detail: 'Sonraki adım: CTR %0,2 — gösterim kazanan yazıların başlık/meta\'sını sorguya göre yeniden yaz.',
   },
   {
-    title: '/ → /tr AND /blog → /tr/blog Migration',
-    status: 'TAMAMLANDI',
-    statusType: 'done' as const,
-    badges: ['/tr 5 → 116 clicks', 'Blog +27% clicks'],
-    detail: 'Migrated blog articles: 0 → 43 clicks, 0 → 33 clicks. Old root homepage: 113 → 34 clicks. Remaining: 15 x 4xx, 1 x 403, 3 redirect errors.',
-    label: 'Migration tamamlandı · küçük teknik kalıntılar temizlenecek',
+    title: 'Nöbetçi Eczane — App Conversion',
+    status: 'LIVE',
+    text: "Happ uygulamasına yönlendiren pop-up canlı. Ekim'de yaklaşık 1,1K request alındı.",
+    detail: 'Kasım pop-up request sayısı güncellenecek. Organik TR nöbetçi eczane tıklaması %55 düştüğü için beslenen trafik de daraldı.',
   },
   {
-    title: 'Russian Antalya / Taşucu Monitoring',
-    status: 'TAMAMLANDI · İZLEME KAPANDI',
-    statusType: 'done' as const,
-    badges: ['Russian pages +15% clicks', 'Russian queries +7%'],
-    detail: 'Core queries still around #1. Previous weekly decline was seasonal demand fluctuation; no specific intervention required.',
+    title: 'Nöbetçi Eczane — Paid SEO Support',
+    status: 'ACTIVE',
+    text: 'Esenyurt, Pendik, Sultanbeyli ve Kartal\'da Google Ads desteği sürüyor.',
+    detail: 'Gösterim artan ilçelerde organik tık hâlâ 1–2. Ads\'in organik görünürlüğe etkisi şimdilik gösterim düzeyinde.',
   },
   {
-    title: 'Noindex Increase',
-    status: 'İNCELEME YAPILDI · KARAR BEKLİYOR',
-    statusType: 'review' as const,
-    badges: ['Excluded: 7 → 2.389'],
-    detail: 'Affected: /duty-pharmacy/pharmacy/{ru,en,ar}/.../{id} and /nobetci-eczane/eczane/undefined/{id}. City / district listing pages are not affected.',
-    warning: "'undefined' URL production is a template issue and must be stopped.",
+    title: 'TR İlçe Sayfaları Teknik İnceleme',
+    status: 'YENİ · ARALIK',
+    text: 'GSC sayfa dizine ekleme ve tarama istatistikleriyle Kasım\'daki tarama/indeks değişimi incelenecek.',
+    detail: 'Canonical, hreflang, iç link yapısı ve jenerik sorgular için tek hedef sayfa kontrol edilecek.',
   },
   {
-    title: 'District Content / Internal Linking',
-    status: 'DEVAM EDİYOR',
-    statusType: 'progress' as const,
-    badges: ['Canonical conflicts: 2.293 → 2.211 (-82)'],
-    detail: 'Priority: Ümraniye, Kaş, Silivri, Eyüp, Beylikdüzü, Gürsu, Akçakale. Positive early signals: Istanbul hub impressions +55%, Gaziantep / Bursa hubs growing.',
+    title: 'Check-Up Yamyamlaşması',
+    status: 'YENİ · ARALIK',
+    text: '“check up” 16. sıraya blog yazısıyla çıktı; /tr/check-up ürün sayfası 80. sırada.',
+    detail: 'Blogdan ürün sayfasına güçlü iç link ve ürün sayfasında içerik derinliği artırılacak.',
   },
 ];
 
-const INDEXING = [
-  { label: 'Indexed Pages', value: '58.536', type: 'normal' as const },
-  { label: 'Not Indexed', value: '62.667', type: 'normal' as const },
-  { label: 'Excluded by noindex', value: '26.103', type: 'warn' as const },
-  { label: 'Crawled – currently not indexed', value: '21.036', type: 'warn' as const, sub: '2. büyük sorun' },
-  { label: 'Alternate page with proper canonical', value: '11.430', type: 'normal' as const },
-  { label: 'Duplicate — Google chose different canonical', value: '1.522', type: 'normal' as const },
-  { label: 'Page with redirect', value: '1.482', type: 'normal' as const },
-  { label: 'Not found 404', value: '673', type: 'normal' as const },
-  { label: 'Discovered – currently not indexed', value: '365', type: 'normal' as const },
-  { label: 'Blocked by robots.txt', value: '44', type: 'normal' as const },
-  { label: 'Server error 5xx', value: '5', type: 'normal' as const },
+const NEXT_ACTIONS = [
+  'TR Nöbetçi Eczane sayfalarında canonical, noindex, template ve internal linking kontrollerini tamamla.',
+  'Organik görünürlük kaybeden şehir ve ilçe sayfalarını önceliklendirerek içerik ve teknik iyileştirme yap.',
+  'Blog agent üzerinden yüksek impression ve yüksek potansiyelli konularda içerik üretimini ölçekle.',
+  'Yüksek impression ancak düşük CTR alan bloglarda title ve meta optimizasyonu yap.',
+  'Nöbetçi Eczane popup funnelını request → store → download → signup bazında ölç.',
+  'Paid ile desteklenen bölgelerde organik sıralama toparlanmasını takip et.',
 ];
 
-const NEXT_ACTIONS_TECH = [
-  'TR Nöbetçi Eczane template logicini incele: noindex, canonical, internal linking, pharmacy list SSR ve eski/yeni template farkları. Örnek: /nobetci-eczane/izmir/urkmez.',
-  'URL migrationı doğrula: check-up-listesi → check-up, 301 redirect, final destination, 404 listesi ve eski URL’ler.',
-  'EN / RU sayfalarında Türkçe içerik ve slug kalan URL’leri çevir veya noindex / hreflang ile yönet.',
-];
-
-const NEXT_ACTIONS_CONTENT = [
-  'Blog CTR optimizasyonu: title, meta description, content depth ve yüksek impression alan “eczane kaçta kapanır” sayfası.',
-  'Doktor profil sayfalarından Blog, Check-Up ve ilgili hizmetlere internal link vererek Online Doctor, /tr homepage ve brand search büyümesini destekle.',
-];
-
-// ─── Helpers ───
-
-function statusBadge(type: string) {
-  switch (type) {
-    case 'done':
-      return <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full whitespace-nowrap"><CheckCircle size={10} /> Tamamlandı</span>;
-    case 'progress':
-      return <span className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full whitespace-nowrap"><Clock size={10} /> Devam Ediyor</span>;
-    case 'review':
-      return <span className="inline-flex items-center gap-1 text-[10px] font-bold text-orange-700 bg-orange-50 px-2 py-0.5 rounded-full whitespace-nowrap"><AlertTriangle size={10} /> Karar Bekliyor</span>;
-    default:
-      return null;
-  }
-}
-
-const colorMap: Record<string, { bg: string; text: string; border: string; main: string }> = {
-  blue: { bg: 'bg-blue-50', text: 'text-blue-600', border: 'border-blue-100', main: 'text-blue-700' },
-  emerald: { bg: 'bg-emerald-50', text: 'text-emerald-600', border: 'border-emerald-100', main: 'text-emerald-700' },
-  red: { bg: 'bg-red-50', text: 'text-red-600', border: 'border-red-100', main: 'text-red-600' },
+const cardColors = {
+  blue: { border: 'border-blue-100', value: 'text-blue-700', bg: 'bg-blue-50' },
+  emerald: { border: 'border-emerald-100', value: 'text-emerald-700', bg: 'bg-emerald-50' },
+  amber: { border: 'border-amber-100', value: 'text-amber-700', bg: 'bg-amber-50' },
 };
 
-// ─── Component ───
+function SectionTitle({ children }: { children: string }) {
+  return <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">{children}</p>;
+}
+
+function DataTable({ headers, rows }: { headers: string[]; rows: string[][] }) {
+  return (
+    <div className="overflow-x-auto rounded-xl border border-gray-100">
+      <table className="w-full text-xs border-collapse">
+        <thead>
+          <tr className="bg-gray-50">
+            {headers.map(header => <th key={header} className="text-left px-3 py-2.5 font-semibold text-gray-500 uppercase tracking-wider whitespace-nowrap">{header}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, rowIndex) => (
+            <tr key={`${row[0]}-${rowIndex}`} className="border-t border-gray-100 hover:bg-gray-50/60 transition-colors">
+              {row.map((cell, cellIndex) => <td key={`${row[0]}-${cellIndex}`} className={`px-3 py-2.5 ${cellIndex === 0 ? 'font-semibold text-gray-700' : 'text-gray-600'} ${cellIndex > 0 ? 'text-right tabular-nums' : ''}`}>{cell}</td>)}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 export default function SeptemberAnalysis() {
+  const maxWeeklyClicks = Math.max(...WEEKLY_TREND.map(item => item.value));
+
   return (
     <div className="flex flex-col gap-5">
-      {/* Section header */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
         <div className="flex items-start gap-3">
-          <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center shrink-0">
-            <BarChart2 size={18} className="text-white" />
-          </div>
+          <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center shrink-0"><BarChart2 size={18} className="text-white" /></div>
           <div className="flex-1">
             <h2 className="text-lg font-bold text-gray-900">Kasım 2026 SEO Durumu</h2>
             <p className="text-sm text-gray-400 mt-0.5">1–24 Kasım 2026 — Canlı Sonrası İkinci Ay</p>
@@ -183,228 +174,71 @@ export default function SeptemberAnalysis() {
         </div>
       </div>
 
-      {/* 2 — Executive Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {EXEC_CARDS.map((card) => {
-          const c = colorMap[card.color];
-          return (
-            <div key={card.title} className={`bg-white rounded-2xl border ${c.border} shadow-sm p-5 flex flex-col gap-3`}>
-              <p className="text-xs font-bold text-gray-500 uppercase tracking-wider">{card.title}</p>
-              <div className="flex flex-col gap-1">
-                <span className={`text-2xl font-bold ${c.main}`}>{card.main}</span>
-                {card.secondary && <span className="text-sm font-semibold text-gray-500">{card.secondary}</span>}
-                {card.status && <span className={`text-[11px] font-semibold ${c.text} ${c.bg} px-2 py-1 rounded-lg w-fit`}>{card.status}</span>}
-                {card.districts && (
-                  <div className="flex flex-wrap gap-1 mt-1">
-                    {card.districts.map((d) => (
-                      <span key={d} className="text-[10px] font-semibold text-red-600 bg-red-50 px-1.5 py-0.5 rounded-full">{d}</span>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <p className="text-[11px] text-gray-500 leading-relaxed">{card.text}</p>
-            </div>
-          );
+        {SUMMARY_CARDS.map(card => {
+          const colors = cardColors[card.color];
+          return <div key={card.title} className={`bg-white rounded-2xl border ${colors.border} shadow-sm p-5 flex flex-col gap-3`}>
+            <p className="text-xs font-bold text-gray-500 uppercase tracking-wider">{card.title}</p>
+            <div className="flex flex-col gap-1"><span className={`text-2xl font-bold ${colors.value}`}>{card.value}</span><span className="text-sm font-semibold text-gray-500">{card.subtitle}</span></div>
+            <p className="text-[11px] text-gray-500 leading-relaxed">{card.detail}</p>
+          </div>;
         })}
       </div>
 
-      {/* 12 — Generative AI Visibility (moved up) */}
-      <div className="hidden bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-        <div className="flex items-center gap-2.5 mb-4">
-          <div className="w-8 h-8 bg-fuchsia-50 rounded-xl flex items-center justify-center">
-            <Search size={15} className="text-fuchsia-600" />
-          </div>
-          <div>
-            <p className="text-sm font-semibold text-gray-800">Generative AI Görünürlüğü — Güncel</p>
-            <p className="text-xs text-gray-400">Search AI yüzeylerinde görünürlük trendi</p>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <div className="rounded-xl border border-gray-100 p-3 flex flex-col gap-1">
-            <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Önceki 28 Gün</span>
-            <span className="text-xl font-bold text-gray-500 tabular-nums">32,1K</span>
-          </div>
-          <div className="rounded-xl border border-gray-100 p-3 flex flex-col gap-1">
-            <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Son 28 Gün</span>
-            <span className="text-xl font-bold text-gray-900 tabular-nums">38,8K</span>
-            <span className="text-[10px] font-bold text-emerald-600">+20,9%</span>
-          </div>
-          <div className="rounded-xl border border-fuchsia-100 bg-fuchsia-50/50 p-3 flex flex-col gap-1">
-            <span className="text-[10px] font-semibold text-fuchsia-400 uppercase tracking-wider">30 Aug – 26 Sep</span>
-            <span className="text-xl font-bold text-fuchsia-700 tabular-nums">51,1K</span>
-            <span className="text-[10px] font-bold text-fuchsia-600">+31,7%</span>
-          </div>
-        </div>
-        <div className="rounded-lg bg-fuchsia-50 border border-fuchsia-100 px-3 py-2 mb-3">
-          <p className="text-[11px] text-fuchsia-700 leading-relaxed">
-            Organik trafik mevsimsel olarak gerilerken AI yüzeylerindeki görünürlük büyümeye devam ediyor.
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-1.5">
-          {[
-            '/duty-pharmacy/ar',
-            'eczane kaçta kapanır ve açılır',
-            'açılmış ilaçların kullanım süreleri',
-            'kan grubu',
-            'tiroid hastası zayıflama iğnesi',
-          ].map((c, i) => (
-            <span key={i} className="text-[10px] font-medium text-fuchsia-700 bg-fuchsia-50 border border-fuchsia-100 px-2 py-1 rounded-full">{c}</span>
-          ))}
-        </div>
-        <p className="text-[10px] text-gray-400 mt-2">Bu görünürlük doğrudan trafik veya dönüşüm olarak yorumlanmamalıdır.</p>
-      </div>
-
-      {/* 4 — Weekly Trend + 5 — Seasonality */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-        {/* Weekly Trend */}
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-          <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">Haftalık Trend</p>
+          <SectionTitle>Haftalık Trend · organik tıklama</SectionTitle>
           <div className="flex flex-col gap-3">
-            {WEEKLY_TREND.map((w) => {
-              const maxVal = Math.max(...WEEKLY_TREND.map((x) => x.clicks));
-              const pct = (w.clicks / maxVal) * 100;
-              return (
-                <div key={w.week} className="flex items-center gap-3">
-                  <span className={`text-[11px] font-semibold w-28 shrink-0 ${w.highlight ? 'text-blue-700' : 'text-gray-500'}`}>{w.week}</span>
-                  <div className="flex-1 h-7 bg-gray-50 rounded-lg relative overflow-hidden">
-                    <div
-                      className={`h-full rounded-lg flex items-center justify-end pr-2 ${w.highlight ? 'bg-blue-500' : 'bg-blue-200'}`}
-                      style={{ width: `${pct}%` }}
-                    >
-                      <span className={`text-[10px] font-bold ${w.highlight ? 'text-white' : 'text-blue-700'}`}>{w.clicks.toLocaleString('tr-TR')}</span>
-                    </div>
-                  </div>
-                  {w.partial && <span className="text-[9px] text-amber-600 font-semibold shrink-0">6-day</span>}
-                </div>
-              );
-            })}
+            {WEEKLY_TREND.map(week => <div key={week.label} className="flex items-center gap-3">
+              <span className="text-[11px] font-semibold w-24 shrink-0 text-gray-500">{week.label}</span>
+              <div className="flex-1 h-7 bg-gray-50 rounded-lg overflow-hidden"><div className="h-full rounded-lg bg-blue-500 flex items-center justify-end pr-2" style={{ width: `${(week.value / maxWeeklyClicks) * 100}%` }}><span className="text-[10px] font-bold text-white">{week.value.toLocaleString('tr-TR')}</span></div></div>
+            </div>)}
           </div>
-          <div className="mt-4 space-y-2">
-            <div className="rounded-lg bg-blue-50 border border-blue-100 px-3 py-2">
-              <p className="text-[11px] text-blue-700 leading-relaxed">7–13 Eylül lansman haftası dönem içindeki en yüksek organik tıklama seviyesini üretti.</p>
-            </div>
-            <div className="rounded-lg bg-gray-50 border border-gray-100 px-3 py-2">
-              <p className="text-[11px] text-gray-600 leading-relaxed">21–26 Eylül'ün 6 günü 4.261 tıklama; önceki haftanın aynı 6 günü 4.221 (+%0,9).</p>
-            </div>
-            <div className="rounded-lg bg-slate-800 px-3 py-2">
-              <p className="text-[11px] text-slate-300 leading-relaxed">7 Eylül tarihinde ani bir SEO kırılması görülmedi. Düşüş ikinci haftada başladı ve sonraki dönemde stabil hale geldi.</p>
-            </div>
-          </div>
+          <div className="mt-4 rounded-lg bg-gray-50 border border-gray-100 px-3 py-2"><p className="text-[11px] text-gray-600 leading-relaxed">Dört haftada kesintisiz düşüş: -%18, -%12, -%25. Hafta sonu zirveleri de her hafta küçülüyor.</p></div>
+          <div className="mt-2 rounded-lg bg-blue-50 border border-blue-100 px-3 py-2"><p className="text-[11px] text-blue-700 leading-relaxed">Günlük gösterim 1 Kasım'da 84,6K, 23 Kasım'da 27,8K. Ekim'deki “stabil hale geldi” okuması Kasım'da geçerli değil.</p></div>
         </div>
-
-        {/* Seasonality */}
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-          <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">Mevsimsellik Doğrulaması — 2025 vs 2026</p>
-          <div className="overflow-x-auto rounded-xl border border-gray-100 mb-3">
-            <table className="w-full text-xs border-collapse">
-              <thead>
-                <tr className="bg-gray-50">
-                  <th className="text-left px-3 py-2 font-semibold text-gray-500 uppercase tracking-wider">Segment</th>
-                  <th className="text-right px-3 py-2 font-semibold text-gray-500 uppercase tracking-wider">2025</th>
-                  <th className="text-right px-3 py-2 font-semibold text-gray-500 uppercase tracking-wider">2026</th>
-                  <th className="text-left px-3 py-2 font-semibold text-gray-500 uppercase tracking-wider">Yorum</th>
-                </tr>
-              </thead>
-              <tbody>
-                {SEASONALITY.map((s, i) => (
-                  <tr key={i} className="border-t border-gray-100 hover:bg-gray-50/60 transition-colors">
-                    <td className="px-3 py-2 font-medium text-gray-700">{s.segment}</td>
-                    <td className="px-3 py-2 text-right tabular-nums text-gray-500">{s.y2025}</td>
-                    <td className="px-3 py-2 text-right tabular-nums font-semibold text-gray-700">{s.y2026}</td>
-                    <td className="px-3 py-2">
-                      <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
-                        s.interpType === 'good' ? 'text-emerald-700 bg-emerald-50' :
-                        s.interpType === 'bad' ? 'text-red-600 bg-red-50' :
-                        'text-gray-500 bg-gray-50'
-                      }`}>{s.interp}</span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="rounded-lg bg-amber-50 border border-amber-100 px-3 py-2">
-            <p className="text-[11px] text-amber-700 leading-relaxed">
-              Ekim tam-ay verisi, TR Nöbetçi Eczane düşüşünün yalnızca mevsimsellikle açıklanmaması gerektiğini gösteriyor. Düşüş Türkçe yapı üzerinde yoğunlaşırken AR / RU / EN sayfalarında aynı negatif hareket görülmüyor. Bu nedenle yeni sürümle gelen template, noindex, canonical, internal linking ve server-side rendering farklılıkları öncelikli olarak incelenmeli. Bu, strong technical / template signal olarak ele alınmalı; proven migration penalty olarak yorumlanmamalı.
-            </p>
-          </div>
+          <SectionTitle>Mevsimsellik Doğrulaması — Ekim → Kasım</SectionTitle>
+          <DataTable headers={['Segment', '2025', '2026', 'Yorum']} rows={[
+            ['Total Site Clicks', '-%6,7', '-%27,4', 'Mevsimsellikten 4× kötü'],
+            ['Total Site Impressions', '-%3,5', '-%44,8', 'Gerçek görünürlük kaybı'],
+            ['TR Nöbetçi Eczane', '-%9,9', '-%55,1', 'Mevsimsel değil'],
+            ['Arabic Duty Pharmacy', '+%11,3', '-%16,4', '2025’te büyürken geriledi'],
+          ]} />
+          <p className="text-[11px] text-gray-500 leading-relaxed mt-3">2025: 43,4K → 40,5K tıklama. 2026: 15,7K → 11,4K tıklama. Yıllık bazda Kasım tıklaması -%72.</p>
         </div>
       </div>
 
-      {/* 6 — Positive Signals + 8 — Losing Pages */}
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+        <SectionTitle>Kategori Performansı · tıklama, 1–24 Ekim → 1–24 Kasım</SectionTitle>
+        <DataTable headers={['Section', 'Ekim', 'Kasım', 'Change', 'Gösterim Kas', 'Konum Eki → Kas']} rows={CATEGORY_ROWS} />
+        <div className="mt-3 rounded-lg bg-emerald-50 border border-emerald-100 px-3 py-2"><p className="text-[11px] text-emerald-700 leading-relaxed">/tr Blog gösterimi +%60, tıklaması +%24. Evde Sağlık tıklaması +%7. Blog ve Evde Sağlık gösterim kazanıyor ancak tıklamaya düşük oranda dönüyor.</p></div>
+      </div>
+
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+        <SectionTitle>Gerçek Kayıp — Kritik İlçe Sayfaları</SectionTitle>
+        <DataTable headers={['Page', 'Click', 'Impressions', 'Position']} rows={CRITICAL_PAGES} />
+        <div className="mt-4"><DataTable headers={['İstanbul ilçe sorguları (TR)', 'Gösterim Eki → Kas', 'Tık Eki → Kas']} rows={DISTRICT_QUERIES} /></div>
+        <p className="text-[11px] text-gray-500 leading-relaxed mt-3">Sarıyer ve Elmalı Kasım'da da kaybetmeye devam etti. Pendik ve Sultanbeyli gösterim kazandı ancak organik tık getirmedi.</p>
+      </div>
+
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-        {/* Positive Signals */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-          <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-1.5">
-            <TrendingUp size={12} className="text-emerald-500" /> Pozitif Sinyaller
-          </p>
-          <div className="overflow-x-auto rounded-xl border border-gray-100 mb-3">
-            <table className="w-full text-xs border-collapse">
-              <thead>
-                <tr className="bg-gray-50">
-                  <th className="text-left px-3 py-2 font-semibold text-gray-500 uppercase tracking-wider">Page Group</th>
-                  <th className="text-right px-3 py-2 font-semibold text-gray-500 uppercase tracking-wider">Click Change</th>
-                </tr>
-              </thead>
-              <tbody>
-                {POSITIVE_SIGNALS.map((p, i) => (
-                  <tr key={i} className="border-t border-gray-100 hover:bg-gray-50/60 transition-colors">
-                    <td className="px-3 py-2 font-medium text-gray-700">{p.group}</td>
-                    <td className="px-3 py-2 text-right tabular-nums font-bold text-emerald-600">{p.change}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="overflow-x-auto rounded-xl border border-gray-100 mb-3">
-            <table className="w-full text-xs border-collapse">
-              <thead><tr className="bg-gray-50"><th className="text-left px-3 py-2 font-semibold text-gray-500">Section</th><th className="text-right px-3 py-2 font-semibold text-gray-500">Pre-live</th><th className="text-right px-3 py-2 font-semibold text-gray-500">October</th><th className="text-right px-3 py-2 font-semibold text-gray-500">Change</th></tr></thead>
-              <tbody>{GROWING_SECTIONS.map((row, i) => <tr key={i} className="border-t border-gray-100"><td className="px-3 py-2 font-medium text-gray-700">{row[0]}</td><td className="px-3 py-2 text-right text-gray-500">{row[1]}</td><td className="px-3 py-2 text-right font-semibold text-gray-700">{row[2]}</td><td className="px-3 py-2 text-right font-bold text-emerald-600">{row[3]}</td></tr>)}</tbody>
-            </table>
-          </div>
-          <div className="flex flex-wrap gap-1.5 mb-3">
-            <span className="text-[10px] text-gray-600 bg-emerald-50 border border-emerald-100 px-2 py-1 rounded-full">Arabic pages: Impressions +27%</span>
-            <span className="text-[10px] text-gray-600 bg-emerald-50 border border-emerald-100 px-2 py-1 rounded-full">Istanbul / Gaziantep / Bursa hubs: 1,5x–6x impression growth</span>
-          </div>
-          <div className="rounded-lg bg-emerald-50 border border-emerald-100 px-3 py-2">
-            <p className="text-[11px] text-emerald-700 leading-relaxed">
-              Yeni site yapısının tamamı zayıflamıyor. Online Doktor, Blog, Check-Up, /tr homepage ve yabancı dil Nöbetçi Eczane alanları canlı sonrası büyüme gösteriyor.
-            </p>
-          </div>
-        </div>
-
-        {/* Losing Pages */}
-        <div className="bg-white rounded-2xl border border-red-100 shadow-sm p-5">
-          <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-1.5">
-            <AlertTriangle size={12} className="text-red-500" /> Gerçek Kayıp — Kritik İlçe Sayfaları
-          </p>
-          <div className="overflow-x-auto rounded-xl border border-gray-100 mb-3">
-            <table className="w-full text-xs border-collapse">
-              <thead>
-                <tr className="bg-gray-50">
-                  <th className="text-left px-3 py-2 font-semibold text-gray-500 uppercase tracking-wider">Page</th>
-                  <th className="text-right px-3 py-2 font-semibold text-gray-500 uppercase tracking-wider">Click</th>
-                  <th className="text-right px-3 py-2 font-semibold text-gray-500 uppercase tracking-wider">Position</th>
-                </tr>
-              </thead>
-              <tbody>
-                {LOSING_PAGES.map((p, i) => (
-                  <tr key={i} className="border-t border-gray-100 hover:bg-red-50/30 transition-colors">
-                    <td className="px-3 py-2 font-medium text-gray-700">{p.page}</td>
-                    <td className="px-3 py-2 text-right tabular-nums font-semibold text-red-600">{p.click}</td>
-                    <td className="px-3 py-2 text-right tabular-nums text-gray-500">{p.pos}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="rounded-lg bg-red-50 border border-red-100 px-3 py-2">
-            <p className="text-[11px] text-red-700 leading-relaxed font-medium">
-              Losers: Sarıyer, Elmalı, Kahta ve Arabic Osmangazi. Kazananlar: /tr, /duty-pharmacy/ar, Arabic Şanlıurfa, Arabic Bursa, İstanbul hub ve /tr/check-up/medicalpark.
-            </p>
-          </div>
-        </div>
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5"><SectionTitle>Semrush Sıralama · 1 → 23 Kasım (TR)</SectionTitle><DataTable headers={['Kelime', '1 Kas', '23 Kas', 'Δ']} rows={SEMRUSH_ROWS} /></div>
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5"><SectionTitle>Hizmet seti · mobil</SectionTitle><DataTable headers={['Kelime', '1 Kas', '23 Kas', 'Δ']} rows={SERVICE_ROWS} /><p className="text-[11px] text-gray-500 leading-relaxed mt-3">Check-up, online psikolog ve online doktor ilk 50'ye girdi. Büyük şehir kelimelerinde gerileme sürerken jenerik sorgularda yükseliş var.</p></div>
       </div>
+
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+        <SectionTitle>5 — Aksiyon Takibi · Kasım durumu</SectionTitle>
+        <div className="flex flex-col gap-2.5">
+          {ACTIONS.map(action => <div key={action.title} className="rounded-xl border border-gray-100 bg-gray-50/60 px-4 py-3">
+            <div className="flex items-center justify-between gap-3 mb-1.5"><p className="text-xs font-bold text-gray-800">{action.title}</p><span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 whitespace-nowrap">{action.status}</span></div>
+            <p className="text-[11px] text-gray-600 leading-relaxed">{action.text}</p><p className="text-[10px] text-gray-400 leading-relaxed mt-1">{action.detail}</p>
+          </div>)}
+        </div>
+        <div className="mt-5"><p className="text-xs font-bold text-gray-700 mb-3">Sıradaki Aksiyonlar</p><div className="flex flex-col gap-2">{NEXT_ACTIONS.map((action, index) => <div key={action} className="flex items-start gap-2.5 rounded-lg border border-gray-100 bg-gray-50/60 px-3 py-2.5"><span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-gray-200 text-gray-600 shrink-0">{index + 1}</span><p className="text-[11px] text-gray-700 leading-relaxed">{action}</p></div>)}</div></div>
+      </div>
+
+      <div className="rounded-2xl bg-slate-800 px-5 py-4 flex items-start gap-3"><AlertTriangle size={15} className="text-amber-300 shrink-0 mt-0.5" /><p className="text-[11px] text-slate-300 leading-relaxed">Kaynaklar: Google Search Console — www.happ.health, 1–24 Kasım 2026 vs 1–24 Ekim 2026. 24 Kasım verisi henüz işlenmedi; fiilen 23 gün. Mevsimsellik için 2025 karşılaştırması ve Semrush Position Tracking kullanıldı.</p></div>
     </div>
   );
 }
